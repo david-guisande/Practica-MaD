@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SSDTUnitTestPath Condition="'$(SSDTUnitTestPath)' == ''">$(VsInstallRoot)\Common7\IDE\Extensions\Microsoft\SQLDB</SSDTUnitTestPath>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SSDTPath Condition="'$(SSDTPath)' == ''">$(VsInstallRoot)\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\130</SSDTPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{400C9E1C-A244-4AEB-996A-0491A306249A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Es.Udc.DotNet.Photogram.Model</RootNamespace>
+    <AssemblyName>Photogram.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\Photogram.Model.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="ModelUtil">
+      <HintPath>..\Lib\ModelUtil.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Interception.3.3.0\lib\net45\Ninject.Extensions.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Xml, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Xml.3.3.0\lib\net45\Ninject.Extensions.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Comentarios.cs">
+      <DependentUpon>Photogram.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAOs\PublicacionesDao\PublicacionesDao.cs" />
+    <Compile Include="DAOs\PublicacionesDao\PublicacionesDaoEntityFramework.cs" />
+    <Compile Include="DAOs\UserProfileDao\IUserProfileDao.cs" />
+    <Compile Include="DAOs\UserProfileDao\UserProfileDaoEntityFramework.cs" />
+    <Compile Include="EtiquetaSet.cs">
+      <DependentUpon>Photogram.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Photogram.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Photogram.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Photogram.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Photogram.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Photogram.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Photogram.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publicaciones.cs">
+      <DependentUpon>Photogram.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Service\PhotogramService.cs" />
+    <Compile Include="Usuarios.cs">
+      <DependentUpon>Photogram.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClassDiagram-DAO.cd" />
+    <None Include="packages.config" />
+    <EntityDeploy Include="Photogram.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Photogram.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Photogram.edmx.diagram">
+      <DependentUpon>Photogram.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C8F2D6AC-F9F4-4E40-A399-22F9A9A5CBD2}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Photogram.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Photogram.edmx</DependentUpon>
+      <LastGenOutput>Photogram.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Photogram.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Photogram.edmx</DependentUpon>
+      <LastGenOutput>Photogram.cs</LastGenOutput>
+    </Content>
+    <Content Include="sql\PhotogramDatabase.sql" />
+    <Content Include="sql\Photogram.edmx.sql" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup Condition="$(VisualStudioVersion) == '16.0'">
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SSDTPath)\Microsoft.Data.Tools.Schema.Sql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql.UnitTesting, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SSDTUnitTestPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SSDTUnitTestPath)\Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <SsdtUnitTestVersion>3.1</SsdtUnitTestVersion>
+  </PropertyGroup>
+  <Import Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="$(VisualStudioVersion) != '15.0' And '$(SQLDBExtensionsRefPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="$(VisualStudioVersion) != '15.0' And '$(SQLDBExtensionsRefPath)' == ''" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

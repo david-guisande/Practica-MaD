@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MAD_BDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Comentarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="bigint" Nullable="false" />
+          <Property Name="PublicacionId" Type="bigint" Nullable="false" />
+          <Property Name="texto" Type="nvarchar" MaxLength="280" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DarFav">
+          <Key>
+            <PropertyRef Name="UsuariosWhoLikes" />
+            <PropertyRef Name="PublicacionGustadas_Id" />
+          </Key>
+          <Property Name="UsuariosWhoLikes" Type="bigint" Nullable="false" />
+          <Property Name="PublicacionGustadas_Id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EtiquetaSet">
+          <Key>
+            <PropertyRef Name="tag" />
+          </Key>
+          <Property Name="tag" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Publicaciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="bigint" Nullable="false" />
+          <Property Name="imagen" Type="nvarchar" MaxLength="280" Nullable="false" />
+          <Property Name="titulo" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="280" Nullable="false" />
+          <Property Name="fecha" Type="time" Precision="7" Nullable="false" />
+          <Property Name="categoria" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="f" Type="float" />
+          <Property Name="ISO" Type="int" />
+          <Property Name="t" Type="int" />
+          <Property Name="wb" Type="int" />
+        </EntityType>
+        <EntityType Name="SigueA">
+          <Key>
+            <PropertyRef Name="UsuarioSeguidor" />
+            <PropertyRef Name="UsuarioSeguido" />
+          </Key>
+          <Property Name="UsuarioSeguidor" Type="bigint" Nullable="false" />
+          <Property Name="UsuarioSeguido" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TieneAsociadas">
+          <Key>
+            <PropertyRef Name="Publicaciones_Id" />
+            <PropertyRef Name="Etiquetas_tag" />
+          </Key>
+          <Property Name="Publicaciones_Id" Type="bigint" Nullable="false" />
+          <Property Name="Etiquetas_tag" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="usrId" />
+          </Key>
+          <Property Name="usrId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="loginName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="pais" Type="varchar" MaxLength="30" />
+          <Property Name="idioma" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK_PubC">
+          <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="1" />
+          <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicaciones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comentarios">
+              <PropertyRef Name="PublicacionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PubLiked">
+          <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="1" />
+          <End Role="DarFav" Type="Self.DarFav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicaciones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DarFav">
+              <PropertyRef Name="PublicacionGustadas_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PubTag">
+          <End Role="EtiquetaSet" Type="Self.EtiquetaSet" Multiplicity="1" />
+          <End Role="TieneAsociadas" Type="Self.TieneAsociadas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EtiquetaSet">
+              <PropertyRef Name="tag" />
+            </Principal>
+            <Dependent Role="TieneAsociadas">
+              <PropertyRef Name="Etiquetas_tag" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PubTagged">
+          <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="1" />
+          <End Role="TieneAsociadas" Type="Self.TieneAsociadas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicaciones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TieneAsociadas">
+              <PropertyRef Name="Publicaciones_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usrId" />
+            </Principal>
+            <Dependent Role="Publicaciones">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User1">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="SigueA" Type="Self.SigueA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usrId" />
+            </Principal>
+            <Dependent Role="SigueA">
+              <PropertyRef Name="UsuarioSeguido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User2">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="SigueA" Type="Self.SigueA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usrId" />
+            </Principal>
+            <Dependent Role="SigueA">
+              <PropertyRef Name="UsuarioSeguidor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserC">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usrId" />
+            </Principal>
+            <Dependent Role="Comentarios">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLikes">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="DarFav" Type="Self.DarFav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usrId" />
+            </Principal>
+            <Dependent Role="DarFav">
+              <PropertyRef Name="UsuariosWhoLikes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MAD_BDModelStoreContainer">
+          <EntitySet Name="Comentarios" EntityType="Self.Comentarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DarFav" EntityType="Self.DarFav" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EtiquetaSet" EntityType="Self.EtiquetaSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publicaciones" EntityType="Self.Publicaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SigueA" EntityType="Self.SigueA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TieneAsociadas" EntityType="Self.TieneAsociadas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PubC" Association="Self.FK_PubC">
+            <End Role="Publicaciones" EntitySet="Publicaciones" />
+            <End Role="Comentarios" EntitySet="Comentarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PubLiked" Association="Self.FK_PubLiked">
+            <End Role="Publicaciones" EntitySet="Publicaciones" />
+            <End Role="DarFav" EntitySet="DarFav" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PubTag" Association="Self.FK_PubTag">
+            <End Role="EtiquetaSet" EntitySet="EtiquetaSet" />
+            <End Role="TieneAsociadas" EntitySet="TieneAsociadas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PubTagged" Association="Self.FK_PubTagged">
+            <End Role="Publicaciones" EntitySet="Publicaciones" />
+            <End Role="TieneAsociadas" EntitySet="TieneAsociadas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User" Association="Self.FK_User">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Publicaciones" EntitySet="Publicaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User1" Association="Self.FK_User1">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="SigueA" EntitySet="SigueA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User2" Association="Self.FK_User2">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="SigueA" EntitySet="SigueA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserC" Association="Self.FK_UserC">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Comentarios" EntitySet="Comentarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLikes" Association="Self.FK_UserLikes">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="DarFav" EntitySet="DarFav" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MAD_BDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Comentarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario" Type="Int64" Nullable="false" />
+          <Property Name="PublicacionId" Type="Int64" Nullable="false" />
+          <Property Name="texto" Type="String" MaxLength="280" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Publicaciones" Relationship="Self.FK_PubC" FromRole="Comentarios" ToRole="Publicaciones" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_UserC" FromRole="Comentarios" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="EtiquetaSet">
+          <Key>
+            <PropertyRef Name="tag" />
+          </Key>
+          <Property Name="tag" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Publicaciones" Relationship="Self.TieneAsociadas" FromRole="EtiquetaSet" ToRole="Publicaciones" />
+        </EntityType>
+        <EntityType Name="Publicaciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario" Type="Int64" Nullable="false" />
+          <Property Name="imagen" Type="String" MaxLength="280" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="titulo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="280" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fecha" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="categoria" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="f" Type="Double" />
+          <Property Name="ISO" Type="Int32" />
+          <Property Name="t" Type="Int32" />
+          <Property Name="wb" Type="Int32" />
+          <NavigationProperty Name="Comentarios" Relationship="Self.FK_PubC" FromRole="Publicaciones" ToRole="Comentarios" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_User" FromRole="Publicaciones" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios1" Relationship="Self.DarFav" FromRole="Publicaciones" ToRole="Usuarios" />
+          <NavigationProperty Name="EtiquetaSet" Relationship="Self.TieneAsociadas" FromRole="Publicaciones" ToRole="EtiquetaSet" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="usrId" />
+          </Key>
+          <Property Name="usrId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="loginName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pais" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="idioma" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Comentarios" Relationship="Self.FK_UserC" FromRole="Usuarios" ToRole="Comentarios" />
+          <NavigationProperty Name="Publicaciones" Relationship="Self.FK_User" FromRole="Usuarios" ToRole="Publicaciones" />
+          <NavigationProperty Name="Publicaciones1" Relationship="Self.DarFav" FromRole="Usuarios" ToRole="Publicaciones" />
+          <NavigationProperty Name="Usuarios1" Relationship="Self.SigueA" FromRole="Usuarios" ToRole="Usuarios1" />
+          <NavigationProperty Name="Usuarios2" Relationship="Self.SigueA" FromRole="Usuarios1" ToRole="Usuarios" />
+        </EntityType>
+        <Association Name="FK_PubC">
+          <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="1" />
+          <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publicaciones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comentarios">
+              <PropertyRef Name="PublicacionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserC">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usrId" />
+            </Principal>
+            <Dependent Role="Comentarios">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usrId" />
+            </Principal>
+            <Dependent Role="Publicaciones">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DarFav">
+          <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="*" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+        </Association>
+        <Association Name="SigueA">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <End Role="Usuarios1" Type="Self.Usuarios" Multiplicity="*" />
+        </Association>
+        <Association Name="TieneAsociadas">
+          <End Role="EtiquetaSet" Type="Self.EtiquetaSet" Multiplicity="*" />
+          <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="MAD_BDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Comentarios" EntityType="Self.Comentarios" />
+          <EntitySet Name="EtiquetaSet" EntityType="Self.EtiquetaSet" />
+          <EntitySet Name="Publicaciones" EntityType="Self.Publicaciones" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK_PubC" Association="Self.FK_PubC">
+            <End Role="Publicaciones" EntitySet="Publicaciones" />
+            <End Role="Comentarios" EntitySet="Comentarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserC" Association="Self.FK_UserC">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Comentarios" EntitySet="Comentarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User" Association="Self.FK_User">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Publicaciones" EntitySet="Publicaciones" />
+          </AssociationSet>
+          <AssociationSet Name="DarFav" Association="Self.DarFav">
+            <End Role="Publicaciones" EntitySet="Publicaciones" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="SigueA" Association="Self.SigueA">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Usuarios1" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="TieneAsociadas" Association="Self.TieneAsociadas">
+            <End Role="EtiquetaSet" EntitySet="EtiquetaSet" />
+            <End Role="Publicaciones" EntitySet="Publicaciones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MAD_BDModelStoreContainer" CdmEntityContainer="MAD_BDEntities">
+          <EntitySetMapping Name="Comentarios">
+            <EntityTypeMapping TypeName="MAD_BDModel.Comentarios">
+              <MappingFragment StoreEntitySet="Comentarios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="PublicacionId" ColumnName="PublicacionId" />
+                <ScalarProperty Name="texto" ColumnName="texto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EtiquetaSet">
+            <EntityTypeMapping TypeName="MAD_BDModel.EtiquetaSet">
+              <MappingFragment StoreEntitySet="EtiquetaSet">
+                <ScalarProperty Name="tag" ColumnName="tag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publicaciones">
+            <EntityTypeMapping TypeName="MAD_BDModel.Publicaciones">
+              <MappingFragment StoreEntitySet="Publicaciones">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="f" ColumnName="f" />
+                <ScalarProperty Name="ISO" ColumnName="ISO" />
+                <ScalarProperty Name="t" ColumnName="t" />
+                <ScalarProperty Name="wb" ColumnName="wb" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="MAD_BDModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="usrId" ColumnName="usrId" />
+                <ScalarProperty Name="loginName" ColumnName="loginName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+                <ScalarProperty Name="idioma" ColumnName="idioma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="DarFav" TypeName="MAD_BDModel.DarFav" StoreEntitySet="DarFav">
+            <EndProperty Name="Publicaciones">
+              <ScalarProperty Name="Id" ColumnName="PublicacionGustadas_Id" />
+            </EndProperty>
+            <EndProperty Name="Usuarios">
+              <ScalarProperty Name="usrId" ColumnName="UsuariosWhoLikes" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SigueA" TypeName="MAD_BDModel.SigueA" StoreEntitySet="SigueA">
+            <EndProperty Name="Usuarios">
+              <ScalarProperty Name="usrId" ColumnName="UsuarioSeguido" />
+            </EndProperty>
+            <EndProperty Name="Usuarios1">
+              <ScalarProperty Name="usrId" ColumnName="UsuarioSeguidor" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TieneAsociadas" TypeName="MAD_BDModel.TieneAsociadas" StoreEntitySet="TieneAsociadas">
+            <EndProperty Name="EtiquetaSet">
+              <ScalarProperty Name="tag" ColumnName="Etiquetas_tag" />
+            </EndProperty>
+            <EndProperty Name="Publicaciones">
+              <ScalarProperty Name="Id" ColumnName="Publicaciones_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
