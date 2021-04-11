@@ -12,7 +12,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
     /// Specific Operations for Publicaciones
     /// </summary>
     public class PublicacionesDaoEntityFramework :
-        GenericDaoEntityFramework<Publicaciones, Int64>, PublicacionesDao
+        GenericDaoEntityFramework<Publicaciones, Int64>, IPublicacionesDao
     {
         #region Public Constructors
 

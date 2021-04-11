@@ -14,6 +14,5 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
         /// <exception cref="InstanceNotFoundException"/>
         Usuarios FindByLoginName(String loginName);
 
-        void DarLike(Int64 userId, Int64 pubId);
     }
 }

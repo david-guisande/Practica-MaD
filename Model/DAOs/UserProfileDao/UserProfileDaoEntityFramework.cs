@@ -52,11 +52,6 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
             return userProfile;
         }
 
-        public void DarLike(Int64 userId, Int64 pubId)
-        {
-            return;
-        }
-
         #endregion IUserProfileDao Members
 
 

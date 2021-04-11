@@ -1,5 +1,4 @@
-﻿using Es.Udc.DotNet.MiniPortal.Model;
-using Es.Udc.DotNet.MiniPortal.Model.UserProfileDao;
+﻿using Es.Udc.DotNet.Photogram.Model.DAOs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using System;
@@ -7,8 +6,9 @@ using System.Data.Entity;
 using System.Transactions;
 using Es.Udc.DotNet.ModelUtil.Dao;
 using Ninject.Activation;
+using Es.Udc.DotNet.Photogram.Model;
 
-namespace Es.Udc.DotNet.MiniPortal.Test
+namespace Es.Udc.DotNet.Photogram.Test
 {
     /// <summary>
     ///This is a test class for IGenericDaoTest and is intended
@@ -20,7 +20,7 @@ namespace Es.Udc.DotNet.MiniPortal.Test
         private static IKernel kernel;
 
         private TestContext testContextInstance;
-        private UserProfile userProfile;
+        private Usuarios userProfile;
         private static IUserProfileDao userProfileDao;
 
         /// <summary>
@@ -60,14 +60,13 @@ namespace Es.Udc.DotNet.MiniPortal.Test
         [TestInitialize()]
         public void MyTestInitialize()
         {
-            userProfile = new UserProfile();
+            userProfile = new Usuarios();
             userProfile.loginName = "jsmith";
-            userProfile.enPassword = "password";
-            userProfile.firstName = "John";
-            userProfile.lastName = "Smith";
+            userProfile.password = "password";
+            userProfile.name = "John";
             userProfile.email = "jsmith@acme.com";
-            userProfile.language = "en";
-            userProfile.country = "US";
+            userProfile.idioma = "en";
+            userProfile.pais = "US";
 
             userProfileDao.Create(userProfile);
         }
@@ -92,7 +91,7 @@ namespace Es.Udc.DotNet.MiniPortal.Test
         {
             try
             {
-                UserProfile actual = userProfileDao.Find(userProfile.usrId);
+                Usuarios actual = userProfileDao.Find(userProfile.usrId);
 
                 Assert.AreEqual(userProfile, actual, "User found does not correspond with the original one.");
             }
@@ -140,16 +139,15 @@ namespace Es.Udc.DotNet.MiniPortal.Test
         {
             try
             {
-                userProfile.firstName = "Juan";
-                userProfile.lastName = "González";
+                userProfile.name = "Juan";
                 userProfile.email = "jgonzalez@acme.es";
-                userProfile.language = "es";
-                userProfile.country = "ES";
-                userProfile.enPassword = "contraseña";
+                userProfile.idioma = "es";
+                userProfile.pais = "ES";
+                userProfile.password = "contrasena";
 
                 userProfileDao.Update(userProfile);
 
-                UserProfile actual = userProfileDao.Find(userProfile.usrId);
+                Usuarios actual = userProfileDao.Find(userProfile.usrId);
 
                 Assert.AreEqual(userProfile, actual);
             }
@@ -186,14 +184,13 @@ namespace Es.Udc.DotNet.MiniPortal.Test
         {
             using (TransactionScope transaction = new TransactionScope())
             {
-                UserProfile newUserProfile = new UserProfile();
+                Usuarios newUserProfile = new Usuarios();
                 newUserProfile.loginName = "login";
-                newUserProfile.enPassword = "password";
-                newUserProfile.firstName = "John";
-                newUserProfile.lastName = "Smith";
+                newUserProfile.password = "password";
+                newUserProfile.name = "John";
                 newUserProfile.email = "john.smith@acme.com";
-                newUserProfile.language = "en";
-                newUserProfile.country = "US";
+                newUserProfile.idioma = "en";
+                newUserProfile.pais = "US";
 
                 userProfileDao.Create(newUserProfile);
 
@@ -211,11 +208,11 @@ namespace Es.Udc.DotNet.MiniPortal.Test
         [TestMethod()]
         public void DAO_AttachTest()
         {
-            UserProfile user = userProfileDao.Find(userProfile.usrId);
+            Usuarios user = userProfileDao.Find(userProfile.usrId);
             userProfileDao.Remove(user.usrId);   // removes the user created in MyTestInitialize();
             
             // First we get CommonContext from GenericDAO...
-            DbContext dbContext = ((GenericDaoEntityFramework<UserProfile, Int64>) userProfileDao).Context;
+            DbContext dbContext = ((GenericDaoEntityFramework<Usuarios, Int64>) userProfileDao).Context;
 
             // Check the user is not in the context now (EntityState.Detached notes that entity is not tracked by the context)
             Assert.AreEqual(dbContext.Entry(user).State, EntityState.Detached);

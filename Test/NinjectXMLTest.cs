@@ -1,19 +1,18 @@
-﻿using Es.Udc.DotNet.MiniPortal.Model;
-using Es.Udc.DotNet.MiniPortal.Model.UserProfileDao;
-using Es.Udc.DotNet.MiniPortal.Model.UserService.Util;
+﻿using Es.Udc.DotNet.Photogram.Model;
+using Es.Udc.DotNet.Photogram.Model.DAOs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using System;
 using System.Transactions;
 
-namespace Es.Udc.DotNet.MiniPortal.Test
+namespace Es.Udc.DotNet.Photogram.Test
 {
     [TestClass]
     public class NinjectTest
     {
         private static IKernel kernel;
         private static IUserProfileDao userProfileDao;
-        private static UserProfile userProfile;
+        private static Usuarios userProfile;
 
         // Variables used in several tests are initialized here
         private const String loginName = "loginNameTest";

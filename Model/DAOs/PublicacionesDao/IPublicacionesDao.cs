@@ -4,7 +4,7 @@ using System;
 
 namespace Es.Udc.DotNet.Photogram.Model.DAOs
 {
-    public interface PublicacionesDao : IGenericDao<Publicaciones, Int64>
+    public interface IPublicacionesDao : IGenericDao<Publicaciones, Int64>
     {
 
     }

@@ -1,10 +1,10 @@
-﻿using Es.Udc.DotNet.MiniPortal.Model.UserProfileDao;
-using Es.Udc.DotNet.MiniPortal.Model.UserService;
+﻿using Es.Udc.DotNet.Photogram.Model.DAOs;
+using Es.Udc.DotNet.Photogram.Model.Service;
 using Ninject;
 using System.Configuration;
 using System.Data.Entity;
 
-namespace Es.Udc.DotNet.MiniPortal.Test
+namespace Es.Udc.DotNet.Photogram.Test
 {
     public class TestManager
     {
@@ -21,11 +21,11 @@ namespace Es.Udc.DotNet.MiniPortal.Test
             kernel.Bind<IUserProfileDao>().
                 To<UserProfileDaoEntityFramework>();
 
-            kernel.Bind<IUserService>().
-                To<UserService>();
+            kernel.Bind<IPhotogramService>().
+                To<PhotogramService>();
 
             string connectionString =
-                ConfigurationManager.ConnectionStrings["MiniPortalEntities"].ConnectionString;
+                ConfigurationManager.ConnectionStrings["MAD_BDEntities"].ConnectionString;
 
             kernel.Bind<DbContext>().
                 ToSelf().
