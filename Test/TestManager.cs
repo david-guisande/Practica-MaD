@@ -21,6 +21,9 @@ namespace Es.Udc.DotNet.Photogram.Test
             kernel.Bind<IUserProfileDao>().
                 To<UserProfileDaoEntityFramework>();
 
+            kernel.Bind<IPublicacionesDao>().
+                To<PublicacionesDaoEntityFramework>();
+
             kernel.Bind<IPhotogramService>().
                 To<PhotogramService>();
 

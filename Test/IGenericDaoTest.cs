@@ -21,7 +21,9 @@ namespace Es.Udc.DotNet.Photogram.Test
 
         private TestContext testContextInstance;
         private Usuarios userProfile;
+        private Publicaciones publi;
         private static IUserProfileDao userProfileDao;
+        private static IPublicacionesDao publicacionesDao;
 
         /// <summary>
         ///Gets or sets the test context which provides
@@ -45,6 +47,7 @@ namespace Es.Udc.DotNet.Photogram.Test
             kernel = TestManager.ConfigureNInjectKernel();
 
             userProfileDao = kernel.Get<IUserProfileDao>();
+            publicacionesDao = kernel.Get<IPublicacionesDao>();
         }
 
         //
@@ -69,6 +72,16 @@ namespace Es.Udc.DotNet.Photogram.Test
             userProfile.pais = "US";
 
             userProfileDao.Create(userProfile);
+
+            publi = new Publicaciones();
+            publi.Usuarios = userProfile;
+            publi.imagen = "/home/david/Escriorio/a.png";
+            publi.titulo = "imagen";
+            publi.descripcion = "Una imagen mia";
+            publi.categoria = "paisaje";
+            publi.fecha = new TimeSpan();
+
+            publicacionesDao.Create(publi);
         }
 
         //Use TestCleanup to run code after each test has run
@@ -92,7 +105,6 @@ namespace Es.Udc.DotNet.Photogram.Test
             try
             {
                 Usuarios actual = userProfileDao.Find(userProfile.usrId);
-
                 Assert.AreEqual(userProfile, actual, "User found does not correspond with the original one.");
             }
             catch (Exception e)

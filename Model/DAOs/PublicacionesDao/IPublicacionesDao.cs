@@ -6,6 +6,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
 {
     public interface IPublicacionesDao : IGenericDao<Publicaciones, Int64>
     {
-
+        Publicaciones[] Buscar(string palabras);
+        Publicaciones[] Buscar(string palabras, string categoria);
     }
 }

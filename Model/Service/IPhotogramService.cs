@@ -16,7 +16,7 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
 
         void SeguirA(Int64 usrIdSeguidor, Int64 usrIdSeguido);
 
-        Int64 SubirImagen(string titulo, string descripcion, string fichero);
+        Int64 SubirImagen(long usrId, string titulo, string descripcion, string fichero);
 
         Publicaciones[] BuscarImagenes(string keywords, string categoria);
 

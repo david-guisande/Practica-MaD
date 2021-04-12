@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.Photogram.Model.DAOs;
 using Ninject;
@@ -15,6 +16,10 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
 
         [Inject]
         public IUserProfileDao UserProfileDao { private get; set; }
+        [Inject]
+        public IPublicacionesDao PublicacionesDao { private get; set; }
+        [Inject]
+        public IComentariosDao ComentariosDao { private get; set; }
 
         public void ActualizarComentario(long comId, long usrId, string textoNuevo)
         {
@@ -23,17 +28,35 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
 
         public bool Autenticar(string loginName, string clearPassword)
         {
-            throw new NotImplementedException();
+            try
+			{
+                Usuarios user = UserProfileDao.FindByLoginName(loginName);
+                if (clearPassword == user.password)
+                    return true;
+                else return false;
+            }
+            catch(InstanceNotFoundException)
+			{
+                return false;
+			}
         }
 
         public Publicaciones[] BuscarImagenes(string keywords, string categoria)
         {
-            throw new NotImplementedException();
+            if (categoria == null)
+                return PublicacionesDao.Buscar(keywords);
+            else return PublicacionesDao.Buscar(keywords, categoria);
         }
 
         public long Comentar(long usrId, long pubId, string comentario)
         {
-            throw new NotImplementedException();
+            Comentarios com = new Comentarios();
+            com.Usuario = usrId;
+            com.PublicacionId = pubId;
+            com.texto = comentario;
+
+            ComentariosDao.Create(com);
+            return com.Id;
         }
 
         public void DarMeGusta(long usrId, long pubId)
@@ -43,7 +66,8 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
 
         public void EliminarComentario(long comId, long usrId)
         {
-            throw new NotImplementedException();
+            Comentarios com = ComentariosDao.Find(comId);
+            if (com.Usuario == usrId) ComentariosDao.Remove(comId);
         }
 
         [Transactional]
@@ -77,19 +101,29 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             throw new NotImplementedException();
         }
 
-        public long SubirImagen(string titulo, string descripcion, string fichero)
+        public long SubirImagen(long usrId, string titulo, string descripcion, string fichero)
         {
-            throw new NotImplementedException();
+            Publicaciones publi = new Publicaciones();
+            publi.Usuario = usrId;
+            publi.imagen = "/home/david/Escriorio/a.png";
+            publi.titulo = "imagen";
+            publi.descripcion = "Una imagen mia";
+            publi.categoria = "paisaje";
+            publi.fecha = new TimeSpan();
+
+            PublicacionesDao.Create(publi);
+            return publi.Id;
         }
 
         public Comentarios[] VerComentarios(long pubId)
         {
-            throw new NotImplementedException();
+            Publicaciones publi = PublicacionesDao.Find(pubId);
+            return publi.Comentarios.ToArray();
         }
 
         public Usuarios VisualizarUsuario(long usrId)
         {
-            throw new NotImplementedException();
+            return UserProfileDao.Find(usrId);
         }
     }
 }

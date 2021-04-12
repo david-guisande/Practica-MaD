@@ -120,6 +120,8 @@
     <Compile Include="Comentarios.cs">
       <DependentUpon>Photogram.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAOs\ComentariosDao\IComentariosDao.cs" />
+    <Compile Include="DAOs\ComentariosDao\ComentariosDaoEntityFramework.cs" />
     <Compile Include="DAOs\PublicacionesDao\IPublicacionesDao.cs" />
     <Compile Include="DAOs\PublicacionesDao\PublicacionesDaoEntityFramework.cs" />
     <Compile Include="DAOs\UserProfileDao\IUserProfileDao.cs" />
