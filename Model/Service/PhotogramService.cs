@@ -98,13 +98,19 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
 
         public void SeguirA(long usrIdSeguidor, long usrIdSeguido)
         {
-            throw new NotImplementedException();
+            Usuarios seguidor = UserProfileDao.Find(usrIdSeguidor);
+            Usuarios seguido = UserProfileDao.Find(usrIdSeguido);
+
+            seguidor.Seguidos.Add(seguido);
+
+            UserProfileDao.Update(seguidor);
         }
 
         public long SubirImagen(long usrId, string titulo, string descripcion, string fichero)
         {
             Publicaciones publi = new Publicaciones();
             publi.Usuario = usrId;
+            publi.Usuarios = UserProfileDao.Find(usrId);
             publi.imagen = "/home/david/Escriorio/a.png";
             publi.titulo = "imagen";
             publi.descripcion = "Una imagen mia";

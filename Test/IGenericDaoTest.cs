@@ -7,6 +7,7 @@ using System.Transactions;
 using Es.Udc.DotNet.ModelUtil.Dao;
 using Ninject.Activation;
 using Es.Udc.DotNet.Photogram.Model;
+using Es.Udc.DotNet.Photogram.Model.Service;
 
 namespace Es.Udc.DotNet.Photogram.Test
 {
@@ -73,15 +74,7 @@ namespace Es.Udc.DotNet.Photogram.Test
 
             userProfileDao.Create(userProfile);
 
-            publi = new Publicaciones();
-            publi.Usuarios = userProfile;
-            publi.imagen = "/home/david/Escriorio/a.png";
-            publi.titulo = "imagen";
-            publi.descripcion = "Una imagen mia";
-            publi.categoria = "paisaje";
-            publi.fecha = new TimeSpan();
-
-            publicacionesDao.Create(publi);
+            
         }
 
         //Use TestCleanup to run code after each test has run

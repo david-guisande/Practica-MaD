@@ -281,9 +281,9 @@
           <Property Name="idioma" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Comentarios" Relationship="Self.FK_UserC" FromRole="Usuarios" ToRole="Comentarios" />
           <NavigationProperty Name="Publicaciones" Relationship="Self.FK_User" FromRole="Usuarios" ToRole="Publicaciones" />
-          <NavigationProperty Name="Publicaciones1" Relationship="Self.DarFav" FromRole="Usuarios" ToRole="Publicaciones" />
-          <NavigationProperty Name="Usuarios1" Relationship="Self.SigueA" FromRole="Usuarios" ToRole="Usuarios1" />
-          <NavigationProperty Name="Usuarios2" Relationship="Self.SigueA" FromRole="Usuarios1" ToRole="Usuarios" />
+          <NavigationProperty Name="PublicacionesGustadas" Relationship="Self.DarFav" FromRole="Usuarios" ToRole="Publicaciones" />
+          <NavigationProperty Name="Seguidores" Relationship="Self.SigueA" FromRole="Usuarios" ToRole="Usuarios1" />
+          <NavigationProperty Name="Seguidos" Relationship="Self.SigueA" FromRole="Usuarios1" ToRole="Usuarios" />
         </EntityType>
         <Association Name="FK_PubC">
           <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="1" />

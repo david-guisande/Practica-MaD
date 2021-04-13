@@ -19,9 +19,9 @@ namespace Es.Udc.DotNet.Photogram.Model
         {
             this.Comentarios = new HashSet<Comentarios>();
             this.Publicaciones = new HashSet<Publicaciones>();
-            this.Publicaciones1 = new HashSet<Publicaciones>();
-            this.Usuarios1 = new HashSet<Usuarios>();
-            this.Usuarios2 = new HashSet<Usuarios>();
+            this.PublicacionesGustadas = new HashSet<Publicaciones>();
+            this.Seguidores = new HashSet<Usuarios>();
+            this.Seguidos = new HashSet<Usuarios>();
         }
     
         public long usrId { get; set; }
@@ -37,10 +37,10 @@ namespace Es.Udc.DotNet.Photogram.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Publicaciones> Publicaciones { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Publicaciones> Publicaciones1 { get; set; }
+        public virtual ICollection<Publicaciones> PublicacionesGustadas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuarios> Usuarios1 { get; set; }
+        public virtual ICollection<Usuarios> Seguidores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuarios> Usuarios2 { get; set; }
+        public virtual ICollection<Usuarios> Seguidos { get; set; }
     }
 }
