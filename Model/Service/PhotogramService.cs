@@ -23,7 +23,12 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
 
         public void ActualizarComentario(long comId, long usrId, string textoNuevo)
         {
-            throw new NotImplementedException();
+            Comentarios com = ComentariosDao.Find(comId);
+            if (com.Usuario == usrId)
+            {
+                com.texto = textoNuevo;
+                ComentariosDao.Update(com);
+            }
         }
 
         public bool Autenticar(string loginName, string clearPassword)
@@ -61,7 +66,14 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
 
         public void DarMeGusta(long usrId, long pubId)
         {
-            throw new NotImplementedException();
+            Publicaciones publi = PublicacionesDao.Find(pubId);
+            Usuarios usr = UserProfileDao.Find(usrId);
+
+            if (publi.Usuarios1.Contains(usr))
+                publi.Usuarios1.Remove(usr);
+            else publi.Usuarios1.Add(usr);
+
+            PublicacionesDao.Update(publi);
         }
 
         public void EliminarComentario(long comId, long usrId)
