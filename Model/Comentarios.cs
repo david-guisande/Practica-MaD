@@ -32,14 +32,15 @@ namespace Es.Udc.DotNet.Photogram.Model
     
 		public virtual Publicaciones Publicaciones { get; set; }
 		public virtual Usuarios Usuarios { get; set; }
-	}
-    
-	public override bool Equals(Object obj)
-	{
-		if ((obj == null) || ! this.GetType().Equals(obj.GetType()))
-			return false;
-		
-		Comentarios c = (Comentarios) obj;
-		return c.Id == this.Id;
-	}
+
+
+        public override bool Equals(Object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+                return false;
+
+            Comentarios c = (Comentarios)obj;
+            return c.Id == this.Id;
+        }
+    }
 }
