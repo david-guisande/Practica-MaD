@@ -9,6 +9,7 @@
 
 namespace Es.Udc.DotNet.Photogram.Model
 {
+    using Es.Udc.DotNet.Photogram.Model.DTOs;
     using System;
     using System.Collections.Generic;
     
@@ -23,7 +24,20 @@ namespace Es.Udc.DotNet.Photogram.Model
             this.Seguidores = new HashSet<Usuarios>();
             this.Seguidos = new HashSet<Usuarios>();
         }
-    
+
+        public static implicit operator UsuariosDto(Usuarios user)
+        {
+            UsuariosDto usuario = new UsuariosDto();
+            usuario.usrId = user.usrId;
+            usuario.loginName = user.loginName;
+            usuario.name = user.name;
+            usuario.password = user.password;
+            usuario.pais = user.pais;
+            usuario.idioma = user.idioma;
+
+            return usuario;
+        }
+
         public long usrId { get; set; }
         public string loginName { get; set; }
         public string password { get; set; }

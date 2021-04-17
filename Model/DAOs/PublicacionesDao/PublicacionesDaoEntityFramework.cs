@@ -1,5 +1,6 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.Photogram.Model.DTOs;
 using System;
 using System.Data.Common;
 using System.Data.Entity;
