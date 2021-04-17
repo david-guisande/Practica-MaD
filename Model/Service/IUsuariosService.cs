@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Es.Udc.DotNet.Photogram.Model.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,8 +16,6 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         UsuariosDto[] VerSeguidores(Int64 usrId);
 
         UsuariosDto[] VerSeguidos(Int64 usrId);
-
-        PublicacionesDto[] VerPublicacionesUsuario(Int64 usrId);
 
         void SeguirA(Int64 usrIdSeguidor, Int64 usrIdSeguido);
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Es.Udc.DotNet.Photogram.Model.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,13 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
 {
     interface IPublicacionesService
     {
-        Int64 SubirImagen(long usrId, string titulo, string descripcion, string fichero);
+        Int64 SubirImagen(long usrId, string titulo, string descripcion, string fichero, string categoria);
 
-        Publicaciones[] BuscarImagenes(string keywords, string categoria);
+        PublicacionesDto[] VerPublicacionesUsuario(Int64 usrId);
+
+        PublicacionesDto[] BuscarImagenes(string keywords);
+
+        PublicacionesDto[] BuscarImagenes(string keywords, string categoria);
 
         void DarMeGusta(Int64 usrId, Int64 pubId);
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Es.Udc.DotNet.Photogram.Model.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,6 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
 
         void EliminarComentario(Int64 comId, Int64 usrId);
 
-        Comentarios[] VerComentarios(Int64 pubId);
+        ComentariosDto[] VerComentarios(Int64 pubId);
     }
 }
