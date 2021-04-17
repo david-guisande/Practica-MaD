@@ -9,17 +9,26 @@
 
 namespace Es.Udc.DotNet.Photogram.Model
 {
-    using System;
-    using System.Collections.Generic;
+	using System;
+	using System.Collections.Generic;
     
-    public partial class Comentarios
-    {
-        public long Id { get; set; }
-        public long Usuario { get; set; }
-        public long PublicacionId { get; set; }
-        public string texto { get; set; }
+	public partial class Comentarios
+	{
+		public long Id { get; set; }
+		public long Usuario { get; set; }
+		public long PublicacionId { get; set; }
+		public string texto { get; set; }
     
-        public virtual Publicaciones Publicaciones { get; set; }
-        public virtual Usuarios Usuarios { get; set; }
-    }
+		public virtual Publicaciones Publicaciones { get; set; }
+		public virtual Usuarios Usuarios { get; set; }
+	}
+    
+	public override bool Equals(Object obj)
+	{
+		if ((obj == null) || ! this.GetType().Equals(obj.GetType()))
+			return false;
+		
+		Comentarios c = (Comentarios) obj;
+		return c.Id == this.Id;
+	}
 }

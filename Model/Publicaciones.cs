@@ -9,37 +9,46 @@
 
 namespace Es.Udc.DotNet.Photogram.Model
 {
-    using System;
-    using System.Collections.Generic;
+	using System;
+	using System.Collections.Generic;
     
-    public partial class Publicaciones
-    {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Publicaciones()
-        {
-            this.Comentarios = new HashSet<Comentarios>();
-            this.Usuarios1 = new HashSet<Usuarios>();
-            this.EtiquetaSet = new HashSet<EtiquetaSet>();
-        }
+	public partial class Publicaciones
+	{
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+		public Publicaciones()
+		{
+			this.Comentarios = new HashSet<Comentarios>();
+			this.Usuarios1 = new HashSet<Usuarios>();
+			this.EtiquetaSet = new HashSet<EtiquetaSet>();
+		}
     
-        public long Id { get; set; }
-        public long Usuario { get; set; }
-        public string imagen { get; set; }
-        public string titulo { get; set; }
-        public string descripcion { get; set; }
-        public System.TimeSpan fecha { get; set; }
-        public string categoria { get; set; }
-        public Nullable<double> f { get; set; }
-        public Nullable<int> ISO { get; set; }
-        public Nullable<int> t { get; set; }
-        public Nullable<int> wb { get; set; }
+		public long Id { get; set; }
+		public long Usuario { get; set; }
+		public string imagen { get; set; }
+		public string titulo { get; set; }
+		public string descripcion { get; set; }
+		public System.TimeSpan fecha { get; set; }
+		public string categoria { get; set; }
+		public Nullable<double> f { get; set; }
+		public Nullable<int> ISO { get; set; }
+		public Nullable<int> t { get; set; }
+		public Nullable<int> wb { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comentarios> Comentarios { get; set; }
-        public virtual Usuarios Usuarios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuarios> Usuarios1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EtiquetaSet> EtiquetaSet { get; set; }
-    }
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+		public virtual ICollection<Comentarios> Comentarios { get; set; }
+		public virtual Usuarios Usuarios { get; set; }
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+		public virtual ICollection<Usuarios> Usuarios1 { get; set; }
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+		public virtual ICollection<EtiquetaSet> EtiquetaSet { get; set; }
+        
+		public override bool Equals(Object obj)
+		{
+			if ((obj == null) || ! this.GetType().Equals(obj.GetType()))
+				return false;
+		
+			Publicaciones p = (Publicaciones) obj;
+			return p.Id == this.Id;
+		}
+	}
 }
