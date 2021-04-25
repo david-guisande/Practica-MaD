@@ -36,7 +36,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                 (from p in publicaciones
                  select p);
 
-            request = (IQueryable<Publicaciones>)request.Where(new Func<Publicaciones,bool> (p => 
+            request = request.Where(new Func<Publicaciones,bool> (p => 
             {
                 bool r = false;
                 foreach (string w in words)
@@ -45,13 +45,9 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                     r |= p.titulo.Contains(w);
                 }
                 return r;
-            }));
+            })).AsQueryable<Publicaciones>();
 
             pub = request.ToList().ToArray();
-
-            if (pub.Length == 0)
-                throw new InstanceNotFoundException(palabras, typeof(Publicaciones).FullName);
-
             return pub;
         }
         public Publicaciones[] Buscar(string palabras, string categoria)
@@ -65,7 +61,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                  where p.categoria == categoria
                  select p);
 
-            request = (IQueryable<Publicaciones>)request.Where(new Func<Publicaciones, bool>(p =>
+            request = request.Where(new Func<Publicaciones, bool>(p =>
             {
                 bool r = false;
                 foreach (string w in words)
@@ -74,13 +70,9 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                     r |= p.titulo.Contains(w);
                 }
                 return r;
-            }));
+            })).AsQueryable<Publicaciones>();
 
             pub = request.ToList().ToArray();
-
-            if (pub.Length == 0)
-                throw new InstanceNotFoundException(palabras, typeof(Publicaciones).FullName);
-
             return pub;
 
         }
@@ -93,6 +85,18 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                           select u);
             Usuarios usr = result.FirstOrDefault();
             return usr.Publicaciones.ToArray<Publicaciones>();
+        }
+
+        public int Favs(long pubId)
+		{
+            DbSet<Publicaciones> publicaciones = Context.Set<Publicaciones>();
+
+            var request =
+                (from p in publicaciones.Include("Usuarios1")
+                 where p.Id == pubId
+                 select p);
+            Publicaciones pub = request.FirstOrDefault();
+            return pub.Usuarios1.Count;
         }
 
     }

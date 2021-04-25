@@ -76,7 +76,7 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
 
         public void DarMeGusta(Int64 usrId, Int64 pubId)
         {
-            PublicacionesDao.DarFav(usrId, pubId);
+            UsuariosDao.DarFav(usrId, pubId);
         }
     }
 }

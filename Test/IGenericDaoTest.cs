@@ -25,6 +25,7 @@ namespace Es.Udc.DotNet.Photogram.Test
         private Publicaciones publi;
         private static IUserProfileDao userProfileDao;
         private static IPublicacionesDao publicacionesDao;
+        private static IComentariosDao comentariosDao;
 
         /// <summary>
         ///Gets or sets the test context which provides
@@ -49,6 +50,7 @@ namespace Es.Udc.DotNet.Photogram.Test
 
             userProfileDao = kernel.Get<IUserProfileDao>();
             publicacionesDao = kernel.Get<IPublicacionesDao>();
+            comentariosDao = kernel.Get<IComentariosDao>();
         }
 
         //
@@ -73,8 +75,6 @@ namespace Es.Udc.DotNet.Photogram.Test
             userProfile.pais = "US";
 
             userProfileDao.Create(userProfile);
-
-            
         }
 
         //Use TestCleanup to run code after each test has run
@@ -203,6 +203,7 @@ namespace Es.Udc.DotNet.Photogram.Test
 
                 Assert.IsTrue(userExists);
 
+                userProfileDao.Remove(newUserProfile.usrId);
                 // transaction.Complete() is not called, so Rollback is executed.
             }
         }
@@ -230,6 +231,137 @@ namespace Es.Udc.DotNet.Photogram.Test
             Assert.AreEqual(dbContext.Entry(user).State, EntityState.Unchanged);
 
         }
+        
+        /// <summary>
+        ///A test for Follow
+        ///</summary>
+        [TestMethod()]
+        public void DAO_SeguirTest()
+		{
+            using (TransactionScope transaction = new TransactionScope())
+            {
+                Usuarios usr = new Usuarios();
+                usr.loginName = "qwerty";
+                usr.password = "password";
+                usr.name = "John";
+                usr.email = "jsmith@acme.com";
+                usr.idioma = "en";
+                usr.pais = "US";
+
+                userProfileDao.Create(usr);
+                userProfileDao.SeguirA(usr.usrId, userProfile.usrId);
+
+                Usuarios[] seguidores = userProfileDao.GetSeguidores(userProfile.usrId);
+                Usuarios[] seguidos = userProfileDao.GetSeguidos(usr.usrId);
+
+                Assert.AreEqual(seguidores.Length, 1);
+                Assert.AreEqual(seguidos.Length, 1);
+
+                Assert.AreEqual(seguidores[0], usr);
+                Assert.AreEqual(seguidos[0], userProfile);
+                userProfileDao.Remove(usr.usrId);
+            }
+        }
+        
+        /// <summary>
+        ///A test for Like
+        ///</summary>
+        [TestMethod()]
+        public void DAO_DarFavTest()
+        {
+            using (TransactionScope transaction = new TransactionScope())
+            {
+                Publicaciones pub = new Publicaciones();
+                pub.imagen = "/home/david/a.png";
+                pub.titulo = "imagen";
+                pub.descripcion = "una foto";
+                pub.fecha = new TimeSpan();
+                pub.Usuario = userProfile.usrId;
+                pub.categoria = "asdfgh";
+
+                publicacionesDao.Create(pub);
+                userProfileDao.DarFav(userProfile.usrId, pub.Id);
+
+                Assert.AreEqual(publicacionesDao.Favs(pub.Id), 1);
+                publicacionesDao.Remove(pub.Id);
+            }
+        }
+        
+        /// <summary>
+        ///A test for Attach
+        ///</summary>
+        [TestMethod()]
+        public void DAO_BuscarTest()
+        {
+            using (TransactionScope transaction = new TransactionScope())
+            {
+                Publicaciones pub = new Publicaciones();
+                pub.imagen = "/home/david/a.png";
+                pub.titulo = "imagen";
+                pub.descripcion = "una foto";
+                pub.fecha = new TimeSpan();
+                pub.Usuario = userProfile.usrId;
+                pub.categoria = "asdfgh";
+
+                publicacionesDao.Create(pub);
+                Assert.AreEqual(publicacionesDao.Buscar("comida").Length, 0);
+                Assert.AreEqual(publicacionesDao.Buscar("foto").Length, 1);
+
+                publicacionesDao.Remove(pub.Id);
+            }
+        }
+        
+        /// <summary>
+        ///A test for Attach
+        ///</summary>
+        [TestMethod()]
+        public void DAO_GetPubliUsuarioTest()
+        {
+            using (TransactionScope transaction = new TransactionScope())
+            {
+                Publicaciones pub = new Publicaciones();
+                pub.imagen = "/home/david/a.png";
+                pub.titulo = "imagen";
+                pub.descripcion = "una foto";
+                pub.fecha = new TimeSpan();
+                pub.Usuario = userProfile.usrId;
+                pub.categoria = "asdfgh";
+
+                publicacionesDao.Create(pub);
+                Assert.AreEqual(publicacionesDao.GetPubliUsuario(userProfile.usrId).Length, 1);
+                publicacionesDao.Remove(pub.Id);
+            }
+        }
+        
+        /// <summary>
+        ///A test for Attach
+        ///</summary>
+        [TestMethod()]
+        public void DAO_GetComentariosPubliTest()
+        {
+            using (TransactionScope transaction = new TransactionScope())
+            {
+                Publicaciones pub = new Publicaciones();
+                pub.imagen = "/home/david/a.png";
+                pub.titulo = "imagen";
+                pub.descripcion = "una foto";
+                pub.fecha = new TimeSpan();
+                pub.Usuario = userProfile.usrId;
+                pub.categoria = "asdfgh";
+                publicacionesDao.Create(pub);
+
+                Comentarios com = new Comentarios();
+                com.texto = "muy chula la foto";
+                com.PublicacionId = pub.Id;
+                com.Usuario = userProfile.usrId;
+                comentariosDao.Create(com);
+
+                Assert.AreEqual(comentariosDao.GetComentariosPubli(pub.Id).Length, 1);
+                comentariosDao.Remove(com.Id);
+                publicacionesDao.Remove(pub.Id);
+            }
+        }
+        
     }
 
 }

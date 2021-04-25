@@ -63,7 +63,7 @@ namespace Es.Udc.DotNet.Photogram.Model
 				return false;
 		
 			Usuarios u = (Usuarios) obj;
-			return u.Id == this.usrId;
+			return u.usrId == this.usrId;
 		}
     }
 }
