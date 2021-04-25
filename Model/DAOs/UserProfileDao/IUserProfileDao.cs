@@ -14,5 +14,11 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
         /// <exception cref="InstanceNotFoundException"/>
         Usuarios FindByLoginName(String loginName);
 
+        void SeguirA(Int64 usrIdSeguidor, Int64 usrIdSeguido);
+
+        Usuarios[] GetSeguidos(Int64 usrId);
+
+        Usuarios[] GetSeguidores(Int64 usrId);
+
     }
 }
