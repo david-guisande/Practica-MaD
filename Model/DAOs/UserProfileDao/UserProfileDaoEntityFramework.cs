@@ -52,6 +52,60 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
             return userProfile;
         }
 
+        public void SeguirA(Int64 usrIdSeguidor, Int64 usrIdSeguido)
+		{
+            Usuarios seguidor;
+
+            DbSet<Usuarios> userProfiles = Context.Set<Usuarios>();
+            var result = (from u in userProfiles.Include("Seguidos")
+                          where u.usrId == usrIdSeguidor
+                          select u);
+
+            seguidor = result.FirstOrDefault();
+            Usuarios seguido = Find(usrIdSeguido);
+
+            seguidor.Seguidos.Add(seguido);
+            Update(seguidor);
+        }
+
+        public Usuarios[] GetSeguidos(Int64 usrId)
+		{
+            DbSet<Usuarios> userProfiles = Context.Set<Usuarios>();
+            var result = (from u in userProfiles.Include("Seguidos")
+                          where u.usrId == usrId
+                          select u);
+            Usuarios seguidor = result.FirstOrDefault();
+            return seguidor.Seguidos.ToArray<Usuarios>();
+        }
+
+        public Usuarios[] GetSeguidores(Int64 usrId)
+		{
+            DbSet<Usuarios> userProfiles = Context.Set<Usuarios>();
+            var result = (from u in userProfiles.Include("Seguidores")
+                          where u.usrId == usrId
+                          select u);
+            Usuarios seguido = result.FirstOrDefault();
+            return seguido.Seguidores.ToArray<Usuarios>();
+        }
+
+        public void DarFav(Int64 usrId, Int64 pubId)
+        {
+            DbSet<Usuarios> userProfiles = Context.Set<Usuarios>();
+            var result = (from u in userProfiles.Include("PublicacionesGustadas")
+                          where u.usrId == usrId
+                          select u);
+
+            DbSet<Publicaciones> publicaciones = Context.Set<Publicaciones>();
+            var result2 = (from p in publicaciones
+                          where p.Id == pubId
+                          select p);
+
+            Usuarios usr = result.FirstOrDefault();
+            Publicaciones pub = result2.FirstOrDefault();
+            usr.PublicacionesGustadas.Add(pub);
+            Update(usr);
+        }
+
         #endregion IUserProfileDao Members
 
 

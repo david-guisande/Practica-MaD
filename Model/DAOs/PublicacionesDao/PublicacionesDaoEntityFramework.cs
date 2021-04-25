@@ -85,5 +85,15 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
 
         }
 
+        public Publicaciones[] GetPubliUsuario(Int64 usrId)
+		{
+            DbSet<Usuarios> userProfiles = Context.Set<Usuarios>();
+            var result = (from u in userProfiles.Include("Publicaciones")
+                          where u.usrId == usrId
+                          select u);
+            Usuarios usr = result.FirstOrDefault();
+            return usr.Publicaciones.ToArray<Publicaciones>();
+        }
+
     }
 }

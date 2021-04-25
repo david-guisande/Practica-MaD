@@ -19,6 +19,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
         Usuarios[] GetSeguidos(Int64 usrId);
 
         Usuarios[] GetSeguidores(Int64 usrId);
+        void DarFav(Int64 usrId, Int64 pubId);
 
     }
 }

@@ -9,6 +9,5 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
         Publicaciones[] Buscar(string palabras);
         Publicaciones[] Buscar(string palabras, string categoria);
         Publicaciones[] GetPubliUsuario(Int64 usrId);
-        void DarFav(Int64 usrId, Int64 pubId);
     }
 }
