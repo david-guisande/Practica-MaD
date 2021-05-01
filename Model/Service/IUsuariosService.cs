@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.Photogram.Model.Service
 {
-    interface IUsuariosService
+    public interface IUsuariosService
     {
         long RegistrarUsuario(string loginName, string clearPassword, string nombre, string email, string pais, string idioma);
 

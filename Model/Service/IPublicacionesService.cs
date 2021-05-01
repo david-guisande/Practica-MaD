@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.Photogram.Model.Service
 {
-    interface IPublicacionesService
+    public interface IPublicacionesService
     {
         Int64 SubirImagen(long usrId, string titulo, string descripcion, string fichero, string categoria);
 

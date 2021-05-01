@@ -251,8 +251,8 @@ namespace Es.Udc.DotNet.Photogram.Test
                 userProfileDao.Create(usr);
                 userProfileDao.SeguirA(usr.usrId, userProfile.usrId);
 
-                Usuarios[] seguidores = userProfileDao.GetSeguidores(userProfile.usrId);
-                Usuarios[] seguidos = userProfileDao.GetSeguidos(usr.usrId);
+                Usuarios[] seguidores = userProfileDao.GetSeguidores(userProfile.usrId, 0);
+                Usuarios[] seguidos = userProfileDao.GetSeguidos(usr.usrId, 0);
 
                 Assert.AreEqual(seguidores.Length, 1);
                 Assert.AreEqual(seguidos.Length, 1);
@@ -304,8 +304,8 @@ namespace Es.Udc.DotNet.Photogram.Test
                 pub.categoria = "asdfgh";
 
                 publicacionesDao.Create(pub);
-                Assert.AreEqual(publicacionesDao.Buscar("comida").Length, 0);
-                Assert.AreEqual(publicacionesDao.Buscar("foto").Length, 1);
+                Assert.AreEqual(publicacionesDao.Buscar("comida", 0).Length, 0);
+                Assert.AreEqual(publicacionesDao.Buscar("foto", 0).Length, 1);
 
                 publicacionesDao.Remove(pub.Id);
             }
@@ -328,7 +328,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 pub.categoria = "asdfgh";
 
                 publicacionesDao.Create(pub);
-                Assert.AreEqual(publicacionesDao.GetPubliUsuario(userProfile.usrId).Length, 1);
+                Assert.AreEqual(publicacionesDao.GetPubliUsuario(userProfile.usrId, 0).Length, 1);
                 publicacionesDao.Remove(pub.Id);
             }
         }
@@ -356,7 +356,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 com.Usuario = userProfile.usrId;
                 comentariosDao.Create(com);
 
-                Assert.AreEqual(comentariosDao.GetComentariosPubli(pub.Id).Length, 1);
+                Assert.AreEqual(comentariosDao.GetComentariosPubli(pub.Id, 0).Length, 1);
                 comentariosDao.Remove(com.Id);
                 publicacionesDao.Remove(pub.Id);
             }

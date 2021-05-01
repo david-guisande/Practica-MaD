@@ -27,8 +27,14 @@ namespace Es.Udc.DotNet.Photogram.Test
             kernel.Bind<IComentariosDao>().
                 To<ComentariosDaoEntityFramework>();
 
-            kernel.Bind<IPhotogramService>().
-                To<PhotogramService>();
+            kernel.Bind<IUsuariosService>().
+                To<UsuariosService>();
+
+            kernel.Bind<IPublicacionesService>().
+                To<PublicacionesService>();
+
+            kernel.Bind<IComentariosService>().
+                To<ComentariosService>();
 
             string connectionString =
                 ConfigurationManager.ConnectionStrings["MAD_BDEntities"].ConnectionString;

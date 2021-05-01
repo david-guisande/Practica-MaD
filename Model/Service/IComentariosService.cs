@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.Photogram.Model.Service
 {
-    interface IComentariosService
+    public interface IComentariosService
     {
         Int64 Comentar(Int64 usrId, Int64 pubId, string comentario);
 

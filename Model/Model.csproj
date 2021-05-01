@@ -155,10 +155,8 @@
     </Compile>
     <Compile Include="Service\ComentariosService.cs" />
     <Compile Include="Service\IComentariosService.cs" />
-    <Compile Include="Service\IPhotogramService.cs" />
     <Compile Include="Service\IPublicacionesService.cs" />
     <Compile Include="Service\IUsuariosService.cs" />
-    <Compile Include="Service\PhotogramService.cs" />
     <Compile Include="Service\PublicacionesService.cs" />
     <Compile Include="Service\UsuariosService.cs" />
     <Compile Include="Usuarios.cs">
