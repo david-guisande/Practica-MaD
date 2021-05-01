@@ -18,5 +18,7 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         PublicacionesDto[] BuscarImagenes(string keywords, string categoria, int npag);
 
         void DarMeGusta(Int64 usrId, Int64 pubId);
+
+        int NumeroMeGusta(Int64 pubId);
     }
 }

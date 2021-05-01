@@ -78,5 +78,10 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         {
             UsuariosDao.DarFav(usrId, pubId);
         }
+
+        public int NumeroMeGusta(Int64 pubId)
+        {
+            return PublicacionesDao.Favs(pubId);
+        }
     }
 }
