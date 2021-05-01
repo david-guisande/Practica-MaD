@@ -15,6 +15,6 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
 
         void EliminarComentario(Int64 comId, Int64 usrId);
 
-        ComentariosDto[] VerComentarios(Int64 pubId);
+        ComentariosDto[] VerComentarios(Int64 pubId, int npag);
     }
 }

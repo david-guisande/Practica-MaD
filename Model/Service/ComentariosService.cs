@@ -50,9 +50,9 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             if (com.Usuario == usrId) ComentariosDao.Remove(comId);
         }
 
-        public ComentariosDto[] VerComentarios(Int64 pubId)
+        public ComentariosDto[] VerComentarios(Int64 pubId, int npag)
         {
-            Comentarios[] com = ComentariosDao.GetComentariosPubli(pubId);
+            Comentarios[] com = ComentariosDao.GetComentariosPubli(pubId, npag);
             ComentariosDto[] res = new ComentariosDto[com.Length];
 
             for (int i = 0; i < com.Length; i++)

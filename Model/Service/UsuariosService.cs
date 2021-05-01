@@ -58,9 +58,9 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             }
         }
 
-        public UsuariosDto[] VerSeguidores(Int64 usrId)
+        public UsuariosDto[] VerSeguidores(Int64 usrId, int npag)
         {
-            Usuarios[] seguidores = UsuariosDao.GetSeguidores(usrId);
+            Usuarios[] seguidores = UsuariosDao.GetSeguidores(usrId, npag);
             UsuariosDto[] res = new UsuariosDto[seguidores.Length];
          
             for (int i = 0; i < seguidores.Length; i++)
@@ -71,9 +71,9 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             return res;
         }
 
-        public UsuariosDto[] VerSeguidos(Int64 usrId)
+        public UsuariosDto[] VerSeguidos(Int64 usrId, int npag)
         {
-            Usuarios[] seguidos = UsuariosDao.GetSeguidos(usrId);
+            Usuarios[] seguidos = UsuariosDao.GetSeguidos(usrId, npag);
             UsuariosDto[] res = new UsuariosDto[seguidos.Length];
 
             for (int i = 0; i < seguidos.Length; i++)

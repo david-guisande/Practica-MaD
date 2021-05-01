@@ -24,14 +24,14 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
         }
 
         #endregion Public Constructors
-        public Comentarios[] GetComentariosPubli(Int64 pubId)
+        public Comentarios[] GetComentariosPubli(Int64 pubId, int npag)
 		{
             DbSet<Publicaciones> publicaciones = Context.Set<Publicaciones>();
             var result = (from p in publicaciones.Include("Comentarios")
                            where p.Id == pubId
                            select p);
             Publicaciones pub = result.FirstOrDefault();
-            return pub.Comentarios.ToArray<Comentarios>();
+            return pub.Comentarios.Skip(10 * npag).Take(10).ToArray<Comentarios>();
         }
 
     }

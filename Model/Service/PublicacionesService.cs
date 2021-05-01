@@ -35,9 +35,9 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             return publi.Id;
         }
 
-        public PublicacionesDto[] VerPublicacionesUsuario(Int64 usrId)
+        public PublicacionesDto[] VerPublicacionesUsuario(Int64 usrId, int npag)
         {
-            Publicaciones[] pub = PublicacionesDao.GetPubliUsuario(usrId);
+            Publicaciones[] pub = PublicacionesDao.GetPubliUsuario(usrId, npag);
             PublicacionesDto[] res = new PublicacionesDto[pub.Length];
 
             for (int i = 0; i < pub.Length; i++)
@@ -48,9 +48,9 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             return res;
         }
 
-        public PublicacionesDto[] BuscarImagenes(string keywords)
+        public PublicacionesDto[] BuscarImagenes(string keywords, int npag)
         {
-            Publicaciones[] pub = PublicacionesDao.Buscar(keywords);
+            Publicaciones[] pub = PublicacionesDao.Buscar(keywords, npag);
             PublicacionesDto[] res = new PublicacionesDto[pub.Length];
 
             for (int i = 0; i < pub.Length; i++)
@@ -61,9 +61,9 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             return res;
         }
 
-        public PublicacionesDto[] BuscarImagenes(string keywords, string categoria)
+        public PublicacionesDto[] BuscarImagenes(string keywords, string categoria, int npag)
         {
-            Publicaciones[] pub = PublicacionesDao.Buscar(keywords, categoria);
+            Publicaciones[] pub = PublicacionesDao.Buscar(keywords, categoria, npag);
             PublicacionesDto[] res = new PublicacionesDto[pub.Length];
 
             for (int i = 0; i < pub.Length; i++)

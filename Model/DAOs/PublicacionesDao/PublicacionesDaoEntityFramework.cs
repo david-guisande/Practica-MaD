@@ -26,7 +26,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
 
         #endregion Public Constructors
 
-        public Publicaciones[] Buscar(string palabras)
+        public Publicaciones[] Buscar(string palabras, int npag)
 		{
             Publicaciones[] pub;
             string[] words = palabras.Split(' ');
@@ -47,10 +47,10 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                 return r;
             })).AsQueryable<Publicaciones>();
 
-            pub = request.ToList().ToArray();
+            pub = request.Skip(10 * npag).Take(10).ToList().ToArray();
             return pub;
         }
-        public Publicaciones[] Buscar(string palabras, string categoria)
+        public Publicaciones[] Buscar(string palabras, string categoria, int npag)
 		{
             Publicaciones[] pub;
             string[] words = palabras.Split(' ');
@@ -72,19 +72,19 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                 return r;
             })).AsQueryable<Publicaciones>();
 
-            pub = request.ToList().ToArray();
+            pub = request.Skip(10 * npag).Take(10).ToList().ToArray();
             return pub;
 
         }
 
-        public Publicaciones[] GetPubliUsuario(Int64 usrId)
+        public Publicaciones[] GetPubliUsuario(Int64 usrId, int npag)
 		{
             DbSet<Usuarios> userProfiles = Context.Set<Usuarios>();
             var result = (from u in userProfiles.Include("Publicaciones")
                           where u.usrId == usrId
                           select u);
             Usuarios usr = result.FirstOrDefault();
-            return usr.Publicaciones.ToArray<Publicaciones>();
+            return usr.Publicaciones.Skip(10 * npag).Take(10).ToArray<Publicaciones>();
         }
 
         public int Favs(long pubId)

@@ -16,9 +16,9 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
 
         void SeguirA(Int64 usrIdSeguidor, Int64 usrIdSeguido);
 
-        Usuarios[] GetSeguidos(Int64 usrId);
+        Usuarios[] GetSeguidos(Int64 usrId, int npag);
 
-        Usuarios[] GetSeguidores(Int64 usrId);
+        Usuarios[] GetSeguidores(Int64 usrId, int npag);
         void DarFav(Int64 usrId, Int64 pubId);
 
     }

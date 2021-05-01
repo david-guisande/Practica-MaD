@@ -11,11 +11,11 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
     {
         Int64 SubirImagen(long usrId, string titulo, string descripcion, string fichero, string categoria);
 
-        PublicacionesDto[] VerPublicacionesUsuario(Int64 usrId);
+        PublicacionesDto[] VerPublicacionesUsuario(Int64 usrId, int npag);
 
-        PublicacionesDto[] BuscarImagenes(string keywords);
+        PublicacionesDto[] BuscarImagenes(string keywords, int npag);
 
-        PublicacionesDto[] BuscarImagenes(string keywords, string categoria);
+        PublicacionesDto[] BuscarImagenes(string keywords, string categoria, int npag);
 
         void DarMeGusta(Int64 usrId, Int64 pubId);
     }

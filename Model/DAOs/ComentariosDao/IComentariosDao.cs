@@ -6,6 +6,6 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
 {
     public interface IComentariosDao : IGenericDao<Comentarios, Int64>
     {
-        Comentarios[] GetComentariosPubli(Int64 pubId);
+        Comentarios[] GetComentariosPubli(Int64 pubId, int npag);
     }
 }

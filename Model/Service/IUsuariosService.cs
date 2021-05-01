@@ -13,9 +13,9 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
 
         bool Autenticar(string loginName, string clearPassword);
 
-        UsuariosDto[] VerSeguidores(Int64 usrId);
+        UsuariosDto[] VerSeguidores(Int64 usrId, int npag);
 
-        UsuariosDto[] VerSeguidos(Int64 usrId);
+        UsuariosDto[] VerSeguidos(Int64 usrId, int npag);
 
         void SeguirA(Int64 usrIdSeguidor, Int64 usrIdSeguido);
     }

@@ -68,24 +68,24 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
             Update(seguidor);
         }
 
-        public Usuarios[] GetSeguidos(Int64 usrId)
+        public Usuarios[] GetSeguidos(Int64 usrId, int npag)
 		{
             DbSet<Usuarios> userProfiles = Context.Set<Usuarios>();
             var result = (from u in userProfiles.Include("Seguidos")
                           where u.usrId == usrId
                           select u);
             Usuarios seguidor = result.FirstOrDefault();
-            return seguidor.Seguidos.ToArray<Usuarios>();
+            return seguidor.Seguidos.Skip(10*npag).Take(10).ToArray<Usuarios>();
         }
 
-        public Usuarios[] GetSeguidores(Int64 usrId)
+        public Usuarios[] GetSeguidores(Int64 usrId, int npag)
 		{
             DbSet<Usuarios> userProfiles = Context.Set<Usuarios>();
             var result = (from u in userProfiles.Include("Seguidores")
                           where u.usrId == usrId
                           select u);
             Usuarios seguido = result.FirstOrDefault();
-            return seguido.Seguidores.ToArray<Usuarios>();
+            return seguido.Seguidores.Skip(10*npag).Take(10).ToArray<Usuarios>();
         }
 
         public void DarFav(Int64 usrId, Int64 pubId)
