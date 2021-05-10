@@ -11,97 +11,106 @@ namespace Web
 {
 
 
-	public partial class Photogram
+	public partial class Principal
 	{
 
 		/// <summary>
-		/// Control Head1.
+		/// Control Form2.
 		/// </summary>
 		/// <remarks>
 		/// Campo generado automáticamente.
 		/// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 		/// </remarks>
-		protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+		protected global::System.Web.UI.HtmlControls.HtmlForm Form2;
 
 		/// <summary>
-		/// Control inicio.
+		/// Control Subir.
 		/// </summary>
 		/// <remarks>
 		/// Campo generado automáticamente.
 		/// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button inicio;
+		protected global::System.Web.UI.WebControls.Button Subir;
 
 		/// <summary>
-		/// Control miperfil.
+		/// Control Form3.
 		/// </summary>
 		/// <remarks>
 		/// Campo generado automáticamente.
 		/// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button miperfil;
+		protected global::System.Web.UI.HtmlControls.HtmlForm Form3;
 
 		/// <summary>
-		/// Control actualizar.
+		/// Control Follow.
 		/// </summary>
 		/// <remarks>
 		/// Campo generado automáticamente.
 		/// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button actualizar;
+		protected global::System.Web.UI.WebControls.Button Follow;
 
 		/// <summary>
-		/// Control salir.
+		/// Control Form4.
 		/// </summary>
 		/// <remarks>
 		/// Campo generado automáticamente.
 		/// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button salir;
+		protected global::System.Web.UI.HtmlControls.HtmlForm Form4;
 
 		/// <summary>
-		/// Control Form1.
+		/// Control Following.
 		/// </summary>
 		/// <remarks>
 		/// Campo generado automáticamente.
 		/// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 		/// </remarks>
-		protected global::System.Web.UI.HtmlControls.HtmlForm Form1;
+		protected global::System.Web.UI.WebControls.Button Following;
 
 		/// <summary>
-		/// Control txtLogin.
+		/// Control Followers.
 		/// </summary>
 		/// <remarks>
 		/// Campo generado automáticamente.
 		/// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox txtLogin;
+		protected global::System.Web.UI.WebControls.Button Followers;
 
 		/// <summary>
-		/// Control DropDownList1.
+		/// Control Form5.
 		/// </summary>
 		/// <remarks>
 		/// Campo generado automáticamente.
 		/// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+		protected global::System.Web.UI.HtmlControls.HtmlForm Form5;
 
 		/// <summary>
-		/// Control Buscar.
+		/// Control Image1.
 		/// </summary>
 		/// <remarks>
 		/// Campo generado automáticamente.
 		/// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.Button Buscar;
+		protected global::System.Web.UI.WebControls.Image Image1;
 
 		/// <summary>
-		/// Control ContentPlaceHolder1.
+		/// Control Image2.
 		/// </summary>
 		/// <remarks>
 		/// Campo generado automáticamente.
 		/// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+		protected global::System.Web.UI.WebControls.Image Image2;
+
+		/// <summary>
+		/// Control Image3.
+		/// </summary>
+		/// <remarks>
+		/// Campo generado automáticamente.
+		/// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Image Image3;
 	}
 }
