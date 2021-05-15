@@ -67,11 +67,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BusquedaImagenes.aspx" />
     <Content Include="Css\styles.css" />
+    <Content Include="DetalleImagen.aspx" />
     <Content Include="Principal.aspx" />
+    <Content Include="SubidaImagenes.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusquedaImagenes.aspx.cs">
+      <DependentUpon>BusquedaImagenes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BusquedaImagenes.aspx.designer.cs">
+      <DependentUpon>BusquedaImagenes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleImagen.aspx.cs">
+      <DependentUpon>DetalleImagen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleImagen.aspx.designer.cs">
+      <DependentUpon>DetalleImagen.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -86,6 +103,13 @@
     </Compile>
     <Compile Include="Photogram.Master.designer.cs">
       <DependentUpon>Photogram.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SubidaImagenes.aspx.cs">
+      <DependentUpon>SubidaImagenes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubidaImagenes.aspx.designer.cs">
+      <DependentUpon>SubidaImagenes.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
