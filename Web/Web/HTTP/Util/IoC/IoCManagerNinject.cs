@@ -1,12 +1,11 @@
-﻿
-using Es.Udc.DotNet.ModelUtil.IoC;
+﻿using Es.Udc.DotNet.Photogram.Model.Service;
 using Es.Udc.DotNet.Photogram.Model.DAOs;
-using Es.Udc.DotNet.Photogram.Model.Service;
+using Es.Udc.DotNet.ModelUtil.IoC;
 using Ninject;
 using System.Configuration;
 using System.Data.Entity;
 
-namespace Es.Udc.DotNet.MiniPortal.HTTP.Util.IoC
+namespace Es.Udc.DotNet.Photogram.HTTP.Util.IoC
 {
     internal class IoCManagerNinject : IIoCManager
     {
@@ -28,7 +27,7 @@ namespace Es.Udc.DotNet.MiniPortal.HTTP.Util.IoC
 
             /* DbContext */
             string connectionString =
-                ConfigurationManager.ConnectionStrings["MiniPortalEntities"].ConnectionString;
+                ConfigurationManager.ConnectionStrings["MAD_BDEntities"].ConnectionString;
 
             kernel.Bind<DbContext>().
                 ToSelf().

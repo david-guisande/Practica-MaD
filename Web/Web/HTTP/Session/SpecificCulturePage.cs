@@ -1,11 +1,11 @@
-using Es.Udc.DotNet.MiniPortal.Web.HTTP.View.ApplicationObjects;
+using Es.Udc.DotNet.Photogram.Web.HTTP.View.ApplicationObjects;
 using Es.Udc.DotNet.ModelUtil.Log;
 using System;
 using System.Globalization;
 using System.Threading;
 using System.Web.UI;
 
-namespace Es.Udc.DotNet.MiniPortal.Web.HTTP.Session
+namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
 {
     /// <summary>
     /// This class selects the cultural preferences of the Web application

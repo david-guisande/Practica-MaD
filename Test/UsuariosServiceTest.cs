@@ -113,8 +113,8 @@ namespace Es.Udc.DotNet.Photogram.Test
             try
             {
                 Int64 id = usuariosService.RegistrarUsuario("elpepe", "12345", "pepe", "pepe@gmail.es", "spain", "es");
-                Assert.IsFalse(usuariosService.Autenticar("elpepe", "contraseña"));
-                Assert.IsTrue(usuariosService.Autenticar("elpepe", "12345"));
+                Assert.IsNull(usuariosService.Autenticar("elpepe", "contraseña"));
+                Assert.IsNotNull(usuariosService.Autenticar("elpepe", "12345"));
 
                 userProfileDao.Remove(id);
             }

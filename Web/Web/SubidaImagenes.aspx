@@ -1,11 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Photogram.Master" AutoEventWireup="true" CodeBehind="SubidaImagenes.aspx.cs" Inherits="Web.SubidaImagenes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-	<div style="border-style: solid double; margin-bottom: 20px">
+	<div style="border-style: solid double; margin-bottom: 20px; margin-top: 20px">
 		<div class="field" align="center" style="font-size: large; width:75%">
 				Subida de Imagen
 		</div>
 		<div>
-		<form id="SubidaImg" method="post" runat="server">
 			<div style="margin-bottom: 20px">
 				<div class="field" align="left" style="font-size: large; float:left; width:35%">
 					<asp:TextBox ID="txtTitle" runat="server" Width="195px" Columns="16" meta:resourcekey="txtTitleResource" style="margin-left: 10%;">Titulo</asp:TextBox>
@@ -49,7 +48,6 @@
 					<asp:Button ID="UploadImg" runat="server" Text="Subir Imagen"/>
 				</div>
 			</div>
-		</form>
 		</div>
 	</div>
 </asp:Content>

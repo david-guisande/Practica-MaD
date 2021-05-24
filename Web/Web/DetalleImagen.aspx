@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Photogram.Master" AutoEventWireup="true" CodeBehind="DetalleImagen.aspx.cs" Inherits="Web.DetalleImagen" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div style="border-style: solid double; margin-bottom: 20px">
+    <div style="border-style: solid double; margin-bottom: 20px; margin-top: 20px">
 		<div class="field" align="center" style="font-size: large; width:75%">
 			Detalle de Imagen
 		</div>

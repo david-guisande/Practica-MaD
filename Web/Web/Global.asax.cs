@@ -1,5 +1,5 @@
-﻿using Es.Udc.DotNet.MiniPortal.HTTP.Util.IoC;
-using Es.Udc.DotNet.MiniPortal.Web.HTTP.Session;
+﻿using Es.Udc.DotNet.Photogram.HTTP.Util.IoC;
+using Es.Udc.DotNet.Photogram.Web.HTTP.Session;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.ModelUtil.Log;
 using Ninject;
@@ -18,7 +18,6 @@ namespace Web
 			IoCManager.Configure();
 
 			Application["managerIoC"] = IoCManager;
-			LogManager.RecordMessage("NInject kernel container started", MessageType.Info);
 
 			Application.UnLock();
 		}

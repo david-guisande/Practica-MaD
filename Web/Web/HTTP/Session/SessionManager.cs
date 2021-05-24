@@ -1,13 +1,15 @@
-using Es.Udc.DotNet.MiniPortal.Web.HTTP.Util;
-using Es.Udc.DotNet.MiniPortal.Web.HTTP.View.ApplicationObjects;
+using Es.Udc.DotNet.Photogram.Model.Service;
+
+using Es.Udc.DotNet.Photogram.Web.HTTP.Util;
+using Es.Udc.DotNet.Photogram.Web.HTTP.View.ApplicationObjects;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.IoC;
-using Es.Udc.DotNet.Photogram.Model.Service;
 using System;
 using System.Web;
 using System.Web.Security;
+using Es.Udc.DotNet.Photogram.Model.DTOs;
 
-namespace Es.Udc.DotNet.MiniPortal.Web.HTTP.Session
+namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
 {
     ///<summary>
     ///
@@ -107,19 +109,18 @@ namespace Es.Udc.DotNet.MiniPortal.Web.HTTP.Session
         /// <exception cref="DuplicateInstanceException"/>
         public static void RegisterUser(HttpContext context,
             String loginName, String clearPassword,
-            UserProfileDetails userProfileDetails)
+            string nombre, string email, string pais, string idioma)
         {
             /* Register user. */
-            long usrId = userService.RegisterUser(loginName, clearPassword,
-                userProfileDetails);
+            long usrId = userService.RegistrarUsuario(loginName, clearPassword, nombre, email, pais, idioma);
 
             /* Insert necessary objects in the session. */
             UserSession userSession = new UserSession();
             userSession.UserProfileId = usrId;
-            userSession.FirstName = userProfileDetails.FirstName;
+            userSession.FirstName = nombre;
 
-            Locale locale = new Locale(userProfileDetails.Language,
-                userProfileDetails.Country);
+            Locale locale = new Locale(idioma,
+                pais);
 
             UpdateSessionForAuthenticatedUser(context, userSession, locale);
 
@@ -140,14 +141,14 @@ namespace Es.Udc.DotNet.MiniPortal.Web.HTTP.Session
         {
             /* Try to login, and if successful, update session with the necessary
              * objects for an authenticated user. */
-            LoginResult loginResult = DoLogin(context, loginName,
+            UsuariosDto loginResult = DoLogin(context, loginName,
                 clearPassword, false, rememberMyPassword);
 
             /* Add cookies if requested. */
             if (rememberMyPassword)
             {
                 CookiesManager.LeaveCookies(context, loginName,
-                    loginResult.EncryptedPassword);
+                    loginResult.password);
             }
         }
 
@@ -165,22 +166,21 @@ namespace Es.Udc.DotNet.MiniPortal.Web.HTTP.Session
         /// logins</param>
         /// <exception cref="IncorrectPasswordException"/>
         /// <exception cref="InstanceNotFoundException"/>
-        private static LoginResult DoLogin(HttpContext context,
+        private static UsuariosDto DoLogin(HttpContext context,
              String loginName, String password, Boolean passwordIsEncrypted,
              Boolean rememberMyPassword)
         {
-            LoginResult loginResult =
-                userService.Login(loginName, password,
-                    passwordIsEncrypted);
+            UsuariosDto loginResult =
+                userService.Autenticar(loginName, password);
 
             /* Insert necessary objects in the session. */
 
             UserSession userSession = new UserSession();
-            userSession.UserProfileId = loginResult.UserProfileId;
-            userSession.FirstName = loginResult.FirstName;
+            userSession.UserProfileId = loginResult.usrId;
+            userSession.FirstName = loginResult.name;
 
             Locale locale =
-                new Locale(loginResult.Language, loginResult.Country);
+                new Locale(loginResult.idioma, loginResult.pais);
 
             UpdateSessionForAuthenticatedUser(context, userSession, locale);
 
@@ -225,47 +225,7 @@ namespace Es.Udc.DotNet.MiniPortal.Web.HTTP.Session
             return locale;
         }
 
-        /// <summary>
-        /// Updates the user profile details.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <param name="userProfileDetails">The user profile details.</param>
-        public static void UpdateUserProfileDetails(HttpContext context,
-            UserProfileDetails userProfileDetails)
-        {
-            /* Update user's profile details. */
 
-            UserSession userSession =
-                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
-
-            userService.UpdateUserProfileDetails(userSession.UserProfileId,
-                userProfileDetails);
-
-            /* Update user's session objects. */
-
-            Locale locale = new Locale(userProfileDetails.Language,
-                userProfileDetails.Country);
-
-            userSession.FirstName = userProfileDetails.FirstName;
-
-            UpdateSessionForAuthenticatedUser(context, userSession, locale);
-        }
-
-        /// <summary>
-        /// Finds the user profile with the id stored in the session.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <returns></returns>
-        public static UserProfileDetails FindUserProfileDetails(HttpContext context)
-        {
-            UserSession userSession =
-                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
-
-            UserProfileDetails userProfileDetails =
-                userService.FindUserProfileDetails(userSession.UserProfileId);
-
-            return userProfileDetails;
-        }
 
         /// <summary>
         /// Gets the user info stored in the session.
@@ -280,25 +240,7 @@ namespace Es.Udc.DotNet.MiniPortal.Web.HTTP.Session
                 return null;
         }
 
-        /// <summary>
-        /// Changes the user's password
-        /// </summary>
-        /// <param name="context">Http Context includes request, response, etc.</param>
-        /// <param name="oldClearPassword">The old password in clear text</param>
-        /// <param name="newClearPassword">The new password in clear text</param>
-        /// <exception cref="IncorrectPasswordException"/>
-        public static void ChangePassword(HttpContext context,
-               String oldClearPassword, String newClearPassword)
-        {
-            UserSession userSession =
-                (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
 
-            userService.ChangePassword(userSession.UserProfileId,
-                oldClearPassword, newClearPassword);
-
-            /* Remove cookies. */
-            CookiesManager.RemoveCookies(context);
-        }
 
         /// <summary>
         /// Destroys the session, and removes the cookies if the user had

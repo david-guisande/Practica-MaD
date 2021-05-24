@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Photogram.Master" AutoEventWireup="true" CodeBehind="BusquedaImagenes.aspx.cs" Inherits="Web.BusquedaImagenes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
- <div class="grid" style="margin-bottom: 20px; width: 100%">
+    <div class="grid" style="margin-bottom: 20px; margin-top: 20px; width: 100%">
      <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
          <ContentTemplate>
              <asp:GridView 

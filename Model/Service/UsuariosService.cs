@@ -43,18 +43,18 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             }
         }
 
-        public bool Autenticar(string loginName, string clearPassword)
+        public UsuariosDto Autenticar(string loginName, string clearPassword)
         {
             try
             {
                 Usuarios user = UsuariosDao.FindByLoginName(loginName);
                 if (clearPassword == user.password)
-                    return true;
-                else return false;
+                    return (UsuariosDto) user;
+                else return null;
             }
             catch (InstanceNotFoundException)
             {
-                return false;
+                return null;
             }
         }
 

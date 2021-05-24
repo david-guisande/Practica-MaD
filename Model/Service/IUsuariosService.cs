@@ -11,7 +11,7 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
     {
         long RegistrarUsuario(string loginName, string clearPassword, string nombre, string email, string pais, string idioma);
 
-        bool Autenticar(string loginName, string clearPassword);
+        UsuariosDto Autenticar(string loginName, string clearPassword);
 
         UsuariosDto[] VerSeguidores(Int64 usrId, int npag);
 
