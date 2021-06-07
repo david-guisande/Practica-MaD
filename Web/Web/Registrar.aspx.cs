@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Es.Udc.DotNet.Photogram.Web.HTTP.Session;
 
 namespace Web
 {
@@ -13,17 +14,18 @@ namespace Web
 	{
 		protected void BotonClick(object sender, EventArgs e)
 		{
-			IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
-			IUsuariosService userService = iocManager.Resolve<IUsuariosService>();
+			if (Page.IsValid)
+            {
+				try
+				{
+					SessionManager.RegisterUser(Context, login.Text,
+							password.Text, nombre.Text, mail.Text, pais.Text, idioma.Text);
 
-			try
-			{
-				long id = userService.RegistrarUsuario(login.Text, password.Text, nombre.Text, mail.Text, pais.Text, idioma.Text);
-				// Session["login"] = login.Text;
-				// Redirigir hacia pagina principal
-				Console.WriteLine(userService.Autenticar(login.Text,password.Text));
+					var url = Response.ApplyAppPathModifier("~/Principal.aspx");
+					Response.Redirect(url);
+				}
+				catch { }
 			}
-			catch { /* Mostrar mensaje de error */ }
 		}
 	}
 }

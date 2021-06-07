@@ -25,7 +25,7 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
                 UsuariosDao.FindByLoginName(loginName);
                 throw new Exception();
             }
-            catch (Exception)
+            catch (InstanceNotFoundException)
             {
 
                 Usuarios user = new Usuarios();
