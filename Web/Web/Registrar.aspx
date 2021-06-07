@@ -18,6 +18,7 @@
             </div>
         	<div style='float:left; width:30%; margin: 2%'>
             	<asp:TextBox ID="login" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo Obligatorio (resumen)" ControlToValidate="login">Campo Obligatorio</asp:RequiredFieldValidator>
             </div>
         </div>
         <div style="width: 80%;  margin-left: 10%; margin-right: 10%">
@@ -26,6 +27,8 @@
             </div>
         	<div style='float:left; width:30%; margin: 2%'>
             	<asp:TextBox TextMode="Password" ID="password" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo Obligatorio (resumen)" ControlToValidate="password">Campo Obligatorio</asp:RequiredFieldValidator>
+				<asp:RegularExpressionValidator ID="RegExp1" runat="server" ErrorMessage="Password length must be between 7 to 10 characters" ControlToValidate="password" ValidationExpression="^[a-zA-Z0-9'@&#.\s]{7,10}$" />
             </div>
         </div>
         <div style="width: 80%;  margin-left: 10%; margin-right: 10%"">
@@ -34,6 +37,7 @@
             </div>
         	<div style='float:left; width:30%; margin: 2%'>
             	<asp:TextBox ID="nombre" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Campo Obligatorio (resumen)" ControlToValidate="nombre">Campo Obligatorio</asp:RequiredFieldValidator>
             </div>
         </div>
         <div style="width: 80%;  margin-left: 10%; margin-right: 10%"">
@@ -42,6 +46,7 @@
             </div>
         	<div style='float:left; width:30%; margin: 2%'>
             	<asp:TextBox ID="mail" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Campo Obligatorio (resumen)" ControlToValidate="mail">Campo Obligatorio</asp:RequiredFieldValidator>
             </div>
         </div>
         <div style="width: 80%;  margin-left: 10%; margin-right: 10%"">
@@ -50,6 +55,7 @@
             </div>
         	<div style='float:left; width:30%; margin: 2%'>
             	<asp:TextBox ID="pais" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Campo Obligatorio (resumen)" ControlToValidate="pais">Campo Obligatorio</asp:RequiredFieldValidator>
             </div>
         </div>
         <div style="width: 80%;  margin-left: 10%; margin-right: 10%"">
@@ -58,6 +64,7 @@
             </div>
         	<div style='float:left; width:30%; margin: 2%'>
             	<asp:TextBox ID="idioma" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Campo Obligatorio (resumen)" ControlToValidate="idioma">Campo Obligatorio</asp:RequiredFieldValidator>
             </div>
         </div>
         <div style="float:right; margin:5%">

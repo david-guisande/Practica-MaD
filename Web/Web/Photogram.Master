@@ -14,7 +14,7 @@
             <asp:Button ID="inicio" runat="server" Text="Inicio" style="width:100%"/>
             <asp:Button ID="miperfil" runat="server" Text="Mi Perfil" style="width:100%"/>
             <asp:Button ID="actualizar" runat="server" Text="Actualizar Info" style="width:100%"/>
-            <asp:Button ID="salir" runat="server" Text="Salir" style="width:100%"/>
+            <asp:Button ID="salir" runat="server" Text="Salir" OnClick="Salir" style="width:100%"/>
         </div>
     </div>
     <div style='border-style: solid double; float:right; width:75%; margin-right:5%'>

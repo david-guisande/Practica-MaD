@@ -144,6 +144,8 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
             UsuariosDto loginResult = DoLogin(context, loginName,
                 clearPassword, false, rememberMyPassword);
 
+            if (loginResult == null) throw new Exception();
+
             /* Add cookies if requested. */
             if (rememberMyPassword)
             {
@@ -174,15 +176,17 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
                 userService.Autenticar(loginName, password);
 
             /* Insert necessary objects in the session. */
+            if (loginResult != null)
+            {
+                UserSession userSession = new UserSession();
+                userSession.UserProfileId = loginResult.usrId;
+                userSession.FirstName = loginResult.name;
 
-            UserSession userSession = new UserSession();
-            userSession.UserProfileId = loginResult.usrId;
-            userSession.FirstName = loginResult.name;
+                Locale locale =
+                    new Locale(loginResult.idioma, loginResult.pais);
 
-            Locale locale =
-                new Locale(loginResult.idioma, loginResult.pais);
-
-            UpdateSessionForAuthenticatedUser(context, userSession, locale);
+                UpdateSessionForAuthenticatedUser(context, userSession, locale);
+            }
 
             return loginResult;
         }

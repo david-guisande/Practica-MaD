@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Es.Udc.DotNet.Photogram.Web.HTTP.Session;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,11 @@ namespace Web
 {
     public partial class Photogram : System.Web.UI.MasterPage
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
+        protected void Salir(object sender, EventArgs e)
+		{
+            SessionManager.Logout(Context);
+            var url = Response.ApplyAppPathModifier("~/Principal.aspx");
+            Response.Redirect(url);
         }
     }
 }

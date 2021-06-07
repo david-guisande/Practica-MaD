@@ -85,6 +85,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Autenticar.aspx" />
     <Content Include="BusquedaImagenes.aspx" />
     <Content Include="Css\styles.css" />
     <Content Include="DetalleImagen.aspx" />
@@ -95,6 +96,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Autenticar.aspx.cs">
+      <DependentUpon>Autenticar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Autenticar.aspx.designer.cs">
+      <DependentUpon>Autenticar.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BusquedaImagenes.aspx.cs">
       <DependentUpon>BusquedaImagenes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
