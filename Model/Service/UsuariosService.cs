@@ -88,5 +88,18 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         {
             UsuariosDao.SeguirA(usrIdSeguidor, usrIdSeguido);
         }
+
+        public void ActualizarUsuario(Int64 id,  string loginName, string clearPassword, string nombre, string email, string pais, string idioma)
+        {
+            Usuarios user = UsuariosDao.Find(id);
+            user.loginName = loginName;
+            user.password = clearPassword;
+            user.name = nombre;
+            user.email = email;
+            user.pais = pais;
+            user.idioma = idioma;
+
+            UsuariosDao.Update(user);
+        }
     }
 }

@@ -31,8 +31,11 @@
 				<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ValidationExpression="^[\s\S]{8,}$" ErrorMessage="RegularExpressionValidator" ControlToValidate="password"></asp:RegularExpressionValidator>
             </div>
         </div>
+        <div style="float:left; margin:5%; width:40%">
+        	<asp:TextBox ID="TextoError" runat="server" Text="Las credenciales no son válidas" ReadOnly="true" Width="50%" Visible="false"/>
+        </div>
         <div style="float:right; margin:5%">
-        	<asp:Button ID="Button1" OnClick="BotonClick" runat="server" Text="Autenticar" />
+        	<asp:Button ID="Button1" OnClick="BotonClick" runat="server" Text="Autenticar"/>
         </div>
     </form>
 </body>

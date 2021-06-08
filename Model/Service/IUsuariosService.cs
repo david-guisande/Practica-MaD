@@ -18,5 +18,7 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         UsuariosDto[] VerSeguidos(Int64 usrId, int npag);
 
         void SeguirA(Int64 usrIdSeguidor, Int64 usrIdSeguido);
+
+        void ActualizarUsuario(Int64 id, string loginName, string clearPassword, string nombre, string email, string pais, string idioma);
     }
 }

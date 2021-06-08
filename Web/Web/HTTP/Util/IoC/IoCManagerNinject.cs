@@ -25,6 +25,21 @@ namespace Es.Udc.DotNet.Photogram.HTTP.Util.IoC
             kernel.Bind<IUsuariosService>().
                 To<UsuariosService>();
 
+            /* PublicacionesDao */
+            kernel.Bind<IPublicacionesDao>().
+                To<PublicacionesDaoEntityFramework>();
+
+            /* PublicacionesService */
+            kernel.Bind<IPublicacionesService>().
+                To<PublicacionesService>();
+
+            /* ComentariosDao */
+            kernel.Bind<IComentariosDao>().
+                To<ComentariosDaoEntityFramework>();
+
+            /* ComentariosService */
+            kernel.Bind<IComentariosService>().
+                To<ComentariosService>();
             /* DbContext */
             string connectionString =
                 ConfigurationManager.ConnectionStrings["MAD_BDEntities"].ConnectionString;

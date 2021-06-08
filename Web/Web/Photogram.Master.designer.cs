@@ -69,13 +69,13 @@ namespace Web
         protected global::System.Web.UI.WebControls.Button salir;
 
         /// <summary>
-        /// Control txtLogin.
+        /// Control keywords.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLogin;
+        protected global::System.Web.UI.WebControls.TextBox keywords;
 
         /// <summary>
         /// Control DropDownList1.

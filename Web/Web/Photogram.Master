@@ -12,8 +12,8 @@
     <div style='float:left; width:15%;'>    
         <div class="btn-group">
             <asp:Button ID="inicio" runat="server" Text="Inicio" style="width:100%"/>
-            <asp:Button ID="miperfil" runat="server" Text="Mi Perfil" style="width:100%"/>
-            <asp:Button ID="actualizar" runat="server" Text="Actualizar Info" style="width:100%"/>
+            <asp:Button ID="miperfil" runat="server" Text="Mi Perfil" OnClick="MyProfile" style="width:100%"/>
+            <asp:Button ID="actualizar" runat="server" Text="Actualizar Info" OnClick="ActualizarInformacion" style="width:100%"/>
             <asp:Button ID="salir" runat="server" Text="Salir" OnClick="Salir" style="width:100%"/>
         </div>
     </div>
@@ -23,14 +23,14 @@
 					Búsqueda de Imágenes</div>
 				<div class="field">
 					<div style='float:left; width:40%;'>
-						<asp:TextBox ID="txtLogin" runat="server" Width="195px" Columns="16" meta:resourcekey="txtLoginResource1" style="margin-left: 10%;">Keywords</asp:TextBox>
+						<asp:TextBox ID="keywords" runat="server" Width="195px" Columns="16" meta:resourcekey="txtLoginResource1" style="margin-left: 10%;">Keywords</asp:TextBox>
 					</div>
 					<div style='float:left; width:40%;'>
 						<asp:DropDownList ID="DropDownList1" runat="server" style="margin-left: 10%;">
 						</asp:DropDownList>
 					</div>
 					<div style='float:right; width:15%;'>
-						<asp:Button ID="Buscar" runat="server" Text="Buscar"/>
+						<asp:Button ID="Buscar" OnClick="BuscarImagenes" runat="server" Text="Buscar"/>
 					</div>
 				</div>
 		</div>
