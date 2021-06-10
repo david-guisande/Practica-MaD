@@ -58,6 +58,11 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             }
         }
 
+        public UsuariosDto Usuario(long id)
+        {
+            return UsuariosDao.Find(id);
+        }
+
         public UsuariosDto[] VerSeguidores(Int64 usrId, int npag)
         {
             Usuarios[] seguidores = UsuariosDao.GetSeguidores(usrId, npag);

@@ -9,7 +9,7 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
 {
     public interface IPublicacionesService
     {
-        Int64 SubirImagen(long usrId, string titulo, string descripcion, string fichero, string categoria);
+        Int64 SubirImagen(long usrId, string titulo, string descripcion, string categoria,double? f = null, int? ISO = null, int? t = null, int? wb = null);
 
         PublicacionesDto[] VerPublicacionesUsuario(Int64 usrId, int npag);
 

@@ -20,18 +20,24 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         [Inject]
         public IUserProfileDao UsuariosDao { private get; set; }
 
-        public Int64 SubirImagen(long usrId, string titulo, string descripcion, string fichero, string categoria)
+        public Int64 SubirImagen(long usrId, string titulo, string descripcion, string categoria, double? f = null, int? ISO = null, int? t = null, int? wb = null)
         {
             Publicaciones publi = new Publicaciones();
             publi.Usuario = usrId;
             publi.Usuarios = UsuariosDao.Find(usrId);
-            publi.imagen = fichero;
             publi.titulo = titulo;
+            publi.imagen = "";
             publi.descripcion = descripcion;
             publi.categoria = categoria;
             publi.fecha = new TimeSpan();
+            publi.f = f;
+            publi.ISO = ISO;
+            publi.t = t;
+            publi.wb = wb;
 
             PublicacionesDao.Create(publi);
+            publi.imagen = "~/Imagenes/"+publi.Id+".png";
+            PublicacionesDao.Update(publi);
             return publi.Id;
         }
 

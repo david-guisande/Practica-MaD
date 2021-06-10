@@ -12,13 +12,9 @@ namespace Web
 {
     public partial class Photogram : System.Web.UI.MasterPage
     {
-        public IPublicacionesService publiService;
         protected void Page_Load(object sender, EventArgs e)
         {
-            IIoCManager iocManager =
-                (IIoCManager)HttpContext.Current.Application["managerIoC"];
 
-            publiService = iocManager.Resolve<IPublicacionesService>();
         }
         protected void Salir(object sender, EventArgs e)
 		{
@@ -30,9 +26,9 @@ namespace Web
         protected void BuscarImagenes(object sender, EventArgs e)
         {
             var url = Response.ApplyAppPathModifier("~/BusquedaImagenes.aspx");
-            ViewState["keywords"] = keywords.Text;
-            ViewState["categoria"] = DropDownList1.SelectedValue;
-            ViewState["paginaBusqueda"] = 0;
+            Session["keywords"] = keywords.Text;
+            Session["categoria"] = DropDownList1.SelectedValue;
+            Session["paginaBusqueda"] = 0;
             Response.Redirect(url);
         }
 
@@ -42,7 +38,7 @@ namespace Web
 
             if (userSession != null)
             {
-                ViewState["perfil"] = userSession.UserProfileId;
+                Session["perfil"] = userSession.UserProfileId;
                 var url = Response.ApplyAppPathModifier("~/Principal.aspx");
                 Response.Redirect(url);
             }

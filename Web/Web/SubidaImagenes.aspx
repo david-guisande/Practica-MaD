@@ -45,7 +45,7 @@
 			</div>
 			<div style="margin-bottom: 20px">
 				<div class="field" align="center" style="font-size: large; float:left; width:80%">
-					<asp:Button ID="UploadImg" runat="server" Text="Subir Imagen"/>
+					<asp:Button ID="UploadImg" runat="server" OnClick="Subir" Text="Subir Imagen"/>
 				</div>
 			</div>
 		</div>

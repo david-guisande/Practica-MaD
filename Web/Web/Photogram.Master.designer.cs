@@ -33,15 +33,6 @@ namespace Web
         protected global::System.Web.UI.HtmlControls.HtmlForm Form2;
 
         /// <summary>
-        /// Control inicio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button inicio;
-
-        /// <summary>
         /// Control miperfil.
         /// </summary>
         /// <remarks>

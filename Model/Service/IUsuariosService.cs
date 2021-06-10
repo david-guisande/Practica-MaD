@@ -13,6 +13,8 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
 
         UsuariosDto Autenticar(string loginName, string clearPassword);
 
+        UsuariosDto Usuario(long id);
+
         UsuariosDto[] VerSeguidores(Int64 usrId, int npag);
 
         UsuariosDto[] VerSeguidos(Int64 usrId, int npag);

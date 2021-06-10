@@ -107,7 +107,7 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
         /// <param name="clearPassword">Password in clear text</param>
         /// <param name="userProfileDetails">The user profile details.</param>
         /// <exception cref="DuplicateInstanceException"/>
-        public static void RegisterUser(HttpContext context,
+        public static long RegisterUser(HttpContext context,
             String loginName, String clearPassword,
             string nombre, string email, string pais, string idioma)
         {
@@ -125,6 +125,7 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
             UpdateSessionForAuthenticatedUser(context, userSession, locale);
 
             FormsAuthentication.SetAuthCookie(loginName, false);
+            return usrId;
         }
 
         /// <summary>
@@ -136,7 +137,7 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
         /// <param name="rememberMyPassword">Remember password to the next logins</param>
         /// <exception cref="IncorrectPasswordException"/>
         /// <exception cref="InstanceNotFoundException"/>
-        public static void Login(HttpContext context, String loginName,
+        public static UsuariosDto Login(HttpContext context, String loginName,
            String clearPassword, Boolean rememberMyPassword)
         {
             /* Try to login, and if successful, update session with the necessary
@@ -152,6 +153,7 @@ namespace Es.Udc.DotNet.Photogram.Web.HTTP.Session
                 CookiesManager.LeaveCookies(context, loginName,
                     loginResult.password);
             }
+            return loginResult;
         }
 
         /// <summary>

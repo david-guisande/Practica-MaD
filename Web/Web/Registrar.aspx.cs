@@ -18,8 +18,9 @@ namespace Web
             {
 				try
 				{
-					SessionManager.RegisterUser(Context, login.Text,
+					long id = SessionManager.RegisterUser(Context, login.Text,
 							password.Text, nombre.Text, mail.Text, pais.Text, idioma.Text);
+					Session["perfil"] = id;
 
 					var url = Response.ApplyAppPathModifier("~/Principal.aspx");
 					Response.Redirect(url);

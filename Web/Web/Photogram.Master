@@ -11,7 +11,6 @@
     <form id="Form2" method="get" runat="server">
     <div style='float:left; width:15%;'>    
         <div class="btn-group">
-            <asp:Button ID="inicio" runat="server" Text="Inicio" style="width:100%"/>
             <asp:Button ID="miperfil" runat="server" Text="Mi Perfil" OnClick="MyProfile" style="width:100%"/>
             <asp:Button ID="actualizar" runat="server" Text="Actualizar Info" OnClick="ActualizarInformacion" style="width:100%"/>
             <asp:Button ID="salir" runat="server" Text="Salir" OnClick="Salir" style="width:100%"/>
