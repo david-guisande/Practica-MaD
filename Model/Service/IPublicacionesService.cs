@@ -20,5 +20,7 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         void DarMeGusta(Int64 usrId, Int64 pubId);
 
         int NumeroMeGusta(Int64 pubId);
+
+        PublicacionesDto FindPublicacion(Int64 pubId);
     }
 }

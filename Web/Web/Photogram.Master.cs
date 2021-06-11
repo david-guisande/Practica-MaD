@@ -28,7 +28,6 @@ namespace Web
             var url = Response.ApplyAppPathModifier("~/BusquedaImagenes.aspx");
             Session["keywords"] = keywords.Text;
             Session["categoria"] = DropDownList1.SelectedValue;
-            Session["paginaBusqueda"] = 0;
             Response.Redirect(url);
         }
 
@@ -54,7 +53,7 @@ namespace Web
         {
             UserSession userSession = SessionManager.GetUserSession(Context);
 
-            if (userSession == null)
+            if (userSession != null)
             {
                 var url = Response.ApplyAppPathModifier("~/ActualizarInfo.aspx");
                 Response.Redirect(url);

@@ -89,5 +89,10 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         {
             return PublicacionesDao.Favs(pubId);
         }
+
+        public PublicacionesDto FindPublicacion(Int64 pubId)
+        {
+            return PublicacionesDao.Find(pubId);
+        }
     }
 }

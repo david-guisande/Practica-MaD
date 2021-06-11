@@ -10,8 +10,20 @@
 					<asp:TextBox ID="txtTitle" runat="server" Width="195px" Columns="16" meta:resourcekey="txtTitleResource" style="margin-left: 10%;">Titulo</asp:TextBox>
 				</div>
 				<div align="left" style='float:left; width:15%;'>
-					<asp:DropDownList ID="DropDownList2" runat="server" style="margin-left: 10%;">
-					</asp:DropDownList>
+					<asp:DropDownList ID="DropDownList2" runat="server" style="margin-left: 10%;" AutoPostBack="True">
+                            <asp:ListItem Selected="True" Value="Paisaje"> Paisaje 
+                                </asp:ListItem> 
+                            <asp:ListItem Value="Retrato"> Retrato 
+                                </asp:ListItem> 
+                            <asp:ListItem Value="Comida"> Comida 
+                                </asp:ListItem> 
+                            <asp:ListItem Value="Fiestas"> Fiestas 
+                                </asp:ListItem> 
+                            <asp:ListItem Value="Arte"> Arte
+                                </asp:ListItem>
+                            <asp:ListItem Value="Otros"> Otros
+                                </asp:ListItem>
+						</asp:DropDownList>
 				</div>
 			</div>
 			<div style="margin-bottom: 20px">

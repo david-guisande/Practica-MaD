@@ -33,28 +33,34 @@ namespace Web
 				nombre.Text = usr.name;
 				actualizar();
 			}
-			catch { }
+			catch
+			{
+
+			}
 		}
 
 		private void actualizar()
         {
-			publicaciones = publiService.VerPublicacionesUsuario(id, pag);
-			Image1.ImageUrl = publicaciones[0].imagen;
-			Image2.ImageUrl = publicaciones[1].imagen;
-			Image3.ImageUrl = publicaciones[2].imagen;
-			Image4.ImageUrl = publicaciones[3].imagen;
-			Image5.ImageUrl = publicaciones[4].imagen;
-			Image6.ImageUrl = publicaciones[5].imagen;
-			Image7.ImageUrl = publicaciones[6].imagen;
-			Image8.ImageUrl = publicaciones[7].imagen;
-			Image9.ImageUrl = publicaciones[8].imagen;
-			Image10.ImageUrl = publicaciones[9].imagen;
+			ImageButton[] listaImg = {Image1, Image2, Image3, Image4, Image5, Image6, Image7, Image8, Image9, Image10 };
+				publicaciones = publiService.VerPublicacionesUsuario(id, pag);
+			for (int i=0; i<10; i++)
+            {
+				if (i < publicaciones.Length)
+				{
+					listaImg[i].ImageUrl = publicaciones[i].imagen;
+					listaImg[i].Visible = true;
+				}
+				else
+                {
+					listaImg[i].Visible = false;
+				}
+            }
 		}
 
 		protected void Imagen(object sender, EventArgs e)
         {
 			Image img = (Image)sender;
-			int i = Int32.Parse(img.ClientID.Replace("Image",""))-1;
+			int i = Int32.Parse(img.ID.Replace("Image",""))-1;
 			Session["imagen"] = publicaciones[i].Id;
 
 			var url = Response.ApplyAppPathModifier("~/DetalleImagen.aspx");
@@ -74,6 +80,12 @@ namespace Web
 		{
 			pag++;
 			actualizar();
+		}
+
+		protected void RedirigirSubir(object sender, EventArgs e)
+		{
+			var url = Response.ApplyAppPathModifier("~/SubidaImagenes.aspx");
+			Response.Redirect(url);
 		}
 	}
 }

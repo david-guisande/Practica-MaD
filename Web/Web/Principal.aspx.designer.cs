@@ -66,7 +66,7 @@ namespace Web
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.ImageButton Image1;
 
         /// <summary>
         /// Control Image2.
@@ -75,7 +75,7 @@ namespace Web
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image2;
+        protected global::System.Web.UI.WebControls.ImageButton Image2;
 
         /// <summary>
         /// Control Image3.
@@ -84,7 +84,7 @@ namespace Web
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image3;
+        protected global::System.Web.UI.WebControls.ImageButton Image3;
 
         /// <summary>
         /// Control Image4.
@@ -93,7 +93,7 @@ namespace Web
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image4;
+        protected global::System.Web.UI.WebControls.ImageButton Image4;
 
         /// <summary>
         /// Control Image5.
@@ -102,7 +102,7 @@ namespace Web
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image5;
+        protected global::System.Web.UI.WebControls.ImageButton Image5;
 
         /// <summary>
         /// Control Image6.
@@ -111,7 +111,7 @@ namespace Web
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image6;
+        protected global::System.Web.UI.WebControls.ImageButton Image6;
 
         /// <summary>
         /// Control Image7.
@@ -120,7 +120,7 @@ namespace Web
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image7;
+        protected global::System.Web.UI.WebControls.ImageButton Image7;
 
         /// <summary>
         /// Control Image8.
@@ -129,7 +129,7 @@ namespace Web
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image8;
+        protected global::System.Web.UI.WebControls.ImageButton Image8;
 
         /// <summary>
         /// Control Image9.
@@ -138,7 +138,7 @@ namespace Web
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image9;
+        protected global::System.Web.UI.WebControls.ImageButton Image9;
 
         /// <summary>
         /// Control Image10.
@@ -147,7 +147,7 @@ namespace Web
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image10;
+        protected global::System.Web.UI.WebControls.ImageButton Image10;
 
         /// <summary>
         /// Control Anterior.

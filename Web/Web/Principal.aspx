@@ -5,7 +5,7 @@
 				Subir Imagen</div>
 			<div class="field">
 			<div style='float:right; width:15%;'>
-				<asp:Button ID="Subir" runat="server" Text="Subir"/>
+				<asp:Button ID="Subir" runat="server" OnClick="RedirigirSubir" Text="Subir"/>
 			</div>
 	</div>
 	<div style="border-style: solid double; margin-bottom: 20px; margin-top: 20px">
@@ -22,16 +22,16 @@
 				<asp:Button ID="Followers" runat="server" Text="Ver Seguidores"/>
 			</div>
 
-			<asp:Image ID="Image1" runat="server" OnClick="Imagen" style="width:30%; margin:5px"/>
-			<asp:Image ID="Image2" runat="server" OnClick="Imagen" style="width:30%; margin:5px"/>
-			<asp:Image ID="Image3" runat="server" OnClick="Imagen" style="width:30%; margin:5px"/>
-			<asp:Image ID="Image4" runat="server" OnClick="Imagen" style="width:30%; margin:5px"/>
-			<asp:Image ID="Image5" runat="server" OnClick="Imagen" style="width:30%; margin:5px"/>
-			<asp:Image ID="Image6" runat="server" OnClick="Imagen" style="width:30%; margin:5px"/>
-			<asp:Image ID="Image7" runat="server" OnClick="Imagen" style="width:30%; margin:5px"/>
-			<asp:Image ID="Image8" runat="server" OnClick="Imagen" style="width:30%; margin:5px"/>
-			<asp:Image ID="Image9" runat="server" OnClick="Imagen" style="width:30%; margin:5px"/>
-			<asp:Image ID="Image10" runat="server" OnClick="Imagen" style="width:30%; margin:5px"/>
+			<asp:ImageButton ID="Image1" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
+			<asp:ImageButton ID="Image2" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
+			<asp:ImageButton ID="Image3" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
+			<asp:ImageButton ID="Image4" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
+			<asp:ImageButton ID="Image5" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
+			<asp:ImageButton ID="Image6" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
+			<asp:ImageButton ID="Image7" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
+			<asp:ImageButton ID="Image8" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
+			<asp:ImageButton ID="Image9" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
+			<asp:ImageButton ID="Image10" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
 	</div>
 	<div style="margin-bottom: 20px">
 		<div class="field" align="right" style="font-size: large; float:left; width:49%">

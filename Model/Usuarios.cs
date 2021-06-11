@@ -34,7 +34,7 @@ namespace Es.Udc.DotNet.Photogram.Model
             usuario.password = user.password;
             usuario.pais = user.pais;
             usuario.idioma = user.idioma;
-
+            usuario.email = user.email;
             return usuario;
         }
 
