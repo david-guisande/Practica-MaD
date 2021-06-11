@@ -24,20 +24,7 @@ namespace Es.Udc.DotNet.Photogram.Model
             this.Seguidores = new HashSet<Usuarios>();
             this.Seguidos = new HashSet<Usuarios>();
         }
-
-        public static implicit operator UsuariosDto(Usuarios user)
-        {
-            UsuariosDto usuario = new UsuariosDto();
-            usuario.usrId = user.usrId;
-            usuario.loginName = user.loginName;
-            usuario.name = user.name;
-            usuario.password = user.password;
-            usuario.pais = user.pais;
-            usuario.idioma = user.idioma;
-            usuario.email = user.email;
-            return usuario;
-        }
-
+    
         public long usrId { get; set; }
         public string loginName { get; set; }
         public string password { get; set; }
@@ -56,14 +43,18 @@ namespace Es.Udc.DotNet.Photogram.Model
         public virtual ICollection<Usuarios> Seguidores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Usuarios> Seguidos { get; set; }
-        
-		public override bool Equals(Object obj)
-		{
-			if ((obj == null) || ! this.GetType().Equals(obj.GetType()))
-				return false;
-		
-			Usuarios u = (Usuarios) obj;
-			return u.usrId == this.usrId;
-		}
+
+        public static implicit operator UsuariosDto(Usuarios user)
+        {
+            UsuariosDto usuario = new UsuariosDto();
+            usuario.usrId = user.usrId;
+            usuario.loginName = user.loginName;
+            usuario.name = user.name;
+            usuario.password = user.password;
+            usuario.pais = user.pais;
+            usuario.idioma = user.idioma;
+            usuario.email = user.email;
+            return usuario;
+        }
     }
 }

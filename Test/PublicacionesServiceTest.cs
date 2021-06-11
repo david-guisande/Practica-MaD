@@ -94,7 +94,7 @@ namespace Es.Udc.DotNet.Photogram.Test
             try
             {
                 Int64 usrId = usuariosService.RegistrarUsuario("elpepe", "12345", "pepe", "pepe@gmail.es", "spain", "es");
-                Int64 id = publicacionesService.SubirImagen(usrId, "paisaje", "un paisaje", "/file", "foto");
+                Int64 id = publicacionesService.SubirImagen(usrId, "paisaje", "un paisaje", "foto");
                 publicacionesDao.Find(id);
 
 
@@ -113,7 +113,7 @@ namespace Es.Udc.DotNet.Photogram.Test
             try
             {
                 Int64 usrId = usuariosService.RegistrarUsuario("elpepe", "12345", "pepe", "pepe@gmail.es", "spain", "es");
-                Int64 id = publicacionesService.SubirImagen(usrId, "paisaje", "un paisaje", "/file", "foto");
+                Int64 id = publicacionesService.SubirImagen(usrId, "paisaje", "un paisaje", "foto");
                 
                 Assert.AreEqual(publicacionesService.VerPublicacionesUsuario(usrId, 0)[0].Id, id);
 
@@ -133,7 +133,7 @@ namespace Es.Udc.DotNet.Photogram.Test
             try
             {
                 Int64 usrId = usuariosService.RegistrarUsuario("elpepe", "12345", "pepe", "pepe@gmail.es", "spain", "es");
-                Int64 id = publicacionesService.SubirImagen(usrId, "paisaje", "un paisaje", "/file", "foto");
+                Int64 id = publicacionesService.SubirImagen(usrId, "paisaje", "un paisaje", "foto");
 
                 Assert.AreEqual(publicacionesService.BuscarImagenes("paisaje", 0)[0].Id, id);
 
@@ -153,7 +153,7 @@ namespace Es.Udc.DotNet.Photogram.Test
             try
             {
                 Int64 usrId = usuariosService.RegistrarUsuario("elpepe", "12345", "pepe", "pepe@gmail.es", "spain", "es");
-                Int64 id = publicacionesService.SubirImagen(usrId, "paisaje", "un paisaje", "/file", "foto");
+                Int64 id = publicacionesService.SubirImagen(usrId, "paisaje", "un paisaje", "foto");
 
                 Assert.AreEqual(publicacionesService.NumeroMeGusta(id), 0);
                 publicacionesService.DarMeGusta(usrId, id);

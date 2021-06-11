@@ -15,6 +15,15 @@ namespace Es.Udc.DotNet.Photogram.Model
     
     public partial class Comentarios
     {
+        public long Id { get; set; }
+        public long Usuario { get; set; }
+        public long fecha { get; set; }
+        public long PublicacionId { get; set; }
+        public string texto { get; set; }
+    
+        public virtual Publicaciones Publicaciones { get; set; }
+        public virtual Usuarios Usuarios { get; set; }
+
         public static implicit operator ComentariosDto(Comentarios com)
         {
             ComentariosDto coment = new ComentariosDto();
@@ -24,23 +33,6 @@ namespace Es.Udc.DotNet.Photogram.Model
             coment.texto = com.texto;
 
             return coment;
-        }
-        public long Id { get; set; }
-        public long Usuario { get; set; }
-        public long PublicacionId { get; set; }
-        public string texto { get; set; }
-    
-		public virtual Publicaciones Publicaciones { get; set; }
-		public virtual Usuarios Usuarios { get; set; }
-
-
-        public override bool Equals(Object obj)
-        {
-            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
-                return false;
-
-            Comentarios c = (Comentarios)obj;
-            return c.Id == this.Id;
         }
     }
 }

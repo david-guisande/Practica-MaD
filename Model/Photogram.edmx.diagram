@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="842f55f4168b4fb68efc13509239401d" Name="Diagram1">
-        <EntityTypeShape EntityType="MAD_BDModel.Comentarios" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MAD_BDModel.EtiquetaSet" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MAD_BDModel.Publicaciones" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MAD_BDModel.Usuarios" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+      <Diagram DiagramId="d3c22883828d457b8dd17a73cbced46a" Name="Diagram1">
+        <EntityTypeShape EntityType="MAD_BDModel.Comentarios" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MAD_BDModel.EtiquetaSet" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MAD_BDModel.Publicaciones" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MAD_BDModel.Usuarios" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
         <AssociationConnector Association="MAD_BDModel.FK_PubC" ManuallyRouted="false" />
         <AssociationConnector Association="MAD_BDModel.FK_UserC" ManuallyRouted="false" />
         <AssociationConnector Association="MAD_BDModel.FK_User" ManuallyRouted="false" />

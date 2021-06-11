@@ -13,13 +13,13 @@
 					<asp:Label runat="server" ID="nombre"></asp:Label>
 			</div>
 			<div style='float:right; width:25%;'>
-				<asp:Button ID="Follow" runat="server" Text="Seguir Usuario"/>
+				<asp:Button ID="Follow" runat="server" Text="Seguir Usuario" OnClick="Seguir" Visible="false"/>
 			</div>
 			<div style='float:left; width:25%; margin-right: 5px'>
-				<asp:Button ID="Following" runat="server" Text="Ver Siguiendo"/>
+				<asp:Button ID="Following" runat="server" Text="Ver Siguiendo" Visible="false"/>
 			</div>
 			<div style='float:left; width:25%;'>
-				<asp:Button ID="Followers" runat="server" Text="Ver Seguidores"/>
+				<asp:Button ID="Followers" runat="server" Text="Ver Seguidores" Visible="false"/>
 			</div>
 
 			<asp:ImageButton ID="Image1" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
@@ -35,10 +35,10 @@
 	</div>
 	<div style="margin-bottom: 20px">
 		<div class="field" align="right" style="font-size: large; float:left; width:49%">
-			<asp:Button ID="Anterior" runat="server" OnClick="Prev" Text="Anterior"/>
+			<asp:Button ID="Anterior" runat="server" OnClick="Prev" Text="Anterior" Visible="false"/>
 		</div>
 		<div class="field" align="left" style="font-size: large; float:right; width:49%">
-			<asp:Button ID="Siguiente" runat="server" OnClick="Next" Text="Suiguiente"/>
+			<asp:Button ID="Siguiente" runat="server" OnClick="Next" Text="Suiguiente" Visible="false"/>
 		</div>
 	</div>
 </asp:Content>

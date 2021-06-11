@@ -11,6 +11,7 @@
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Usuario" Type="bigint" Nullable="false" />
+          <Property Name="fecha" Type="bigint" Nullable="false" />
           <Property Name="PublicacionId" Type="bigint" Nullable="false" />
           <Property Name="texto" Type="nvarchar" MaxLength="280" Nullable="false" />
         </EntityType>
@@ -37,7 +38,7 @@
           <Property Name="imagen" Type="nvarchar" MaxLength="280" Nullable="false" />
           <Property Name="titulo" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="descripcion" Type="nvarchar" MaxLength="280" Nullable="false" />
-          <Property Name="fecha" Type="time" Precision="7" Nullable="false" />
+          <Property Name="fecha" Type="bigint" Nullable="false" />
           <Property Name="categoria" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="f" Type="float" />
           <Property Name="ISO" Type="int" />
@@ -85,7 +86,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PubLiked">
-          <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="1" />
+          <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DarFav" Type="Self.DarFav" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Publicaciones">
@@ -97,7 +100,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PubTag">
-          <End Role="EtiquetaSet" Type="Self.EtiquetaSet" Multiplicity="1" />
+          <End Role="EtiquetaSet" Type="Self.EtiquetaSet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TieneAsociadas" Type="Self.TieneAsociadas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EtiquetaSet">
@@ -109,7 +114,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PubTagged">
-          <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="1" />
+          <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="TieneAsociadas" Type="Self.TieneAsociadas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Publicaciones">
@@ -121,7 +128,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User">
-          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuarios">
@@ -157,7 +166,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserC">
-          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuarios">
@@ -236,6 +247,7 @@
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Usuario" Type="Int64" Nullable="false" />
+          <Property Name="fecha" Type="Int64" Nullable="false" />
           <Property Name="PublicacionId" Type="Int64" Nullable="false" />
           <Property Name="texto" Type="String" MaxLength="280" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Publicaciones" Relationship="Self.FK_PubC" FromRole="Comentarios" ToRole="Publicaciones" />
@@ -257,7 +269,7 @@
           <Property Name="imagen" Type="String" MaxLength="280" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="titulo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="280" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="fecha" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="fecha" Type="Int64" Nullable="false" />
           <Property Name="categoria" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="f" Type="Double" />
           <Property Name="ISO" Type="Int32" />
@@ -298,7 +310,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserC">
-          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Comentarios" Type="Self.Comentarios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuarios">
@@ -310,7 +324,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User">
-          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Publicaciones" Type="Self.Publicaciones" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuarios">
@@ -374,6 +390,7 @@
               <MappingFragment StoreEntitySet="Comentarios">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="PublicacionId" ColumnName="PublicacionId" />
                 <ScalarProperty Name="texto" ColumnName="texto" />
               </MappingFragment>

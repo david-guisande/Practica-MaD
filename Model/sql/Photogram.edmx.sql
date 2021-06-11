@@ -37,7 +37,7 @@ CREATE TABLE [Publicaciones] (
     [imagen] nvarchar(280)  NOT NULL,
     [titulo] nvarchar(30)  NOT NULL,
     [descripcion] nvarchar(280)  NOT NULL,
-    [fecha] time  NOT NULL,
+    [fecha] bigint  NOT NULL,
     [categoria] nvarchar(30)  NOT NULL,
     [f] float  NULL,
     [ISO] int  NULL,
@@ -54,6 +54,7 @@ GO
 CREATE TABLE [Comentarios] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
     [Usuario] bigint  NOT NULL,
+    [fecha] bigint  NOT NULL,
     [PublicacionId] bigint  NOT NULL,
     [texto] nvarchar(280)  NOT NULL,
 

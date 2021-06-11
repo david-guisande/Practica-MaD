@@ -14,18 +14,19 @@ namespace Web
 	{
 		protected void BotonClick(object sender, EventArgs e)
 		{
+
 			if (Page.IsValid)
             {
-				try
-				{
+				//try
+				//{
 					long id = SessionManager.RegisterUser(Context, login.Text,
 							password.Text, nombre.Text, mail.Text, pais.Text, idioma.Text);
 					Session["perfil"] = id;
 
 					var url = Response.ApplyAppPathModifier("~/Principal.aspx");
 					Response.Redirect(url);
-				}
-				catch { }
+				//}
+				
 			}
 		}
 	}

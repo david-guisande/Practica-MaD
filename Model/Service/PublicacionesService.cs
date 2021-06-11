@@ -29,7 +29,7 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             publi.imagen = "";
             publi.descripcion = descripcion;
             publi.categoria = categoria;
-            publi.fecha = new TimeSpan();
+            publi.fecha = DateTime.Now.Ticks;
             publi.f = f;
             publi.ISO = ISO;
             publi.t = t;

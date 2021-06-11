@@ -10,10 +10,22 @@
 		<div>
 			<div style="margin-bottom: 20px">
 				<div class="field" align="left" style="font-size: large; float:left; width:35%">
+					<asp:LinkButton ID="UserLink" runat="server" Width="180px" style="margin-left: 30%;" OnClick="VerUsuario">-</asp:LinkButton>
+				</div>
+				<div align="left" style='float:left; width:15%;'>
+					<asp:Button ID="Favs" runat="server" Width="195px" Columns="16" Text="Likes 0" style="margin-left: 10%;" OnClick="DarMegusta"></asp:Button>
+				</div>
+			</div>
+
+			<div style="margin-bottom: 20px">
+				<div class="field" align="left" style="font-size: large; float:left; width:35%">
 					<asp:TextBox ID="txtTitle" runat="server" Width="195px" ReadOnly="true" Columns="16" meta:resourcekey="txtTitleResource" style="margin-left: 10%;">Titulo</asp:TextBox>
 				</div>
 				<div align="left" style='float:left; width:15%;'>
 					<asp:TextBox ID="TextBox6" runat="server" Width="195px" ReadOnly="true" Columns="16" meta:resourcekey="txtTitleResource" style="margin-left: 10%;">Categoría</asp:TextBox>
+				</div>
+				<div align="left" style='float:left; width:15%;'>
+					<asp:TextBox ID="TextBox7" runat="server" Width="195px" ReadOnly="true" Columns="16" meta:resourcekey="txtTitleResource" style="margin-left: 10%;">Fecha</asp:TextBox>
 				</div>
 			</div>
 			<div style="margin-bottom: 20px">
@@ -38,11 +50,6 @@
 			<div style="margin-bottom: 20px">
 				<div class="field" align="left" style="font-size: large; float:left; width:80%">
 					ETIQUETAS
-				</div>
-			</div>
-			<div style="margin-bottom: 20px">
-				<div class="field" align="left" style="font-size: large; float:left; width:80%; margin-left:5%">
-					<asp:Button ID="UploadImg" runat="server" Text="Borrado de Imagen"/>
 				</div>
 			</div>
 		</div>

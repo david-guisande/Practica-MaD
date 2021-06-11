@@ -15,7 +15,7 @@
 			<asp:ImageButton ID="Image9" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
 			<asp:ImageButton ID="Image10" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
 	</div>
-	<div style="margin-bottom: 20px">
+	<div style="margin-bottom: 20px; margin-top: 20px">
 		<div class="field" align="right" style="font-size: large; float:left; width:49%">
 			<asp:Button ID="Anterior" runat="server" OnClick="Prev" Text="Anterior"/>
 		</div>

@@ -1,6 +1,7 @@
 ﻿using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.Photogram.Model.DTOs;
 using Es.Udc.DotNet.Photogram.Model.Service;
+using Es.Udc.DotNet.Photogram.Web.HTTP.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,15 @@ namespace Web
 				UsuariosDto usr = usrService.Usuario(id);
 
 				nombre.Text = usr.name;
+
+				if (SessionManager.GetUserSession(Context).UserProfileId != id)
+                {
+					Follow.Visible = true;
+				}
+				Following.Visible = true;
+				Followers.Visible = true;
+				Siguiente.Visible = true;
+				Anterior.Visible = true;
 				actualizar();
 			}
 			catch
@@ -86,6 +96,11 @@ namespace Web
 		{
 			var url = Response.ApplyAppPathModifier("~/SubidaImagenes.aspx");
 			Response.Redirect(url);
+		}
+
+		protected void Seguir(object sender, EventArgs e)
+        {
+			usrService.SeguirA(SessionManager.GetUserSession(Context).UserProfileId, id);
 		}
 	}
 }

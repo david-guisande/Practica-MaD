@@ -13,7 +13,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DTOs
         public string imagen { get; set; }
         public string titulo { get; set; }
         public string descripcion { get; set; }
-        public System.TimeSpan fecha { get; set; }
+        public long fecha { get; set; }
         public string categoria { get; set; }
         public Nullable<double> f { get; set; }
         public Nullable<int> ISO { get; set; }

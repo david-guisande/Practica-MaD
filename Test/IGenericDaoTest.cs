@@ -275,7 +275,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 pub.imagen = "/home/david/a.png";
                 pub.titulo = "imagen";
                 pub.descripcion = "una foto";
-                pub.fecha = new TimeSpan();
+                pub.fecha = 0;
                 pub.Usuario = userProfile.usrId;
                 pub.categoria = "asdfgh";
 
@@ -299,7 +299,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 pub.imagen = "/home/david/a.png";
                 pub.titulo = "imagen";
                 pub.descripcion = "una foto";
-                pub.fecha = new TimeSpan();
+                pub.fecha = 0;
                 pub.Usuario = userProfile.usrId;
                 pub.categoria = "asdfgh";
 
@@ -323,7 +323,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 pub.imagen = "/home/david/a.png";
                 pub.titulo = "imagen";
                 pub.descripcion = "una foto";
-                pub.fecha = new TimeSpan();
+                pub.fecha = 0;
                 pub.Usuario = userProfile.usrId;
                 pub.categoria = "asdfgh";
 
@@ -345,7 +345,7 @@ namespace Es.Udc.DotNet.Photogram.Test
                 pub.imagen = "/home/david/a.png";
                 pub.titulo = "imagen";
                 pub.descripcion = "una foto";
-                pub.fecha = new TimeSpan();
+                pub.fecha = 0;
                 pub.Usuario = userProfile.usrId;
                 pub.categoria = "asdfgh";
                 publicacionesDao.Create(pub);
