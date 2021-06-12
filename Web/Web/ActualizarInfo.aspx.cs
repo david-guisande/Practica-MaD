@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Web
 {
-    public partial class ActualizarInfo : System.Web.UI.Page
+    public partial class ActualizarInfo : SpecificCulturePage
     {
 		public IUsuariosService usrService;
 		public UserSession userSession;

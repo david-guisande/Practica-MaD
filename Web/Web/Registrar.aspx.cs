@@ -10,7 +10,7 @@ using Es.Udc.DotNet.Photogram.Web.HTTP.Session;
 
 namespace Web
 {
-	public partial class Registrar : System.Web.UI.Page
+	public partial class Registrar : SpecificCulturePage
 	{
 		protected void BotonClick(object sender, EventArgs e)
 		{

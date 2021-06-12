@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Web
 {
-    public partial class Comentarios : System.Web.UI.Page
+    public partial class Comentarios : SpecificCulturePage
     {
         public IPublicacionesService publiService;
         public IUsuariosService usrService;

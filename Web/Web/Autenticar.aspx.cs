@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace Web
 {
-	public partial class Autenticar : System.Web.UI.Page
+	public partial class Autenticar : SpecificCulturePage
 	{
 		protected void BotonClick(object sender, EventArgs e)
 		{

@@ -11,39 +11,40 @@
     <form id="Form2" method="post" runat="server">
     <div style='float:left; width:15%;'>    
         <div class="btn-group">
-            <asp:Button ID="miperfil" runat="server" Text="Mi Perfil" OnClick="MyProfile" style="width:100%"/>
-            <asp:Button ID="actualizar" runat="server" Text="Actualizar Info" OnClick="ActualizarInformacion" style="width:100%"/>
-            <asp:Button ID="salir" runat="server" Text="Salir" OnClick="Salir" style="width:100%"/>
+            <asp:Button ID="miperfil" runat="server" Text="<%$ Resources:Common, miperfil%>" OnClick="MyProfile" style="width:100%"/>
+            <asp:Button ID="actualizar" runat="server" Text="<%$ Resources:Common, actualizarinfo%>" OnClick="ActualizarInformacion" style="width:100%"/>
+            <asp:Button ID="salir" runat="server" Text="<%$ Resources:Common, salir%>" OnClick="Salir" style="width:100%"/>
         </div>
     </div>
     <div style='border-style: solid double; float:right; width:75%; margin-right:5%'>
         <div style="margin-bottom: 20px">
 				<div class="field" align="center" style="font-size: x-large">
-					Búsqueda de Imágenes</div>
+					<asp:Literal runat="server" Text="<%$ Resources:Common, busquedaimagenes%>" />
+				</div>
 				<div class="field">
 					<div style='float:left; width:40%;'>
-						<asp:TextBox ID="keywords" runat="server" Width="195px" Columns="16" meta:resourcekey="txtLoginResource1" style="margin-left: 10%;">Keywords</asp:TextBox>
+						<asp:TextBox ID="keywords" runat="server" Text="<%$ Resources:Common, keywords%>" Width="195px" Columns="16" meta:resourcekey="txtLoginResource1" style="margin-left: 10%;"/>
 					</div>
 					<div style='float:left; width:40%;'>
 						<asp:DropDownList ID="DropDownList1" runat="server" style="margin-left: 10%;" AutoPostBack="True">
                             <asp:ListItem Selected="True" Value=""> -
                                 </asp:ListItem> 
-                            <asp:ListItem Value="Paisaje"> Paisaje
-                                </asp:ListItem> 
-                            <asp:ListItem Value="Retrato"> Retrato 
-                                </asp:ListItem> 
-                            <asp:ListItem Value="Comida"> Comida 
-                                </asp:ListItem> 
-                            <asp:ListItem Value="Fiestas"> Fiestas 
-                                </asp:ListItem> 
-                            <asp:ListItem Value="Arte"> Arte
-                                </asp:ListItem>
-                            <asp:ListItem Value="Otros"> Otros
-                                </asp:ListItem>
+                            <asp:ListItem Value="Paisaje" Text="<%$ Resources:Common, paisaje%>">
+                            </asp:ListItem> 
+                            <asp:ListItem Value="Retrato" Text="<%$ Resources:Common, retrato%>">
+                            </asp:ListItem> 
+                            <asp:ListItem Value="Comida" Text="<%$ Resources:Common, comida%>">
+                            </asp:ListItem> 
+                            <asp:ListItem Value="Fiestas" Text="<%$ Resources:Common, fiestas%>">
+                            </asp:ListItem> 
+                            <asp:ListItem Value="Arte" Text="<%$ Resources:Common, arte%>">
+                            </asp:ListItem>
+                            <asp:ListItem Value="Otros" Text="<%$ Resources:Common, otros%>">
+                            </asp:ListItem>
 						</asp:DropDownList>
 					</div>
 					<div style='float:right; width:15%;'>
-						<asp:Button ID="Buscar" OnClick="BuscarImagenes" runat="server" Text="Buscar"/>
+						<asp:Button ID="Buscar" OnClick="BuscarImagenes" runat="server" Text="<%$ Resources:Common, buscar%>"/>
 					</div>
 				</div>
 		</div>

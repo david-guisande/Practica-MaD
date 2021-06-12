@@ -10,35 +10,35 @@
 <body>
     <form id="form1" runat="server">
         <div style="">
-            Autenicarse
+            <asp:Literal runat="server" Text="<%$ Resources:, autenticar%>" />
         </div>
         <div style="width: 80%; margin-left: 10%; margin-right: 10%">
         	<div style='float:left; width:30%; margin: 2%'>
-                Login
+                <asp:Literal runat="server" Text="<%$ Resources:, login%>" />
             </div>
         	<div style='float:left; width:30%; margin: 2%'>
             	<asp:TextBox ID="login" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Campo Obligatorio (resumen)" ControlToValidate="login">Campo Obligatorio</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="<%$ Resources:, obligatorio%>" ControlToValidate="login"></asp:RequiredFieldValidator>
             </div>
         </div>
         <div style="width: 80%;  margin-left: 10%; margin-right: 10%">
         	<div style='float:left; width:30%; margin: 2%'>
-                Password
+                <asp:Literal runat="server" Text="<%$ Resources:, pasw%>" />
             </div>
         	<div style='float:left; width:30%; margin: 2%'>
             	<asp:TextBox TextMode="Password" ID="password" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo Obligatorio (resumen)" ControlToValidate="password">Campo Obligatorio</asp:RequiredFieldValidator>
-				<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ValidationExpression="^[\s\S]{8,}$" ErrorMessage="RegularExpressionValidator" ControlToValidate="password"></asp:RegularExpressionValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="<%$ Resources:, obligatorio%>" ControlToValidate="password"></asp:RequiredFieldValidator>
+				<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ValidationExpression="^[\s\S]{8,}$" ErrorMessage="<%$ Resources:, longitud%>" ControlToValidate="password"></asp:RegularExpressionValidator>
             </div>
         </div>
         <div style="float:left; margin:5%; width:40%">
-        	<asp:TextBox ID="TextoError" runat="server" Text="Las credenciales no son válidas" ReadOnly="true" Width="50%" Visible="false"/>
+        	<asp:TextBox ID="TextoError" runat="server" Text="<%$ Resources:, credenciales%>" ReadOnly="true" Width="50%" Visible="false"/>
         </div>
         <div style="float:right; margin:5%">
-        	<asp:Button ID="Button1" OnClick="BotonClick" runat="server" Text="Autenticar"/>
+        	<asp:Button ID="Button1" OnClick="BotonClick" runat="server" Text="<%$ Resources:, autenticar%>"/>
         </div>
         <div class="checkbox">
-            <asp:CheckBox ID="checkRememberPassword" runat="server" TextAlign="Left" meta:resourcekey="checkRememberPassword" Text ="Recordar contraseña"/>
+            <asp:CheckBox ID="checkRememberPassword" runat="server" TextAlign="Left" meta:resourcekey="checkRememberPassword" Text ="<%$ Resources:, recordar%>"/>
         </div>
     </form>
 </body>

@@ -1,6 +1,7 @@
 ﻿using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.Photogram.Model.DTOs;
 using Es.Udc.DotNet.Photogram.Model.Service;
+using Es.Udc.DotNet.Photogram.Web.HTTP.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Web
 {
-    public partial class VerSeg : System.Web.UI.Page
+    public partial class VerSeg : SpecificCulturePage
     {
         public IUsuariosService usrService;
         public UsuariosDto[] follow;

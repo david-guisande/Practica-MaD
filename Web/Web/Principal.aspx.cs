@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Web
 {
-	public partial class Principal : System.Web.UI.Page
+	public partial class Principal : SpecificCulturePage
 	{
 		public IUsuariosService usrService;
 		public IPublicacionesService publiService;

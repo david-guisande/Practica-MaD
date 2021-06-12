@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Web
 {
-    public partial class DetalleImagen : System.Web.UI.Page
+    public partial class DetalleImagen : SpecificCulturePage
     {
         public IPublicacionesService publiService;
         public IUsuariosService usrService;
@@ -33,12 +33,12 @@ namespace Web
             catch { }
             PublicacionesDto pub = publiService.FindPublicacion(pubid);
 
-            Favs.Text = "Likes " + publiService.NumeroMeGusta(pubid).ToString();
+            Favs.Text = GetLocalResourceObject("likes").ToString() + " " + publiService.NumeroMeGusta(pubid).ToString();
             autor = usrService.Usuario(pub.Usuario);
             UserLink.Text = autor.loginName;
             Image1.ImageUrl = pub.imagen;
             txtTitle.Text = pub.titulo;
-            TextBox6.Text = pub.categoria;
+            TextBox6.Text = GetGlobalResourceObject("Common",pub.categoria.ToLower()).ToString();
             TextBox5.Text = pub.descripcion;
             DateTime data = new DateTime(pub.fecha);
             TextBox7.Text = data.ToString();
@@ -49,12 +49,12 @@ namespace Web
 
             if (pub.f != null)
             {
-                TextBox2.Text = "f " + pub.f.ToString();
+                TextBox2.Text = GetLocalResourceObject("f").ToString() + " " + pub.f.ToString();
             }
             
             if (pub.t != null)
             {
-                TextBox3.Text = "t " + pub.t.ToString();
+                TextBox3.Text = GetLocalResourceObject("t").ToString() + " " + pub.t.ToString();
             }
             
             if (pub.wb != null)
@@ -69,7 +69,7 @@ namespace Web
             if (usrid != -1)
             {
                 publiService.DarMeGusta(usrid, pubid);
-                Favs.Text = "Likes " + publiService.NumeroMeGusta(pubid).ToString();
+                Favs.Text = GetLocalResourceObject("likes").ToString() + publiService.NumeroMeGusta(pubid).ToString();
             }
         }
 

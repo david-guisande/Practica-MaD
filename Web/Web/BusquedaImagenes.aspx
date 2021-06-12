@@ -17,10 +17,10 @@
 	</div>
 	<div style="margin-bottom: 20px; margin-top: 20px">
 		<div class="field" align="right" style="font-size: large; float:left; width:49%">
-			<asp:Button ID="Anterior" runat="server" OnClick="Prev" Text="Anterior"/>
+			<asp:Button ID="Anterior" runat="server" OnClick="Prev" Text="<%$ Resources:Common, anterior%>"/>
 		</div>
 		<div class="field" align="left" style="font-size: large; float:right; width:49%">
-			<asp:Button ID="Siguiente" runat="server" OnClick="Next" Text="Suiguiente"/>
+			<asp:Button ID="Siguiente" runat="server" OnClick="Next" Text="<%$ Resources:Common, siguiente%>"/>
 		</div>
 	</div>
 </asp:Content>
