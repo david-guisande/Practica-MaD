@@ -24,14 +24,23 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
         }
 
         #endregion Public Constructors
+
+        /// <exception cref="InstanceNotFoundException"></exception>
         public Comentarios[] GetComentariosPubli(Int64 pubId, int npag)
 		{
             DbSet<Publicaciones> publicaciones = Context.Set<Publicaciones>();
-            var result = (from p in publicaciones.Include("Comentarios")
-                           where p.Id == pubId
-                           select p);
-            Publicaciones pub = result.FirstOrDefault();
-            return pub.Comentarios.OrderByDescending(c => c.fecha).Skip(10 * npag).Take(10).ToArray<Comentarios>();
+            try
+            {
+                var result = (from p in publicaciones.Include("Comentarios")
+                              where p.Id == pubId
+                              select p);
+                Publicaciones pub = result.FirstOrDefault();
+                return pub.Comentarios.OrderByDescending(c => c.fecha).Skip(10 * npag).Take(10).ToArray<Comentarios>();
+            }
+            catch (ArgumentNullException)
+            {
+                throw new InstanceNotFoundException(pubId, "Publicaciones");
+            }
         }
 
     }

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.ModelUtil.Transactions;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.Photogram.Model.DAOs;
 using Es.Udc.DotNet.Photogram.Model.DTOs;
 using Ninject;
+using System;
 
 
 namespace Es.Udc.DotNet.Photogram.Model.Service
@@ -51,15 +45,14 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             if (com.Usuario == usrId) ComentariosDao.Remove(comId);
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public ComentariosDto[] VerComentarios(Int64 pubId, int npag)
         {
             Comentarios[] com = ComentariosDao.GetComentariosPubli(pubId, npag);
             ComentariosDto[] res = new ComentariosDto[com.Length];
 
             for (int i = 0; i < com.Length; i++)
-            {
                 res[i] = com[i];
-            }
 
             return res;
         }

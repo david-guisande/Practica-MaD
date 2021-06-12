@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.ModelUtil.Transactions;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.Photogram.Model.DAOs;
 using Es.Udc.DotNet.Photogram.Model.DTOs;
 using Ninject;
+using System;
 
 
 namespace Es.Udc.DotNet.Photogram.Model.Service
@@ -41,50 +35,49 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             return publi.Id;
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public PublicacionesDto[] VerPublicacionesUsuario(Int64 usrId, int npag)
         {
             Publicaciones[] pub = PublicacionesDao.GetPubliUsuario(usrId, npag);
             PublicacionesDto[] res = new PublicacionesDto[pub.Length];
 
             for (int i = 0; i < pub.Length; i++)
-            {
                 res[i] = pub[i];
-            }
 
             return res;
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public PublicacionesDto[] BuscarImagenes(string keywords, int npag)
         {
             Publicaciones[] pub = PublicacionesDao.Buscar(keywords, npag);
             PublicacionesDto[] res = new PublicacionesDto[pub.Length];
 
             for (int i = 0; i < pub.Length; i++)
-            {
                 res[i] = pub[i];
-            }
 
             return res;
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public PublicacionesDto[] BuscarImagenes(string keywords, string categoria, int npag)
         {
             Publicaciones[] pub = PublicacionesDao.Buscar(keywords, categoria, npag);
             PublicacionesDto[] res = new PublicacionesDto[pub.Length];
 
             for (int i = 0; i < pub.Length; i++)
-            {
                 res[i] = pub[i];
-            }
 
             return res;
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public void DarMeGusta(Int64 usrId, Int64 pubId)
         {
             UsuariosDao.DarFav(usrId, pubId);
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public int NumeroMeGusta(Int64 pubId)
         {
             return PublicacionesDao.Favs(pubId);

@@ -25,78 +25,109 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
         }
 
         #endregion Public Constructors
-
+        /// <exception cref="InstanceNotFoundException"></exception>
         public Publicaciones[] Buscar(string palabras, int npag)
 		{
             Publicaciones[] pub;
             string[] words = palabras.Split(' ');
             DbSet<Publicaciones> publicaciones = Context.Set<Publicaciones>();
 
-            var request =
-                (from p in publicaciones
-                 select p);
-
-            request = request.Where(new Func<Publicaciones,bool> (p => 
+            try
             {
-                bool r = false;
-                foreach (string w in words)
-				{
-                    r |= p.descripcion.Contains(w);
-                    r |= p.titulo.Contains(w);
-                }
-                return r;
-            })).AsQueryable<Publicaciones>();
+                var request =
+                    (from p in publicaciones
+                     select p);
 
-            pub = request.Skip(10 * npag).Take(10).ToList().ToArray();
-            return pub;
+                request = request.Where(new Func<Publicaciones, bool>(p =>
+                {
+                    bool r = false;
+                    foreach (string w in words)
+                    {
+                        r |= p.descripcion.Contains(w);
+                        r |= p.titulo.Contains(w);
+                    }
+                    return r;
+                })).AsQueryable<Publicaciones>();
+
+                pub = request.Skip(10 * npag).Take(10).ToList().ToArray();
+                return pub;
+            }
+            catch (ArgumentNullException)
+            {
+                throw new InstanceNotFoundException(palabras,"Publicaciones");
+            }
         }
+
+        /// <exception cref="InstanceNotFoundException"></exception>
         public Publicaciones[] Buscar(string palabras, string categoria, int npag)
 		{
             Publicaciones[] pub;
             string[] words = palabras.Split(' ');
             DbSet<Publicaciones> publicaciones = Context.Set<Publicaciones>();
 
-            var request =
-                (from p in publicaciones
-                 where p.categoria == categoria
-                 select p);
-
-            request = request.Where(new Func<Publicaciones, bool>(p =>
+            try
             {
-                bool r = false;
-                foreach (string w in words)
+                var request =
+                    (from p in publicaciones
+                     where p.categoria == categoria
+                     select p);
+
+                request = request.Where(new Func<Publicaciones, bool>(p =>
                 {
-                    r |= p.descripcion.Contains(w);
-                    r |= p.titulo.Contains(w);
-                }
-                return r;
-            })).AsQueryable<Publicaciones>();
+                    bool r = false;
+                    foreach (string w in words)
+                    {
+                        r |= p.descripcion.Contains(w);
+                        r |= p.titulo.Contains(w);
+                    }
+                    return r;
+                })).AsQueryable<Publicaciones>();
 
-            pub = request.Skip(10 * npag).Take(10).ToList().ToArray();
-            return pub;
-
+                pub = request.Skip(10 * npag).Take(10).ToList().ToArray();
+                return pub;
+            }
+            catch (ArgumentNullException)
+            {
+                throw new InstanceNotFoundException(palabras,"Publicaciones");
+            }
         }
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         public Publicaciones[] GetPubliUsuario(Int64 usrId, int npag)
 		{
             DbSet<Usuarios> userProfiles = Context.Set<Usuarios>();
-            var result = (from u in userProfiles.Include("Publicaciones")
-                          where u.usrId == usrId
-                          select u);
-            Usuarios usr = result.FirstOrDefault();
-            return usr.Publicaciones.Skip(10 * npag).Take(10).ToArray<Publicaciones>();
+            try
+            {
+                var result = (from u in userProfiles.Include("Publicaciones")
+                              where u.usrId == usrId
+                              select u);
+                Usuarios usr = result.FirstOrDefault();
+                return usr.Publicaciones.Skip(10 * npag).Take(10).ToArray<Publicaciones>();
+            }
+            catch (ArgumentNullException)
+            {
+                throw new InstanceNotFoundException(usrId,"Usuarios");
+            }
         }
 
+        /// <exception cref="InstanceNotFoundException"></exception>
         public int Favs(long pubId)
 		{
             DbSet<Publicaciones> publicaciones = Context.Set<Publicaciones>();
 
-            var request =
-                (from p in publicaciones.Include("Usuarios1")
-                 where p.Id == pubId
-                 select p);
-            Publicaciones pub = request.FirstOrDefault();
-            return pub.Usuarios1.Count;
+            try
+            {
+                var request =
+                    (from p in publicaciones.Include("Usuarios1")
+                     where p.Id == pubId
+                     select p);
+                Publicaciones pub = request.FirstOrDefault();
+                return pub.Usuarios1.Count;
+            }
+            catch (ArgumentNullException)
+            {
+                throw new InstanceNotFoundException(pubId, "Publicaciones");
+            }
         }
 
     }

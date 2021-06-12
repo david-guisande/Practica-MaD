@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.ModelUtil.Transactions;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.Photogram.Model.DAOs;
 using Es.Udc.DotNet.Photogram.Model.DTOs;
 using Ninject;
+using System;
 
 namespace Es.Udc.DotNet.Photogram.Model.Service
 {
@@ -18,12 +12,12 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         [Inject]
         public IUserProfileDao UsuariosDao { private get; set; }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public long RegistrarUsuario(string loginName, string clearPassword, string nombre, string email, string pais, string idioma)
         {
             try
             {
                 UsuariosDao.FindByLoginName(loginName);
-                throw new Exception();
             }
             catch (InstanceNotFoundException)
             {
@@ -41,6 +35,7 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
 
                 return user.usrId;
             }
+            throw new InstanceNotFoundException(loginName,"Usuarios");
         }
 
         public UsuariosDto Autenticar(string loginName, string clearPassword)
@@ -52,10 +47,7 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
                     return (UsuariosDto) user;
                 else return null;
             }
-            catch (InstanceNotFoundException)
-            {
-                return null;
-            }
+            catch (InstanceNotFoundException) { return null; }
         }
 
         public UsuariosDto Usuario(long id)
@@ -63,32 +55,31 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             return UsuariosDao.Find(id);
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public UsuariosDto[] VerSeguidores(Int64 usrId, int npag)
         {
             Usuarios[] seguidores = UsuariosDao.GetSeguidores(usrId, npag);
             UsuariosDto[] res = new UsuariosDto[seguidores.Length];
          
             for (int i = 0; i < seguidores.Length; i++)
-            {
                 res[i] = seguidores[i];
-            }
 
             return res;
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public UsuariosDto[] VerSeguidos(Int64 usrId, int npag)
         {
             Usuarios[] seguidos = UsuariosDao.GetSeguidos(usrId, npag);
             UsuariosDto[] res = new UsuariosDto[seguidos.Length];
 
             for (int i = 0; i < seguidos.Length; i++)
-            {
                 res[i] = seguidos[i];
-            }
 
             return res;
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public void SeguirA(Int64 usrIdSeguidor, Int64 usrIdSeguido)
         {
             UsuariosDao.SeguirA(usrIdSeguidor, usrIdSeguido);
