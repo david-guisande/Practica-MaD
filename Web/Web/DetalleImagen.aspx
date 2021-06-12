@@ -15,8 +15,11 @@
 				<div align="left" style='float:left; width:15%;'>
 					<asp:Button ID="Favs" runat="server" Width="195px" Columns="16" Text="Likes 0" style="margin-left: 10%;" OnClick="DarMegusta"></asp:Button>
 				</div>
+				<div align="left" style='float:left; width:15%;'>
+					<asp:Button ID="Comentarios" runat="server" Text="Comentarios" style="margin-left: 120%;" OnClick="VerComentarios"></asp:Button>
+				</div>
 			</div>
-
+			<br />
 			<div style="margin-bottom: 20px">
 				<div class="field" align="left" style="font-size: large; float:left; width:35%">
 					<asp:TextBox ID="txtTitle" runat="server" Width="195px" ReadOnly="true" Columns="16" meta:resourcekey="txtTitleResource" style="margin-left: 10%;">Titulo</asp:TextBox>

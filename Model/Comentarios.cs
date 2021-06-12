@@ -31,6 +31,7 @@ namespace Es.Udc.DotNet.Photogram.Model
             coment.Usuario = com.Usuario;
             coment.PublicacionId = com.PublicacionId;
             coment.texto = com.texto;
+            coment.fecha = com.fecha;
 
             return coment;
         }

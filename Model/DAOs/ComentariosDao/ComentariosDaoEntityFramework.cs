@@ -31,7 +31,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                            where p.Id == pubId
                            select p);
             Publicaciones pub = result.FirstOrDefault();
-            return pub.Comentarios.Skip(10 * npag).Take(10).ToArray<Comentarios>();
+            return pub.Comentarios.OrderByDescending(c => c.fecha).Skip(10 * npag).Take(10).ToArray<Comentarios>();
         }
 
     }

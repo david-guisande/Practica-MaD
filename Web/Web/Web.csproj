@@ -88,12 +88,14 @@
     <Content Include="ActualizarInfo.aspx" />
     <Content Include="Autenticar.aspx" />
     <Content Include="BusquedaImagenes.aspx" />
+    <Content Include="Comentarios.aspx" />
     <Content Include="Css\styles.css" />
     <Content Include="DetalleImagen.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Principal.aspx" />
     <Content Include="Registrar.aspx" />
     <Content Include="SubidaImagenes.aspx" />
+    <Content Include="VerSeg.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +119,13 @@
     </Compile>
     <Compile Include="BusquedaImagenes.aspx.designer.cs">
       <DependentUpon>BusquedaImagenes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Comentarios.aspx.cs">
+      <DependentUpon>Comentarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Comentarios.aspx.designer.cs">
+      <DependentUpon>Comentarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="DetalleImagen.aspx.cs">
       <DependentUpon>DetalleImagen.aspx</DependentUpon>
@@ -166,6 +175,13 @@
     </Compile>
     <Compile Include="SubidaImagenes.aspx.designer.cs">
       <DependentUpon>SubidaImagenes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerSeg.aspx.cs">
+      <DependentUpon>VerSeg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerSeg.aspx.designer.cs">
+      <DependentUpon>VerSeg.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

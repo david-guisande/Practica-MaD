@@ -37,6 +37,9 @@
         <div style="float:right; margin:5%">
         	<asp:Button ID="Button1" OnClick="BotonClick" runat="server" Text="Autenticar"/>
         </div>
+        <div class="checkbox">
+            <asp:CheckBox ID="checkRememberPassword" runat="server" TextAlign="Left" meta:resourcekey="checkRememberPassword" Text ="Recordar contraseña"/>
+        </div>
     </form>
 </body>
 </html>

@@ -102,5 +102,12 @@ namespace Web
         {
 			usrService.SeguirA(SessionManager.GetUserSession(Context).UserProfileId, id);
 		}
+
+		protected void VerSeg(object sender, EventArgs e)
+        {
+			Session["seg"] = sender == Followers;
+			var url = Response.ApplyAppPathModifier("~/VerSeg.aspx");
+			Response.Redirect(url);
+		}
 	}
 }

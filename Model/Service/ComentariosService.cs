@@ -29,6 +29,7 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             com.Usuario = usrId;
             com.PublicacionId = pubId;
             com.texto = comentario;
+            com.fecha = DateTime.Now.Ticks;
 
             ComentariosDao.Create(com);
             return com.Id;

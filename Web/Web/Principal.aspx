@@ -16,10 +16,10 @@
 				<asp:Button ID="Follow" runat="server" Text="Seguir Usuario" OnClick="Seguir" Visible="false"/>
 			</div>
 			<div style='float:left; width:25%; margin-right: 5px'>
-				<asp:Button ID="Following" runat="server" Text="Ver Siguiendo" Visible="false"/>
+				<asp:Button ID="Following" runat="server" Text="Ver Siguiendo" OnClick="VerSeg" Visible="false"/>
 			</div>
 			<div style='float:left; width:25%;'>
-				<asp:Button ID="Followers" runat="server" Text="Ver Seguidores" Visible="false"/>
+				<asp:Button ID="Followers" runat="server" Text="Ver Seguidores" OnClick="VerSeg" Visible="false"/>
 			</div>
 
 			<asp:ImageButton ID="Image1" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>

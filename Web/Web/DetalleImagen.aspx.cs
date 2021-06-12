@@ -15,8 +15,8 @@ namespace Web
     {
         public IPublicacionesService publiService;
         public IUsuariosService usrService;
-        long pubid;
-        long usrid;
+        long pubid = -1;
+        long usrid = -1;
         UsuariosDto autor;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,7 +26,11 @@ namespace Web
             usrService = iocManager.Resolve<IUsuariosService>();
 
             pubid = (long) Session["imagen"];
-            usrid = SessionManager.GetUserSession(Context).UserProfileId;
+            try
+            {
+                usrid = SessionManager.GetUserSession(Context).UserProfileId;
+            }
+            catch { }
             PublicacionesDto pub = publiService.FindPublicacion(pubid);
 
             Favs.Text = "Likes " + publiService.NumeroMeGusta(pubid).ToString();
@@ -62,14 +66,23 @@ namespace Web
 
         protected void DarMegusta(object sender, EventArgs e)
         {
-            publiService.DarMeGusta(usrid ,pubid);
-            Favs.Text = "Likes " + publiService.NumeroMeGusta(pubid).ToString();
+            if (usrid != -1)
+            {
+                publiService.DarMeGusta(usrid, pubid);
+                Favs.Text = "Likes " + publiService.NumeroMeGusta(pubid).ToString();
+            }
         }
 
         protected void VerUsuario(object sender, EventArgs e)
         {
             Session["perfil"] = autor.usrId;
             var url = Response.ApplyAppPathModifier("~/Principal.aspx");
+            Response.Redirect(url);
+        }
+
+        protected void VerComentarios(object sender, EventArgs e)
+        {
+            var url = Response.ApplyAppPathModifier("~/Comentarios.aspx");
             Response.Redirect(url);
         }
     }
