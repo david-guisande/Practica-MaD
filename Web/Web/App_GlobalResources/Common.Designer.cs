@@ -115,6 +115,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Inglés.
+        /// </summary>
+        internal static string en {
+            get {
+                return ResourceManager.GetString("en", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Español.
+        /// </summary>
+        internal static string es {
+            get {
+                return ResourceManager.GetString("es", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Fiestas.
         /// </summary>
         internal static string fiestas {
@@ -187,6 +205,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a España.
+        /// </summary>
+        internal static string SP {
+            get {
+                return ResourceManager.GetString("SP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Subir.
         /// </summary>
         internal static string subir {
@@ -201,6 +228,15 @@ namespace Resources {
         internal static string subirimagen {
             get {
                 return ResourceManager.GetString("subirimagen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Estados Unidos.
+        /// </summary>
+        internal static string US {
+            get {
+                return ResourceManager.GetString("US", resourceCulture);
             }
         }
     }

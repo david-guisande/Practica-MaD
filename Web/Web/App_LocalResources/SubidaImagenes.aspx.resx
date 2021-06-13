@@ -126,6 +126,15 @@
   <data name="f" xml:space="preserve">
     <value>Diafragma</value>
   </data>
+  <data name="float" xml:space="preserve">
+    <value>Debe ser un número real</value>
+  </data>
+  <data name="int" xml:space="preserve">
+    <value>Debe ser un número entero</value>
+  </data>
+  <data name="obligatorio" xml:space="preserve">
+    <value>Campo Obligatorio</value>
+  </data>
   <data name="t" xml:space="preserve">
     <value>Tiempo de Exposición</value>
   </data>

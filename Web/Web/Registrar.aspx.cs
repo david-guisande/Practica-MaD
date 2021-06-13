@@ -20,7 +20,7 @@ namespace Web
 				//try
 				//{
 					long id = SessionManager.RegisterUser(Context, login.Text,
-							password.Text, nombre.Text, mail.Text, pais.Text, idioma.Text);
+							password.Text, nombre.Text, mail.Text, pais.SelectedValue, idioma.SelectedValue);
 					Session["perfil"] = id;
 
 					var url = Response.ApplyAppPathModifier("~/Principal.aspx");

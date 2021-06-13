@@ -126,6 +126,15 @@
   <data name="f" xml:space="preserve">
     <value>Diaphragm</value>
   </data>
+  <data name="float" xml:space="preserve">
+    <value>Must be a float</value>
+  </data>
+  <data name="int" xml:space="preserve">
+    <value>Must be an integer</value>
+  </data>
+  <data name="obligatorio" xml:space="preserve">
+    <value>Mandatory Field</value>
+  </data>
   <data name="t" xml:space="preserve">
     <value>Shutter Speed</value>
   </data>

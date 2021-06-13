@@ -36,8 +36,8 @@ namespace Web
 					password.Text = usr.password;
 					nombre.Text = usr.name;
 					mail.Text = usr.email;
-					pais.Text = usr.pais;
-					idioma.Text = usr.idioma;
+					pais.SelectedValue = usr.pais;
+					idioma.SelectedValue = usr.idioma;
 				}
 			}
 		}

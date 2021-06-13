@@ -28,7 +28,7 @@
         	<div style='float:left; width:30%; margin: 2%'>
             	<asp:TextBox TextMode="Password" ID="password" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="<%$ Resources:, obligatorio%>" ControlToValidate="password"></asp:RequiredFieldValidator>
-				<asp:RegularExpressionValidator ID="RegExp1" runat="server" ErrorMessage="<%$ Resources:, longitud%>" ControlToValidate="password" ValidationExpression="^[a-zA-Z0-9'@&#.\s]{7,10}$" />
+				<asp:RegularExpressionValidator ID="RegExp1" runat="server" ErrorMessage="<%$ Resources:, longitud%>" ControlToValidate="password" ValidationExpression="^[a-zA-Z0-9'@&#.\s]{7,}$" />
             </div>
         </div>
         <div style="width: 80%;  margin-left: 10%; margin-right: 10%"">
@@ -54,8 +54,10 @@
                 <asp:Literal runat="server" Text="<%$ Resources:, pais%>" />
             </div>
         	<div style='float:left; width:30%; margin: 2%'>
-            	<asp:TextBox ID="pais" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="<%$ Resources:, obligatorio%>" ControlToValidate="pais"></asp:RequiredFieldValidator>
+            	<asp:DropDownList ID="pais" runat="server" style="margin-left: 0%;" AutoPostBack="True" Height="22px" Width="125px">
+                    <asp:ListItem Selected="True" Value="US" Text="<%$ Resources:Common, US%>"/>
+                    <asp:ListItem Value="ES" Text="<%$ Resources:Common, SP%>"/>
+				</asp:DropDownList>
             </div>
         </div>
         <div style="width: 80%;  margin-left: 10%; margin-right: 10%"">
@@ -63,8 +65,10 @@
                 <asp:Literal runat="server" Text="<%$ Resources:, idioma%>" />
             </div>
         	<div style='float:left; width:30%; margin: 2%'>
-            	<asp:TextBox ID="idioma" runat="server"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="<%$ Resources:, obligatorio%>" ControlToValidate="idioma"></asp:RequiredFieldValidator>
+            	<asp:DropDownList ID="idioma" runat="server" style="margin-left: 0%;" AutoPostBack="True" Height="17px" Width="125px">
+                    <asp:ListItem Selected="True" Value="en" Text="<%$ Resources:Common, en%>"/>
+                    <asp:ListItem Value="es" Text="<%$ Resources:Common, es%>"/>
+				</asp:DropDownList>
             </div>
         </div>
         <div style="float:right; margin:5%">
