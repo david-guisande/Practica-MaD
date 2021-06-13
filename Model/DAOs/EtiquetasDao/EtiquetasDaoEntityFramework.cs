@@ -133,5 +133,24 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                 throw new InstanceNotFoundException(tag, "EtiquetaSet");
             }
         }
+
+        public int GetNumPublicaciones(string tag)
+        {
+            DbSet<EtiquetaSet> etiq = Context.Set<EtiquetaSet>();
+
+            try
+            {
+                var request =
+                    (from e in etiq.Include("Publicaciones")
+                     where e.tag == tag
+                     select e);
+                EtiquetaSet etiqueta = request.FirstOrDefault();
+                return etiqueta.Publicaciones.Count;
+            }
+            catch (ArgumentNullException)
+            {
+                throw new InstanceNotFoundException(tag, "EtiquetaSet");
+            }
+        }
     }
 }

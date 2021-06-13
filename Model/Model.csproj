@@ -154,7 +154,9 @@
       <DependentUpon>Photogram.tt</DependentUpon>
     </Compile>
     <Compile Include="Service\ComentariosService.cs" />
+    <Compile Include="Service\EtiquetasService.cs" />
     <Compile Include="Service\IComentariosService.cs" />
+    <Compile Include="Service\IEtiquetasService.cs" />
     <Compile Include="Service\IPublicacionesService.cs" />
     <Compile Include="Service\IUsuariosService.cs" />
     <Compile Include="Service\PublicacionesService.cs" />
