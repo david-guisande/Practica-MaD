@@ -6,15 +6,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace Web
 {
     public partial class Photogram : System.Web.UI.MasterPage
     {
+        public IEtiquetasService etiqService;
         protected void Page_Load(object sender, EventArgs e)
         {
+            IIoCManager iocManager =
+                (IIoCManager)HttpContext.Current.Application["managerIoC"];
+            etiqService = iocManager.Resolve<IEtiquetasService>();
 
+
+            (string,int)[] list = etiqService.NubeEtiquetas();
+
+            int sum = 0;
+            for (int i = 0; i < list.Length; i++)
+            {
+                sum += list[i].Item2;
+            }
+            for (int i = 0; i < list.Length; i++)
+            {
+                var button = new LinkButton
+                {
+                    ID = "Button" + i,
+                    Text = list[i].Item1
+                };
+                button.Command += EtiquetaOnClick;
+                float x = ((float)list[i].Item2 / (float)sum) * 36 + 12;
+
+
+                button.Attributes.Add("style", "font-size:" + (Math.Round(x*100)/100).ToString() +"px;");
+                PlaceHolder1.Controls.Add(button);
+                PlaceHolder1.Controls.Add(new HtmlGenericControl("br"));
+            }
+        }
+
+        protected void EtiquetaOnClick(object sender, EventArgs e)
+        {
+            var url = Response.ApplyAppPathModifier("~/BusquedaEtiquetas.aspx");
+            Session["tag"] = ((LinkButton)sender).Text;
+            Response.Redirect(url);
         }
         protected void Salir(object sender, EventArgs e)
 		{

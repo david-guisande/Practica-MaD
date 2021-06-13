@@ -120,6 +120,9 @@
   <data name="descripcion" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="etiquetas" xml:space="preserve">
+    <value>Write tags separated by spaces</value>
+  </data>
   <data name="f" xml:space="preserve">
     <value>Diaphragm</value>
   </data>

@@ -15,6 +15,7 @@ namespace Web
     {
         public IUsuariosService usrService;
         public IPublicacionesService publiService;
+        public IEtiquetasService etiqService;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,6 +29,7 @@ namespace Web
                 (IIoCManager)HttpContext.Current.Application["managerIoC"];
                 publiService = iocManager.Resolve<IPublicacionesService>();
                 usrService = iocManager.Resolve<IUsuariosService>();
+                etiqService = iocManager.Resolve<IEtiquetasService>();
             }
             else
             {
@@ -38,6 +40,7 @@ namespace Web
 
         protected void Subir(object sender, EventArgs e)
         {
+            string[] tags = TextBox9.Text.ToLower().Split(' ');
             UserSession userSession = SessionManager.GetUserSession(Context);
             long usrId = userSession.UserProfileId;
             long pubId = publiService.SubirImagen(usrId, txtTitle.Text, TextBox5.Text, DropDownList2.SelectedValue,
@@ -47,6 +50,15 @@ namespace Web
             string x = FileUpload1.FileName;
             FileUpload1.SaveAs(ruta);
             Session["imagen"] = pubId;
+
+            for (int i=0; i<tags.Length; i++)
+            {
+                if (tags[i] != "")
+                {
+                    etiqService.Etiquetar(tags[i], pubId);
+                }
+            }
+
             var url = Response.ApplyAppPathModifier("~/DetalleImagen.aspx");
             Response.Redirect(url);
         }

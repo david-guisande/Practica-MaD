@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.Photogram.Model.Service
 {
-    class EtiquetasService : IEtiquetasService
+    public class EtiquetasService : IEtiquetasService
     {
         [Inject]
         public IPublicacionesDao PublicacionesDao { private get; set; }
@@ -25,6 +25,12 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         /// <exception cref="InstanceNotFoundException"></exception>
         public void Etiquetar(string tag, long pubId)
         {
+            if (!EtiquetasDao.Exists(tag))
+            {
+                EtiquetaSet et = new EtiquetaSet();
+                et.tag = tag;
+                EtiquetasDao.Create(et);
+            }
             EtiquetasDao.Etiquetar(tag, pubId);
         }
 

@@ -52,7 +52,10 @@
 			</div>
 			<div style="margin-bottom: 20px">
 				<div class="field" align="left" style="font-size: large; float:left; width:80%">
-					ETIQUETAS
+					<br />
+					<br />
+					<asp:Literal runat="server" Text="<%$ Resources: , etiquetas%>" />
+					<asp:TextBox ID="TextBox9" runat="server" Width="90%" Height="100px" Columns="16" meta:resourcekey="txtTitleResource" style="margin-left: 10%;"></asp:TextBox>
 				</div>
 			</div>
 			<div style="margin-bottom: 20px">

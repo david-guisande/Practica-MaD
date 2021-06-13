@@ -40,6 +40,14 @@ namespace Es.Udc.DotNet.Photogram.HTTP.Util.IoC
             /* ComentariosService */
             kernel.Bind<IComentariosService>().
                 To<ComentariosService>();
+
+            /* ComentariosDao */
+            kernel.Bind<IEtiquetasDao>().
+                To<EtiquetasDaoEntityFramework>();
+
+            /* EtiquetasService */
+            kernel.Bind<IEtiquetasService>().
+                To<EtiquetasService>();
             /* DbContext */
             string connectionString =
                 ConfigurationManager.ConnectionStrings["MAD_BDEntities"].ConnectionString;

@@ -52,7 +52,7 @@
 			</div>
 			<div style="margin-bottom: 20px">
 				<div class="field" align="left" style="font-size: large; float:left; width:80%">
-					ETIQUETAS
+					<asp:PlaceHolder runat="server" ID="PlaceHolder1"></asp:PlaceHolder>
 				</div>
 			</div>
 		</div>
