@@ -40,6 +40,7 @@ namespace Web
 
         protected void Subir(object sender, EventArgs e)
         {
+            if (!IsValid) return;
             string[] tags = TextBox9.Text.ToLower().Split(' ');
             UserSession userSession = SessionManager.GetUserSession(Context);
             long usrId = userSession.UserProfileId;
