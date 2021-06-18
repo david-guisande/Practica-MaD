@@ -56,9 +56,9 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         }
 
         /// <exception cref="InstanceNotFoundException"/>
-        public UsuariosDto[] VerSeguidores(Int64 usrId, int npag)
+        public UsuariosDto[] VerSeguidores(Int64 usrId, int npag, int pagLen)
         {
-            Usuarios[] seguidores = UsuariosDao.GetSeguidores(usrId, npag);
+            Usuarios[] seguidores = UsuariosDao.GetSeguidores(usrId, npag, pagLen);
             UsuariosDto[] res = new UsuariosDto[seguidores.Length];
          
             for (int i = 0; i < seguidores.Length; i++)
@@ -68,9 +68,9 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         }
 
         /// <exception cref="InstanceNotFoundException"/>
-        public UsuariosDto[] VerSeguidos(Int64 usrId, int npag)
+        public UsuariosDto[] VerSeguidos(Int64 usrId, int npag, int pagLen)
         {
-            Usuarios[] seguidos = UsuariosDao.GetSeguidos(usrId, npag);
+            Usuarios[] seguidos = UsuariosDao.GetSeguidos(usrId, npag, pagLen);
             UsuariosDto[] res = new UsuariosDto[seguidos.Length];
 
             for (int i = 0; i < seguidos.Length; i++)

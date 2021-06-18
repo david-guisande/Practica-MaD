@@ -36,9 +36,9 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         }
 
         /// <exception cref="InstanceNotFoundException"/>
-        public PublicacionesDto[] VerPublicacionesUsuario(Int64 usrId, int npag)
+        public PublicacionesDto[] VerPublicacionesUsuario(Int64 usrId, int npag, int pagLen)
         {
-            Publicaciones[] pub = PublicacionesDao.GetPubliUsuario(usrId, npag);
+            Publicaciones[] pub = PublicacionesDao.GetPubliUsuario(usrId, npag, pagLen);
             PublicacionesDto[] res = new PublicacionesDto[pub.Length];
 
             for (int i = 0; i < pub.Length; i++)
@@ -48,9 +48,9 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         }
 
         /// <exception cref="InstanceNotFoundException"/>
-        public PublicacionesDto[] BuscarImagenes(string keywords, int npag)
+        public PublicacionesDto[] BuscarImagenes(string keywords, int npag, int pagLen)
         {
-            Publicaciones[] pub = PublicacionesDao.Buscar(keywords, npag);
+            Publicaciones[] pub = PublicacionesDao.Buscar(keywords, npag, pagLen);
             PublicacionesDto[] res = new PublicacionesDto[pub.Length];
 
             for (int i = 0; i < pub.Length; i++)
@@ -60,9 +60,9 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         }
 
         /// <exception cref="InstanceNotFoundException"/>
-        public PublicacionesDto[] BuscarImagenes(string keywords, string categoria, int npag)
+        public PublicacionesDto[] BuscarImagenes(string keywords, string categoria, int npag, int pagLen)
         {
-            Publicaciones[] pub = PublicacionesDao.Buscar(keywords, categoria, npag);
+            Publicaciones[] pub = PublicacionesDao.Buscar(keywords, categoria, npag, pagLen);
             PublicacionesDto[] res = new PublicacionesDto[pub.Length];
 
             for (int i = 0; i < pub.Length; i++)

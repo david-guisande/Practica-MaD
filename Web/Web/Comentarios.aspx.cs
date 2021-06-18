@@ -30,14 +30,14 @@ namespace Web
 
             pubid = (long)Session["imagen"];
             if (!IsPostBack) pagina = 0;
-            lista = comService.VerComentarios(pubid, pagina);
+            lista = comService.VerComentarios(pubid, pagina, (int)Application["comentariosPag"]);
 
             if (!IsPostBack) actualizar();
         }
 
         private void actualizar()
         {
-            lista = comService.VerComentarios(pubid, pagina);
+            lista = comService.VerComentarios(pubid, pagina, (int)Application["comentariosPag"]);
             LinkButton[] users = { LinkButton1, LinkButton2, LinkButton3, LinkButton4, LinkButton5, LinkButton6, LinkButton7, LinkButton8, LinkButton9, LinkButton10 };
             Label[] times = { Label1, Label2, Label3, Label4, Label5, Label6, Label7, Label8, Label9, Label10 };
             TextBox[] texts = { TextBox1, TextBox2, TextBox3, TextBox4, TextBox5, TextBox6, TextBox7, TextBox8, TextBox9, TextBox10 };

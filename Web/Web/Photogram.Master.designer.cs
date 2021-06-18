@@ -60,6 +60,24 @@ namespace Web
         protected global::System.Web.UI.WebControls.Button salir;
 
         /// <summary>
+        /// Control registrar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button registrar;
+
+        /// <summary>
+        /// Control login.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button login;
+
+        /// <summary>
         /// Control PlaceHolder1.
         /// </summary>
         /// <remarks>

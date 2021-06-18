@@ -151,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Iniciar Sesion.
+        /// </summary>
+        internal static string login {
+            get {
+                return ResourceManager.GetString("login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Mi Perfil.
         /// </summary>
         internal static string miperfil {
@@ -174,6 +183,15 @@ namespace Resources {
         internal static string paisaje {
             get {
                 return ResourceManager.GetString("paisaje", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Registrar.
+        /// </summary>
+        internal static string registrar {
+            get {
+                return ResourceManager.GetString("registrar", resourceCulture);
             }
         }
         

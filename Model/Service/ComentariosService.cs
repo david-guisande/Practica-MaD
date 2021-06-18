@@ -46,9 +46,9 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         }
 
         /// <exception cref="InstanceNotFoundException"/>
-        public ComentariosDto[] VerComentarios(Int64 pubId, int npag)
+        public ComentariosDto[] VerComentarios(Int64 pubId, int npag, int pagLen)
         {
-            Comentarios[] com = ComentariosDao.GetComentariosPubli(pubId, npag);
+            Comentarios[] com = ComentariosDao.GetComentariosPubli(pubId, npag, pagLen);
             ComentariosDto[] res = new ComentariosDto[com.Length];
 
             for (int i = 0; i < com.Length; i++)

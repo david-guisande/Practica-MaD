@@ -27,7 +27,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
         #endregion Public Constructors
 
         /// <exception cref="InstanceNotFoundException"></exception>
-        public Publicaciones[] GetPublicaciones(string tag, int npag)
+        public Publicaciones[] GetPublicaciones(string tag, int npag, int pagLen)
         {
             DbSet<EtiquetaSet> etiq = Context.Set<EtiquetaSet>();
 
@@ -38,7 +38,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                      where e.tag == tag
                      select e);
                 EtiquetaSet etiqueta = request.FirstOrDefault();
-                return etiqueta.Publicaciones.Skip(10 * npag).Take(10).ToArray<Publicaciones>();
+                return etiqueta.Publicaciones.Skip(pagLen * npag).Take(pagLen).ToArray<Publicaciones>();
             }
             catch (ArgumentNullException)
             {

@@ -9,7 +9,7 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
 {
     public interface IEtiquetasService
     {
-        PublicacionesDto[] GetPublicaciones(string tag, int npag);
+        PublicacionesDto[] GetPublicaciones(string tag, int npag, int pagLen);
 
         string[] GetEtiquetas(long pubId);
 
@@ -19,6 +19,6 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         /// <exception cref="InstanceNotFoundException"></exception>
         void Desetiquetar(string tag, long pubId);
 
-        (string et, int num)[] NubeEtiquetas();
+        (string et, int num)[] NubeEtiquetas(int pagLen);
     }
 }

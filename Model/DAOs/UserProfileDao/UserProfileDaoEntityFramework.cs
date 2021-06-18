@@ -76,7 +76,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
         }
 
         /// <exception cref="InstanceNotFoundException"></exception>
-        public Usuarios[] GetSeguidos(Int64 usrId, int npag)
+        public Usuarios[] GetSeguidos(Int64 usrId, int npag, int pagLen)
 		{
             DbSet<Usuarios> userProfiles = Context.Set<Usuarios>();
             try
@@ -85,7 +85,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                               where u.usrId == usrId
                               select u);
                 Usuarios seguidor = result.FirstOrDefault();
-                return seguidor.Seguidos.Skip(10 * npag).Take(10).ToArray<Usuarios>();
+                return seguidor.Seguidos.Skip(pagLen * npag).Take(pagLen).ToArray<Usuarios>();
             }
             catch (ArgumentNullException)
             {
@@ -94,7 +94,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
         }
 
         /// <exception cref="InstanceNotFoundException"></exception>
-        public Usuarios[] GetSeguidores(Int64 usrId, int npag)
+        public Usuarios[] GetSeguidores(Int64 usrId, int npag, int pagLen)
 		{
             DbSet<Usuarios> userProfiles = Context.Set<Usuarios>();
             try
@@ -103,7 +103,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                               where u.usrId == usrId
                               select u);
                 Usuarios seguido = result.FirstOrDefault();
-                return seguido.Seguidores.Skip(10 * npag).Take(10).ToArray<Usuarios>();
+                return seguido.Seguidores.Skip(pagLen * npag).Take(pagLen).ToArray<Usuarios>();
             }
             catch (ArgumentNullException)
             {

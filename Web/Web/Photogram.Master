@@ -14,6 +14,9 @@
             <asp:Button ID="miperfil" runat="server" Text="<%$ Resources:Common, miperfil%>" OnClick="MyProfile" style="width:100%"/>
             <asp:Button ID="actualizar" runat="server" Text="<%$ Resources:Common, actualizarinfo%>" OnClick="ActualizarInformacion" style="width:100%"/>
             <asp:Button ID="salir" runat="server" Text="<%$ Resources:Common, salir%>" OnClick="Salir" style="width:100%"/>
+            
+            <asp:Button ID="registrar" runat="server" Text="<%$ Resources:Common, registrar%>" OnClick="Registrar" style="width:100%"/>
+            <asp:Button ID="login" runat="server" Text="<%$ Resources:Common, login%>" OnClick="Login" style="width:100%"/>
             <br />
             <asp:PlaceHolder runat="server" ID="PlaceHolder1"></asp:PlaceHolder>
         </div>
@@ -25,7 +28,8 @@
 				</div>
 				<div class="field">
 					<div style='float:left; width:40%;'>
-						<asp:TextBox ID="keywords" runat="server" Text="<%$ Resources:Common, keywords%>" Width="195px" Columns="16" meta:resourcekey="txtLoginResource1" style="margin-left: 10%;"/>
+                        <asp:Literal runat="server" Text="<%$ Resources:Common, keywords%>" />
+						<asp:TextBox ID="keywords" runat="server" Width="195px" Columns="16" meta:resourcekey="txtLoginResource1" style="margin-left: 10%;"/>
 					</div>
 					<div style='float:left; width:40%;'>
 						<asp:DropDownList ID="DropDownList1" runat="server" style="margin-left: 10%;" AutoPostBack="True">

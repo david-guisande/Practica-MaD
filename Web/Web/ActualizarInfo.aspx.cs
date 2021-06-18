@@ -22,23 +22,16 @@ namespace Web
 			usrService = iocManager.Resolve<IUsuariosService>();
 
 			userSession = SessionManager.GetUserSession(Context);
-			if (userSession == null)
+
+			if (!IsPostBack)
             {
-				var url = Response.ApplyAppPathModifier("~/Autenticar.aspx");
-				Response.Redirect(url);
-			}
-			else
-            {
-				if (!IsPostBack)
-                {
-					UsuariosDto usr = usrService.Usuario(userSession.UserProfileId);
-					login.Text = usr.loginName;
-					password.Text = usr.password;
-					nombre.Text = usr.name;
-					mail.Text = usr.email;
-					pais.SelectedValue = usr.pais;
-					idioma.SelectedValue = usr.idioma;
-				}
+				UsuariosDto usr = usrService.Usuario(userSession.UserProfileId);
+				login.Text = usr.loginName;
+				password.Text = usr.password;
+				nombre.Text = usr.name;
+				mail.Text = usr.email;
+				pais.SelectedValue = usr.pais;
+				idioma.SelectedValue = usr.idioma;
 			}
 		}
 

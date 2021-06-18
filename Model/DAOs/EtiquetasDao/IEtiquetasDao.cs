@@ -7,7 +7,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
     public interface IEtiquetasDao : IGenericDao<EtiquetaSet, string>
     {
         /// <exception cref="InstanceNotFoundException"></exception>
-        Publicaciones[] GetPublicaciones(string tag, int npag);
+        Publicaciones[] GetPublicaciones(string tag, int npag, int pagLen);
 
         /// <exception cref="InstanceNotFoundException"></exception>
         EtiquetaSet[] GetEtiquetas(long pubId);

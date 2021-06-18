@@ -31,8 +31,8 @@ namespace Web
                 seguidores = (bool)Session["seg"];
 
                 if (seguidores)
-                    follow = usrService.VerSeguidores(id, pag);
-                else follow = usrService.VerSeguidos(id, pag);
+                    follow = usrService.VerSeguidores(id, pag, (int)Application["seguidoresSeguidosPag"]);
+                else follow = usrService.VerSeguidos(id, pag, (int)Application["seguidoresSeguidosPag"]);
 
                 actualizar();
             }

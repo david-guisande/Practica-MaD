@@ -21,7 +21,7 @@ namespace Web
             etiqService = iocManager.Resolve<IEtiquetasService>();
 
 
-            (string,int)[] list = etiqService.NubeEtiquetas();
+            (string,int)[] list = etiqService.NubeEtiquetas((int)Application["nubeEtiquetasPag"]);
 
             int sum = 0;
             for (int i = 0; i < list.Length; i++)
@@ -42,6 +42,24 @@ namespace Web
                 button.Attributes.Add("style", "font-size:" + (Math.Round(x*100)/100).ToString() +"px;");
                 PlaceHolder1.Controls.Add(button);
                 PlaceHolder1.Controls.Add(new HtmlGenericControl("br"));
+            }
+
+            UserSession userSession = SessionManager.GetUserSession(Context);
+            if (userSession == null)
+            {
+                registrar.Visible = true;
+                login.Visible = true;
+                miperfil.Visible = false;
+                actualizar.Visible = false;
+                salir.Visible = false;
+            }
+            else
+            {
+                registrar.Visible = false;
+                login.Visible = false;
+                miperfil.Visible = true;
+                actualizar.Visible = true;
+                salir.Visible = true;
             }
         }
 
@@ -70,34 +88,29 @@ namespace Web
         {
             UserSession userSession = SessionManager.GetUserSession(Context);
 
-            if (userSession != null)
-            {
-                Session["perfil"] = userSession.UserProfileId;
-                var url = Response.ApplyAppPathModifier("~/Principal.aspx");
-                Response.Redirect(url);
-            }
-            else
-            {
-                var url = Response.ApplyAppPathModifier("~/Autenticar.aspx");
-                Response.Redirect(url);
-            }
+            Session["perfil"] = userSession.UserProfileId;
+            var url = Response.ApplyAppPathModifier("~/Principal.aspx");
+            Response.Redirect(url);
             
         }
 
         protected void ActualizarInformacion(object sender, EventArgs e)
         {
-            UserSession userSession = SessionManager.GetUserSession(Context);
+            var url = Response.ApplyAppPathModifier("~/ActualizarInfo.aspx");
+            Response.Redirect(url);
+        }
 
-            if (userSession != null)
-            {
-                var url = Response.ApplyAppPathModifier("~/ActualizarInfo.aspx");
-                Response.Redirect(url);
-            }
-            else
-            {
-                var url = Response.ApplyAppPathModifier("~/Autenticar.aspx");
-                Response.Redirect(url);
-            }
+        protected void Registrar(object sender, EventArgs e)
+        {
+            var url = Response.ApplyAppPathModifier("~/Registrar.aspx");
+            Response.Redirect(url);
+
+        }
+
+        protected void Login(object sender, EventArgs e)
+        {
+            var url = Response.ApplyAppPathModifier("~/Autenticar.aspx");
+            Response.Redirect(url);
         }
     }
 }

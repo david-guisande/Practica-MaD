@@ -26,7 +26,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
 
         #endregion Public Constructors
         /// <exception cref="InstanceNotFoundException"></exception>
-        public Publicaciones[] Buscar(string palabras, int npag)
+        public Publicaciones[] Buscar(string palabras, int npag, int pagLen)
 		{
             Publicaciones[] pub;
             string[] words = palabras.Split(' ');
@@ -49,7 +49,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                     return r;
                 })).AsQueryable<Publicaciones>();
 
-                pub = request.Skip(10 * npag).Take(10).ToList().ToArray();
+                pub = request.Skip(pagLen * npag).Take(pagLen).ToList().ToArray();
                 return pub;
             }
             catch (ArgumentNullException)
@@ -59,7 +59,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
         }
 
         /// <exception cref="InstanceNotFoundException"></exception>
-        public Publicaciones[] Buscar(string palabras, string categoria, int npag)
+        public Publicaciones[] Buscar(string palabras, string categoria, int npag, int pagLen)
 		{
             Publicaciones[] pub;
             string[] words = palabras.Split(' ');
@@ -83,7 +83,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                     return r;
                 })).AsQueryable<Publicaciones>();
 
-                pub = request.Skip(10 * npag).Take(10).ToList().ToArray();
+                pub = request.Skip(pagLen * npag).Take(pagLen).ToList().ToArray();
                 return pub;
             }
             catch (ArgumentNullException)
@@ -93,7 +93,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
         }
 
         /// <exception cref="InstanceNotFoundException"></exception>
-        public Publicaciones[] GetPubliUsuario(Int64 usrId, int npag)
+        public Publicaciones[] GetPubliUsuario(Int64 usrId, int npag, int pagLen)
 		{
             DbSet<Usuarios> userProfiles = Context.Set<Usuarios>();
             try
@@ -102,7 +102,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                               where u.usrId == usrId
                               select u);
                 Usuarios usr = result.FirstOrDefault();
-                return usr.Publicaciones.Skip(10 * npag).Take(10).ToArray<Publicaciones>();
+                return usr.Publicaciones.Skip(pagLen * npag).Take(pagLen).ToArray<Publicaciones>();
             }
             catch (ArgumentNullException)
             {

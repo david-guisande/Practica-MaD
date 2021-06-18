@@ -26,7 +26,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
         #endregion Public Constructors
 
         /// <exception cref="InstanceNotFoundException"></exception>
-        public Comentarios[] GetComentariosPubli(Int64 pubId, int npag)
+        public Comentarios[] GetComentariosPubli(Int64 pubId, int npag, int pagLen)
 		{
             DbSet<Publicaciones> publicaciones = Context.Set<Publicaciones>();
             try
@@ -35,7 +35,7 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                               where p.Id == pubId
                               select p);
                 Publicaciones pub = result.FirstOrDefault();
-                return pub.Comentarios.OrderByDescending(c => c.fecha).Skip(10 * npag).Take(10).ToArray<Comentarios>();
+                return pub.Comentarios.OrderByDescending(c => c.fecha).Skip(pagLen * npag).Take(pagLen).ToArray<Comentarios>();
             }
             catch (ArgumentNullException)
             {

@@ -52,11 +52,11 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             }
         }
 
-        public PublicacionesDto[] GetPublicaciones(string tag, int npag)
+        public PublicacionesDto[] GetPublicaciones(string tag, int npag, int pagLen)
         {
             if (EtiquetasDao.Exists(tag))
             {
-                Publicaciones[] list = EtiquetasDao.GetPublicaciones(tag, npag);
+                Publicaciones[] list = EtiquetasDao.GetPublicaciones(tag, npag, pagLen);
                 PublicacionesDto[] res = new PublicacionesDto[list.Length];
                 for (int i = 0; i < list.Length; i++)
                 {
@@ -70,18 +70,19 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             }
         }
 
-        public (string et, int num)[] NubeEtiquetas()
+        public (string et, int num)[] NubeEtiquetas(int pagLen)
         {
-            EtiquetaSet[] lista = EtiquetasDao.GetAllElements().ToArray();
-            var res = new (string, int)[lista.Length];
+            var lista = EtiquetasDao.GetAllElements();
+            var res = new List<(string, int)>();
 
-            for(int i=0; i<lista.Length; i++)
+            foreach (EtiquetaSet e in lista)
             {
-                res[i].Item1 = lista[i].tag;
-                res[i].Item2 = EtiquetasDao.GetNumPublicaciones(lista[i].tag);
+                string tag = e.tag;
+                int num = EtiquetasDao.GetNumPublicaciones(tag);
+                res.Add((tag,num));
             }
 
-            return res;
+            return res.OrderByDescending(t => t.Item2).Take(pagLen).ToArray();
         }
     }
 }

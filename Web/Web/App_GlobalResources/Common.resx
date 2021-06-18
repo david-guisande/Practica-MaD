@@ -147,6 +147,9 @@
   <data name="keywords" xml:space="preserve">
     <value>Palabras Clave</value>
   </data>
+  <data name="login" xml:space="preserve">
+    <value>Iniciar Sesion</value>
+  </data>
   <data name="miperfil" xml:space="preserve">
     <value>Mi Perfil</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="paisaje" xml:space="preserve">
     <value>Paisaje</value>
+  </data>
+  <data name="registrar" xml:space="preserve">
+    <value>Registrar</value>
   </data>
   <data name="retrato" xml:space="preserve">
     <value>Retrato</value>

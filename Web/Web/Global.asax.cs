@@ -4,6 +4,9 @@ using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.ModelUtil.Log;
 using Ninject;
 using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Text.Json;
 
 namespace Web
 {
@@ -29,7 +32,12 @@ namespace Web
 
 		protected void Application_BeginRequest(object sender, EventArgs e)
 		{
-
+			string json = File.ReadAllText(Server.MapPath("~/config.json"));
+			var config = JsonSerializer.Deserialize<Dictionary<string,int>>(json);
+			foreach (var pair in config)
+            {
+				Application[pair.Key] = pair.Value;
+            }
 		}
 
 		protected void Application_AuthenticateRequest(object sender, EventArgs e)

@@ -8,11 +8,11 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
     {
         Int64 SubirImagen(long usrId, string titulo, string descripcion, string categoria,double? f = null, int? ISO = null, int? t = null, int? wb = null);
         /// <exception cref="InstanceNotFoundException"/>
-        PublicacionesDto[] VerPublicacionesUsuario(Int64 usrId, int npag);
+        PublicacionesDto[] VerPublicacionesUsuario(Int64 usrId, int npag, int pagLen);
         /// <exception cref="InstanceNotFoundException"/>
-        PublicacionesDto[] BuscarImagenes(string keywords, int npag);
+        PublicacionesDto[] BuscarImagenes(string keywords, int npag, int pagLen);
         /// <exception cref="InstanceNotFoundException"/>
-        PublicacionesDto[] BuscarImagenes(string keywords, string categoria, int npag);
+        PublicacionesDto[] BuscarImagenes(string keywords, string categoria, int npag, int pagLen);
         /// <exception cref="InstanceNotFoundException"/>
         void DarMeGusta(Int64 usrId, Int64 pubId);
         /// <exception cref="InstanceNotFoundException"/>

@@ -52,7 +52,7 @@ namespace Web
 		private void actualizar()
         {
 			ImageButton[] listaImg = {Image1, Image2, Image3, Image4, Image5, Image6, Image7, Image8, Image9, Image10 };
-				publicaciones = publiService.VerPublicacionesUsuario(id, pag);
+				publicaciones = publiService.VerPublicacionesUsuario(id, pag, (int)Application["buscarImagenPag"]);
 			for (int i=0; i<10; i++)
             {
 				if (i < publicaciones.Length)

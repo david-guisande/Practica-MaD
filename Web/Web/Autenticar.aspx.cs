@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -16,11 +17,8 @@ namespace Web
 			{
 				try
 				{
-					var usr = SessionManager.Login(Context,login.Text,password.Text, checkRememberPassword.Checked);
-					Session["perfil"] = usr.usrId;
-
-					var url = Response.ApplyAppPathModifier("~/Principal.aspx");
-					Response.Redirect(url);
+					SessionManager.Login(Context,login.Text,password.Text, checkRememberPassword.Checked);
+					FormsAuthentication. RedirectFromLoginPage(login.Text, checkRememberPassword.Checked);
 				}
 				catch { }
 			}

@@ -10,6 +10,6 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
         void ActualizarComentario(Int64 comId, Int64 usrId, string textoNuevo);
         void EliminarComentario(Int64 comId, Int64 usrId);
         /// <exception cref="InstanceNotFoundException"/>
-        ComentariosDto[] VerComentarios(Int64 pubId, int npag);
+        ComentariosDto[] VerComentarios(Int64 pubId, int npag, int pagLen);
     }
 }

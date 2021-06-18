@@ -21,21 +21,10 @@ namespace Web
         {
             IIoCManager iocManager;
 
-            UserSession userSession = SessionManager.GetUserSession(Context);
-
-            if (userSession != null)
-            {
-                iocManager =
-                (IIoCManager)HttpContext.Current.Application["managerIoC"];
-                publiService = iocManager.Resolve<IPublicacionesService>();
-                usrService = iocManager.Resolve<IUsuariosService>();
-                etiqService = iocManager.Resolve<IEtiquetasService>();
-            }
-            else
-            {
-                var url = Response.ApplyAppPathModifier("~/Autenticar.aspx");
-                Response.Redirect(url);
-            }
+            iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+            publiService = iocManager.Resolve<IPublicacionesService>();
+            usrService = iocManager.Resolve<IUsuariosService>();
+            etiqService = iocManager.Resolve<IEtiquetasService>();
         }
 
         protected void Subir(object sender, EventArgs e)
