@@ -3,6 +3,7 @@ using Es.Udc.DotNet.Photogram.Model.Service;
 using Es.Udc.DotNet.Photogram.Web.HTTP.Session;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -36,10 +37,9 @@ namespace Web
                     Text = list[i].Item1
                 };
                 button.Command += EtiquetaOnClick;
-                float x = ((float)list[i].Item2 / (float)sum) * 36 + 12;
+                float x = ((float)list[i].Item2 / (float)sum) * 360 + 120;
 
-
-                button.Attributes.Add("style", "font-size:" + (Math.Round(x*100)/100).ToString() +"px;");
+                button.Style.Add("font-size", Unit.Percentage((Math.Round(x * 100) / 100)).ToString(new CultureInfo("en-US", false)));
                 PlaceHolder1.Controls.Add(button);
                 PlaceHolder1.Controls.Add(new HtmlGenericControl("br"));
             }
@@ -58,6 +58,7 @@ namespace Web
                 registrar.Visible = false;
                 login.Visible = false;
                 miperfil.Visible = true;
+                miperfil.Text = userSession.FirstName;
                 actualizar.Visible = true;
                 salir.Visible = true;
             }

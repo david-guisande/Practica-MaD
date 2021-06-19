@@ -33,8 +33,27 @@ namespace Web
             string[] tags = TextBox9.Text.ToLower().Split(' ');
             UserSession userSession = SessionManager.GetUserSession(Context);
             long usrId = userSession.UserProfileId;
-            long pubId = publiService.SubirImagen(usrId, txtTitle.Text, TextBox5.Text, DropDownList2.SelectedValue,
-                float.Parse(TextBox2.Text), Int32.Parse(TextBox1.Text), Int32.Parse(TextBox3.Text), Int32.Parse(TextBox4.Text));
+            float? t2 = null;
+            int? t1 = null;
+            int? t3 = null;
+            int? t4 = null;
+            if (TextBox2.Text != "")
+            {
+                t2 = float.Parse(TextBox2.Text);
+            }
+            if (TextBox1.Text != "")
+            {
+                t1 = Int32.Parse(TextBox1.Text);
+            }
+            if (TextBox3.Text != "")
+            {
+                t3 = Int32.Parse(TextBox3.Text);
+            }
+            if (TextBox4.Text != "")
+            {
+                t4 = Int32.Parse(TextBox4.Text);
+            }
+            long pubId = publiService.SubirImagen(usrId, txtTitle.Text, TextBox5.Text, DropDownList2.SelectedValue, t2, t1, t3, t4);
             var ruta = Server.MapPath("~/Imagenes/" + pubId + ".png");
             bool b = FileUpload1.HasFile;
             string x = FileUpload1.FileName;

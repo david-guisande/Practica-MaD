@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace Web
@@ -17,6 +18,11 @@ namespace Web
         public IUsuariosService usrService;
         public IComentariosService comService;
         public ComentariosDto[] lista;
+        List<LinkButton> users = new List<LinkButton>();
+        List<Label> times = new List<Label>();
+        List<TextBox> texts = new List<TextBox>();
+        List<Button> update = new List<Button>();
+        List<Button> delete = new List<Button>();
         public long pubid;
         public static int pagina = 0;
 
@@ -28,9 +34,87 @@ namespace Web
             usrService = iocManager.Resolve<IUsuariosService>();
             comService = iocManager.Resolve<IComentariosService>();
 
+            if (SessionManager.GetUserSession(Context) == null)
+            {
+                Comentario.Visible = false;
+                Comentar.Visible = false;
+            } else
+            {
+                Comentario.Visible = true;
+                Comentar.Visible = true;
+            }
+
+
+            for (int i = 0; i < (int)Application["comentariosPag"]; i++)
+            {
+                var div = new HtmlGenericControl("DIV");
+                div.Style.Value = "margin-left: 20%";
+
+                var div2 = new HtmlGenericControl("DIV");
+                div2.Style.Value = "margin-right: 20px; float:left";
+
+                var lb = new LinkButton
+                {
+                    ID = "LinkButton" + i,
+                    
+                };
+                lb.Command += VerUsuario;
+                
+
+                var l = new Label
+                {
+                    ID = "Label" + i
+                };
+
+                var t = new TextBox
+                {
+                    ID = "TextBox" + i,
+                    ReadOnly = true,
+                    Width = Unit.Percentage(60)
+                };
+
+                var bu = new Button
+                {
+                    ID = "ButtonU" + i,
+                    Visible = false,
+                    Text = (string)GetLocalResourceObject("actualizar")
+                };
+                bu.Command += Update;
+
+                var bd = new Button
+                {
+                    ID = "ButtonD" + i,
+                    Visible = false,
+                    Text = (string)GetLocalResourceObject("borrar")
+                };
+                bd.Command += Delete;
+
+
+                users.Add(lb);
+                times.Add(l);
+                texts.Add(t);
+                update.Add(bu);
+                delete.Add(bd);
+
+                div2.Controls.Add(lb);
+                div.Controls.Add(div2);
+                div.Controls.Add(l);
+                div.Controls.Add(new HtmlGenericControl("br"));
+                div.Controls.Add(t);
+                div.Controls.Add(bu);
+                div.Controls.Add(bd);
+
+                PlaceHolder1.Controls.Add(div);
+                PlaceHolder1.Controls.Add(new HtmlGenericControl("br"));
+            }
+
+
+
+
+
             pubid = (long)Session["imagen"];
             if (!IsPostBack) pagina = 0;
-            lista = comService.VerComentarios(pubid, pagina, (int)Application["comentariosPag"]);
+            if (IsPostBack) lista = comService.VerComentarios(pubid, pagina, (int)Application["comentariosPag"]);
 
             if (!IsPostBack) actualizar();
         }
@@ -38,13 +122,8 @@ namespace Web
         private void actualizar()
         {
             lista = comService.VerComentarios(pubid, pagina, (int)Application["comentariosPag"]);
-            LinkButton[] users = { LinkButton1, LinkButton2, LinkButton3, LinkButton4, LinkButton5, LinkButton6, LinkButton7, LinkButton8, LinkButton9, LinkButton10 };
-            Label[] times = { Label1, Label2, Label3, Label4, Label5, Label6, Label7, Label8, Label9, Label10 };
-            TextBox[] texts = { TextBox1, TextBox2, TextBox3, TextBox4, TextBox5, TextBox6, TextBox7, TextBox8, TextBox9, TextBox10 };
-            Button[] update = { Button1, Button3, Button5, Button7, Button9, Button11, Button13, Button15, Button17, Button19, };
-            Button[] delete = { Button2, Button4, Button6, Button8, Button10, Button12, Button14, Button16, Button18, Button20, };
-
-            for (int i = 0; i < 10; i++)
+           
+            for (int i = 0; i < (int)Application["comentariosPag"]; i++)
             {
                 if (i < lista.Length)
                 {
@@ -84,7 +163,7 @@ namespace Web
         protected void VerUsuario(object sender, EventArgs e)
         {
             LinkButton lb = (LinkButton)sender;
-            int i = Int32.Parse(lb.ID.Replace("LinkButton", "")) - 1;
+            int i = Int32.Parse(lb.ID.Replace("LinkButton", ""));
             Session["perfil"] = lista[i].Usuario;
             var url = Response.ApplyAppPathModifier("~/Principal.aspx");
             Response.Redirect(url);
@@ -123,15 +202,14 @@ namespace Web
 
         protected void Update(object sender, EventArgs e)
         {
-            TextBox[] texts = { TextBox1, TextBox2, TextBox3, TextBox4, TextBox5, TextBox6, TextBox7, TextBox8, TextBox9, TextBox10 };
             Button lb = (Button)sender;
-            int i = (Int32.Parse(lb.ID.Replace("Button", ""))+1) / 2 - 1;
+            int i = Int32.Parse(lb.ID.Replace("ButtonU", ""));
             comService.ActualizarComentario(lista[i].Id, lista[i].Usuario, texts[i].Text);
         }
         protected void Delete(object sender, EventArgs e)
         {
             Button lb = (Button)sender;
-            int i = Int32.Parse(lb.ID.Replace("Button", ""))/2 - 1;
+            int i = Int32.Parse(lb.ID.Replace("ButtonD", ""));
             comService.EliminarComentario(lista[i].Id, lista[i].Usuario);
             actualizar();
         }

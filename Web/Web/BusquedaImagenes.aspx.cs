@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace Web
@@ -15,6 +16,7 @@ namespace Web
     {
         public IPublicacionesService publiService;
         public PublicacionesDto[] publicaciones;
+        public List<ImageButton> listaImg = new List<ImageButton>();
         public int pag = 0;
         public string cat;
         public string keywords;
@@ -24,54 +26,65 @@ namespace Web
                 (IIoCManager)HttpContext.Current.Application["managerIoC"];
             publiService = iocManager.Resolve<IPublicacionesService>();
 
-            try
-            {
                 cat = (string)Session["categoria"];
                 keywords = (string)Session["keywords"];
                 if (cat == null || keywords == null)
                 {
-                    throw new Exception();
+                    var url = Response.ApplyAppPathModifier("~/Principal.aspx");
+                    Response.Redirect(url);
                 }
+
+                for (int i = 0; i < (int)Application["buscarImagenPag"]; i++)
+                {
+                    var button = new ImageButton
+                    {
+                        ID = "Image" + i,
+                    };
+                    button.Command += Imagen;
+                    PlaceHolder1.Controls.Add(button);
+                    listaImg.Add(button);
+                }
+
                 actualizar();
-            }
-            catch
-            {
-                var url = Response.ApplyAppPathModifier("~/Principal.aspx");
-                Response.Redirect(url);
-            }
            
         }
 
         private void actualizar()
         {
-            ImageButton[] listaImg = { Image1, Image2, Image3, Image4, Image5, Image6, Image7, Image8, Image9, Image10 };
-            if (cat == "")
+            try
             {
-                publicaciones = publiService.BuscarImagenes(keywords, pag, (int)Application["buscarImagenPag"]);
-            }
-            else
-            {
-                publicaciones = publiService.BuscarImagenes(keywords, cat, pag, (int)Application["buscarImagenPag"]);
-            }
-
-            for (int i = 0; i < 10; i++)
-            {
-                if (i < publicaciones.Length)
+                if (cat == "")
                 {
-                    listaImg[i].ImageUrl = publicaciones[i].imagen;
-                    listaImg[i].Visible = true;
+                    publicaciones = publiService.BuscarImagenes(keywords, pag, (int)Application["buscarImagenPag"]);
                 }
                 else
                 {
-                    listaImg[i].Visible = false;
+                    publicaciones = publiService.BuscarImagenes(keywords, cat, pag, (int)Application["buscarImagenPag"]);
                 }
+
+                for (int i = 0; i < (int)Application["buscarImagenPag"]; i++)
+                {
+                    if (i < publicaciones.Length)
+                    {
+                        listaImg[i].ImageUrl = publicaciones[i].imagen;
+                        listaImg[i].Visible = true;
+                    }
+                    else
+                    {
+                        listaImg[i].Visible = false;
+                    }
+                }
+            } 
+            catch
+            {
+
             }
         }
 
-            protected void Imagen(object sender, EventArgs e)
+        protected void Imagen(object sender, EventArgs e)
         {
             Image img = (Image)sender;
-            int i = Int32.Parse(img.ID.Replace("Image", "")) - 1;
+            int i = Int32.Parse(img.ID.Replace("Image", ""));
             Session["imagen"] = publicaciones[i].Id;
 
             var url = Response.ApplyAppPathModifier("~/DetalleImagen.aspx");

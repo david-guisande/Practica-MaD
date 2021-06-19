@@ -15,6 +15,7 @@ namespace Web
     {
         public IEtiquetasService etiqService;
         public PublicacionesDto[] publicaciones;
+        public List<ImageButton> listaImg = new List<ImageButton>();
         public int pag = 0;
         public string tag;
         protected void Page_Load(object sender, EventArgs e)
@@ -23,27 +24,30 @@ namespace Web
                 (IIoCManager)HttpContext.Current.Application["managerIoC"];
             etiqService = iocManager.Resolve<IEtiquetasService>();
 
-            try
-            {
                 tag = (string)Session["tag"];
                 if (tag == null)
                 {
-                    throw new Exception();
+                    var url = Response.ApplyAppPathModifier("~/Principal.aspx");
+                    Response.Redirect(url);
                 }
-                actualizar();
-            }
-            catch
+
+            for (int i = 0; i < (int)Application["buscarImagenPag"]; i++)
             {
-                var url = Response.ApplyAppPathModifier("~/Principal.aspx");
-                Response.Redirect(url);
+                var button = new ImageButton
+                {
+                    ID = "Image" + i,
+                };
+                button.Command += Imagen;
+                PlaceHolder1.Controls.Add(button);
+                listaImg.Add(button);
             }
+
+            actualizar();
 
         }
 
         private void actualizar()
         {
-            ImageButton[] listaImg = { Image1, Image2, Image3, Image4, Image5, Image6, Image7, Image8, Image9, Image10 };
-
             publicaciones = etiqService.GetPublicaciones(tag, pag, (int)Application["buscarImagenPag"]);
 
             for (int i = 0; i < 10; i++)
@@ -63,7 +67,7 @@ namespace Web
         protected void Imagen(object sender, EventArgs e)
         {
             Image img = (Image)sender;
-            int i = Int32.Parse(img.ID.Replace("Image", "")) - 1;
+            int i = Int32.Parse(img.ID.Replace("Image", ""));
             Session["imagen"] = publicaciones[i].Id;
 
             var url = Response.ApplyAppPathModifier("~/DetalleImagen.aspx");
