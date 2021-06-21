@@ -126,4 +126,7 @@
   <data name="following" xml:space="preserve">
     <value>Following</value>
   </data>
+  <data name="unfollow" xml:space="preserve">
+    <value>Unfollow</value>
+  </data>
 </root>

@@ -22,6 +22,8 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
         Usuarios[] GetSeguidores(Int64 usrId, int npag, int pagLen);
         /// <exception cref="InstanceNotFoundException"/>
         void DarFav(Int64 usrId, Int64 pubId);
+        /// <exception cref="InstanceNotFoundException"></exception>
+        bool Siguiendo(Int64 usrIdSeguidor, Int64 usrIdSeguido);
 
     }
 }

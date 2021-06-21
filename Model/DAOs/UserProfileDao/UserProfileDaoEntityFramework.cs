@@ -66,8 +66,34 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
                 seguidor = result.FirstOrDefault();
                 Usuarios seguido = Find(usrIdSeguido);
 
-                seguidor.Seguidos.Add(seguido);
+                if (seguidor.Seguidos.Contains(seguido))
+                    seguidor.Seguidos.Remove(seguido);
+                else seguidor.Seguidos.Add(seguido);
+
                 Update(seguidor);
+            }
+            catch (ArgumentNullException)
+            {
+                throw new InstanceNotFoundException((usrIdSeguidor, usrIdSeguido), "Usuarios");
+            }
+        }
+
+        /// <exception cref="InstanceNotFoundException"></exception>
+        public bool Siguiendo(Int64 usrIdSeguidor, Int64 usrIdSeguido)
+        {
+            Usuarios seguidor;
+
+            try
+            {
+                DbSet<Usuarios> userProfiles = Context.Set<Usuarios>();
+                var result = (from u in userProfiles.Include("Seguidos")
+                              where u.usrId == usrIdSeguidor
+                              select u);
+
+                seguidor = result.FirstOrDefault();
+                Usuarios seguido = Find(usrIdSeguido);
+
+                return seguidor.Seguidos.Contains(seguido);
             }
             catch (ArgumentNullException)
             {

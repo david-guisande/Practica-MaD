@@ -4,7 +4,6 @@
 			<div class="field" align="center" style="font-size: large; float:left; width:75%">
 				<asp:Literal runat="server" Text="<%$ Resources:Common, subirimagen%>" />
 			</div>
-			<div class="field">
 			<div style='float:right; width:15%;'>
 				<asp:Button ID="Subir" runat="server" OnClick="RedirigirSubir" Text="<%$ Resources:Common, subir%>"/>
 			</div>

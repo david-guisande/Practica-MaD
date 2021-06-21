@@ -34,6 +34,11 @@ namespace Web
                 usrid = SessionManager.GetUserSession(Context).UserProfileId;
             }
             catch { }
+            actualizar();
+        }
+
+        private void actualizar()
+        {
             PublicacionesDto pub = publiService.FindPublicacion(pubid);
 
             Favs.Text = GetLocalResourceObject("likes").ToString() + " " + publiService.NumeroMeGusta(pubid).ToString();
@@ -41,11 +46,11 @@ namespace Web
             UserLink.Text = autor.loginName;
             Image1.ImageUrl = pub.imagen;
             txtTitle.Text = pub.titulo;
-            TextBox6.Text = GetGlobalResourceObject("Common",pub.categoria.ToLower()).ToString();
+            TextBox6.Text = GetGlobalResourceObject("Common", pub.categoria.ToLower()).ToString();
             TextBox5.Text = pub.descripcion;
             DateTime data = new DateTime(pub.fecha);
             TextBox7.Text = data.ToString();
-            if(pub.ISO != null)
+            if (pub.ISO != null)
             {
                 TextBox1.Text = "ISO " + pub.ISO.ToString();
             }
@@ -54,12 +59,12 @@ namespace Web
             {
                 TextBox2.Text = GetLocalResourceObject("f").ToString() + " " + pub.f.ToString();
             }
-            
+
             if (pub.t != null)
             {
                 TextBox3.Text = GetLocalResourceObject("t").ToString() + " " + pub.t.ToString();
             }
-            
+
             if (pub.wb != null)
             {
                 TextBox4.Text = "wb " + pub.wb.ToString();
@@ -67,6 +72,7 @@ namespace Web
 
             string[] list = etiqService.GetEtiquetas(pubid);
 
+            PlaceHolder1.Controls.Clear();
             for (int i = 0; i < list.Length; i++)
             {
                 var button = new LinkButton
@@ -74,11 +80,31 @@ namespace Web
                     ID = "Button" + i,
                     Text = list[i]
                 };
+                var borrar = new Button
+                {
+                    ID = list[i],
+                    Text = (string)GetLocalResourceObject("delete")
+                };
                 button.Command += EtiquetaOnClick;
+                borrar.Command += BorrarEtiqueta;
+
                 PlaceHolder1.Controls.Add(button);
+                PlaceHolder1.Controls.Add(borrar);
                 PlaceHolder1.Controls.Add(new HtmlGenericControl("br"));
             }
+        }
 
+        protected void Etiquetar(object sender, EventArgs e)
+        {
+            etiqService.Etiquetar(AddTag.Text, pubid);
+            actualizar();
+        }
+
+        protected void BorrarEtiqueta(object sender, EventArgs e)
+        {
+            Button b = (Button)sender;
+            etiqService.Desetiquetar(b.ID, pubid);
+            actualizar();
         }
 
         protected void EtiquetaOnClick(object sender, EventArgs e)
@@ -87,6 +113,7 @@ namespace Web
             Session["tag"] = ((LinkButton)sender).Text;
             Response.Redirect(url);
         }
+
         protected void DarMegusta(object sender, EventArgs e)
         {
             if (usrid != -1)

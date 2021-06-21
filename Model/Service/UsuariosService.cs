@@ -85,6 +85,12 @@ namespace Es.Udc.DotNet.Photogram.Model.Service
             UsuariosDao.SeguirA(usrIdSeguidor, usrIdSeguido);
         }
 
+        /// <exception cref="InstanceNotFoundException"></exception>
+        public bool Siguiendo(Int64 usrIdSeguidor, Int64 usrIdSeguido)
+        {
+            return UsuariosDao.Siguiendo(usrIdSeguidor, usrIdSeguido);
+        }
+
         public void ActualizarUsuario(Int64 id,  string loginName, string clearPassword, string nombre, string email, string pais, string idioma)
         {
             Usuarios user = UsuariosDao.Find(id);

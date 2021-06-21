@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="addtag" xml:space="preserve">
+    <value>Añadir Etiqueta</value>
+  </data>
   <data name="comentarios" xml:space="preserve">
     <value>Comentarios</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Borrar</value>
   </data>
   <data name="detalleimagen" xml:space="preserve">
     <value>Detalle de Imagen</value>

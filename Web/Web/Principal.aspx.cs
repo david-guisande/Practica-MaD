@@ -52,7 +52,8 @@ namespace Web
 		private void actualizar()
         {
 			ImageButton[] listaImg = {Image1, Image2, Image3, Image4, Image5, Image6, Image7, Image8, Image9, Image10 };
-				publicaciones = publiService.VerPublicacionesUsuario(id, pag, (int)Application["buscarImagenPag"]);
+			publicaciones = publiService.VerPublicacionesUsuario(id, pag, (int)Application["buscarImagenPag"]);
+
 			for (int i=0; i<10; i++)
             {
 				if (i < publicaciones.Length)
@@ -65,6 +66,15 @@ namespace Web
 					listaImg[i].Visible = false;
 				}
             }
+
+			string follow = (string)GetLocalResourceObject("follow");
+			string unfollow = (string)GetLocalResourceObject("unfollow");
+
+			if (SessionManager.GetUserSession(Context) != null)
+            {
+				long id2 = SessionManager.GetUserSession(Context).UserProfileId;
+				Follow.Text = (usrService.Siguiendo(id2, id)) ? unfollow : follow;
+			}
 		}
 
 		protected void Imagen(object sender, EventArgs e)
@@ -101,6 +111,7 @@ namespace Web
 		protected void Seguir(object sender, EventArgs e)
         {
 			usrService.SeguirA(SessionManager.GetUserSession(Context).UserProfileId, id);
+			actualizar();
 		}
 
 		protected void VerSeg(object sender, EventArgs e)

@@ -51,6 +51,9 @@
 				</div>
 			</div>
 			<div style="margin-bottom: 20px">
+				<asp:TextBox ID="AddTag" runat="server" style="margin-left: 10%;"/>
+				<asp:Button ID="AddTag2" runat="server" Text="<%$ Resources:, addtag%>" style="margin-left: 20%;" OnClick="Etiquetar"></asp:Button>
+				<br />
 				<div class="field" align="left" style="font-size: large; float:left; width:80%">
 					<asp:PlaceHolder runat="server" ID="PlaceHolder1"></asp:PlaceHolder>
 				</div>
