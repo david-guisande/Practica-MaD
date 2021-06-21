@@ -1,4 +1,6 @@
-﻿using Es.Udc.DotNet.Photogram.Web.HTTP.Session;
+﻿using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.Photogram.Model.Service;
+using Es.Udc.DotNet.Photogram.Web.HTTP.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +19,9 @@ namespace Web
 			{
 				try
 				{
-					SessionManager.Login(Context,login.Text,password.Text, checkRememberPassword.Checked);
-					FormsAuthentication. RedirectFromLoginPage(login.Text, checkRememberPassword.Checked);
+					var user = SessionManager.Login(Context,login.Text,password.Text, checkRememberPassword.Checked);
+					Session["perfil"] = user.usrId;
+					FormsAuthentication.RedirectFromLoginPage(login.Text, checkRememberPassword.Checked);
 				}
 				catch { }
 			}

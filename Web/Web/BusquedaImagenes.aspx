@@ -1,10 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Photogram.Master" AutoEventWireup="true" CodeBehind="BusquedaImagenes.aspx.cs" Inherits="Web.BusquedaImagenes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-
-<div style="border-style: solid double; margin-bottom: 20px; margin-top: 20px">
-
-			<asp:PlaceHolder runat="server" ID="PlaceHolder1"></asp:PlaceHolder>
+	<div style="border-style: solid double; margin-bottom: 20px; margin-top: 20px">
+		<asp:PlaceHolder runat="server" ID="PlaceHolder1"></asp:PlaceHolder>
 	</div>
 	<div style="margin-bottom: 20px; margin-top: 20px">
 		<div class="field" align="right" style="font-size: large; float:left; width:49%">

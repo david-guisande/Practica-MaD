@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Photogram.Master" AutoEventWireup="true" CodeBehind="Comentarios.aspx.cs" Inherits="Web.Comentarios" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div style="margin-left: 20%">
-        <asp:TextBox ID="Comentario" runat="server" Width=80%></asp:TextBox>
+    <div><asp:Image ID="Image" runat="server" /></div>
+    <div style="margin: 10%">
+        <br />
+        <asp:TextBox ID="Comentario" runat="server" Width="80%"></asp:TextBox>
         <asp:Button ID="Comentar" runat="server" OnClick="Coment" Text="<%$ Resources:, comentar%>"></asp:Button>
     </div>
     <br />

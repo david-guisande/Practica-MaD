@@ -26,27 +26,25 @@ namespace Web
                 (IIoCManager)HttpContext.Current.Application["managerIoC"];
             publiService = iocManager.Resolve<IPublicacionesService>();
 
-                cat = (string)Session["categoria"];
-                keywords = (string)Session["keywords"];
-                if (cat == null || keywords == null)
-                {
-                    var url = Response.ApplyAppPathModifier("~/Principal.aspx");
-                    Response.Redirect(url);
-                }
+            cat = (string)Session["categoria"];
+            keywords = (string)Session["keywords"];
+            if (cat == null || keywords == null)
+            {
+                var url = Response.ApplyAppPathModifier("~/Principal.aspx");
+                Response.Redirect(url);
+            }
 
-                for (int i = 0; i < (int)Application["buscarImagenPag"]; i++)
+            for (int i = 0; i < (int)Application["buscarImagenPag"]; i++)
+            {
+                var button = new ImageButton
                 {
-                    var button = new ImageButton
-                    {
-                        ID = "Image" + i,
-                    };
-                    button.Command += Imagen;
-                    PlaceHolder1.Controls.Add(button);
-                    listaImg.Add(button);
-                }
-
-                actualizar();
-           
+                    ID = "Image" + i,
+                };
+                button.Command += Imagen;
+                PlaceHolder1.Controls.Add(button);
+                listaImg.Add(button);
+            }
+            actualizar();
         }
 
         private void actualizar()

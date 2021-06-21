@@ -122,6 +122,9 @@ namespace Es.Udc.DotNet.Photogram.Model.DAOs
 
                     et.Publicaciones.Remove(pub);
                     Update(et);
+
+                    if (et.Publicaciones.Count == 0)
+                        Remove(et.tag);
                 }
                 catch (ArgumentNullException)
                 {

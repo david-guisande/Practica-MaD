@@ -70,6 +70,9 @@ namespace Web
                 TextBox4.Text = "wb " + pub.wb.ToString();
             }
 
+            AddTag.Visible = (pub.Usuario == usrid);
+            AddTag2.Visible = (pub.Usuario == usrid);
+
             string[] list = etiqService.GetEtiquetas(pubid);
 
             PlaceHolder1.Controls.Clear();
@@ -89,7 +92,8 @@ namespace Web
                 borrar.Command += BorrarEtiqueta;
 
                 PlaceHolder1.Controls.Add(button);
-                PlaceHolder1.Controls.Add(borrar);
+                if (pub.Usuario == usrid)
+                    PlaceHolder1.Controls.Add(borrar);
                 PlaceHolder1.Controls.Add(new HtmlGenericControl("br"));
             }
         }

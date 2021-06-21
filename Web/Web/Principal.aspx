@@ -12,26 +12,17 @@
 			<div class="field" style="font-size: large; float:left; width:75%">
 					<asp:Label runat="server" ID="nombre"></asp:Label>
 			</div>
-			<div style='float:right; width:25%;'>
-				<asp:Button ID="Follow" runat="server" Text="<%$ Resources:, follow%>" OnClick="Seguir" Visible="false"/>
-			</div>
 			<div style='float:left; width:25%; margin-right: 5px'>
 				<asp:Button ID="Following" runat="server" Text="<%$ Resources:, following%>" OnClick="VerSeg" Visible="false"/>
 			</div>
 			<div style='float:left; width:25%;'>
 				<asp:Button ID="Followers" runat="server" Text="<%$ Resources:, followers%>" OnClick="VerSeg" Visible="false"/>
 			</div>
-
-			<asp:ImageButton ID="Image1" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
-			<asp:ImageButton ID="Image2" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
-			<asp:ImageButton ID="Image3" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
-			<asp:ImageButton ID="Image4" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
-			<asp:ImageButton ID="Image5" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
-			<asp:ImageButton ID="Image6" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
-			<asp:ImageButton ID="Image7" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
-			<asp:ImageButton ID="Image8" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
-			<asp:ImageButton ID="Image9" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
-			<asp:ImageButton ID="Image10" runat="server" OnClick="Imagen" Visible="false" style="width:30%; margin:5px"/>
+			<div style='float:right; width:25%;'>
+				<asp:Button ID="Follow" runat="server" Text="<%$ Resources:, follow%>" OnClick="Seguir" Visible="false"/>
+			</div>
+			<br />
+			<asp:PlaceHolder runat="server" ID="PlaceHolder1"></asp:PlaceHolder>
 	</div>
 	<div style="margin-bottom: 20px">
 		<div class="field" align="right" style="font-size: large; float:left; width:49%">

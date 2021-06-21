@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -110,8 +111,7 @@ namespace Web
 
         protected void Login(object sender, EventArgs e)
         {
-            var url = Response.ApplyAppPathModifier("~/Autenticar.aspx");
-            Response.Redirect(url);
+            FormsAuthentication.RedirectToLoginPage();
         }
     }
 }

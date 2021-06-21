@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -33,17 +34,6 @@ namespace Web
             publiService = iocManager.Resolve<IPublicacionesService>();
             usrService = iocManager.Resolve<IUsuariosService>();
             comService = iocManager.Resolve<IComentariosService>();
-
-            if (SessionManager.GetUserSession(Context) == null)
-            {
-                Comentario.Visible = false;
-                Comentar.Visible = false;
-            } else
-            {
-                Comentario.Visible = true;
-                Comentar.Visible = true;
-            }
-
 
             for (int i = 0; i < (int)Application["comentariosPag"]; i++)
             {
@@ -108,15 +98,13 @@ namespace Web
                 PlaceHolder1.Controls.Add(new HtmlGenericControl("br"));
             }
 
-
-
-
-
             pubid = (long)Session["imagen"];
             if (!IsPostBack) pagina = 0;
             if (IsPostBack) lista = comService.VerComentarios(pubid, pagina, (int)Application["comentariosPag"]);
 
             if (!IsPostBack) actualizar();
+
+            Image.ImageUrl = publiService.FindPublicacion(pubid).imagen;
         }
 
         private void actualizar()
@@ -195,8 +183,7 @@ namespace Web
             }
             else
             {
-                var url = Response.ApplyAppPathModifier("~/Autenticar.aspx");
-                Response.Redirect(url);
+                FormsAuthentication.RedirectToLoginPage();
             }
         }
 

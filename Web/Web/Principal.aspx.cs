@@ -16,7 +16,8 @@ namespace Web
 		public IUsuariosService usrService;
 		public IPublicacionesService publiService;
 		public PublicacionesDto[] publicaciones;
-		public long id;
+		public List<ImageButton> listaImg = new List<ImageButton>();
+		public long id = -1, sessionID = -1;
 		public int pag = 0;
 
 		protected void Page_Load(object sender, EventArgs e)
@@ -26,61 +27,72 @@ namespace Web
 			publiService = iocManager.Resolve<IPublicacionesService>();
 			usrService = iocManager.Resolve<IUsuariosService>();
 
+			for (int i = 0; i < (int)Application["buscarImagenPag"]; i++)
+			{
+				var button = new ImageButton
+				{
+					ID = "Image" + i,
+				};
+				button.Command += Imagen;
+				button.Visible = false;
+				PlaceHolder1.Controls.Add(button);
+				listaImg.Add(button);
+			}
+
 			try
 			{
 				id = (long)Session["perfil"];
 				UsuariosDto usr = usrService.Usuario(id);
-
 				nombre.Text = usr.name;
+			}
+			catch { }
 
-				if (SessionManager.GetUserSession(Context).UserProfileId != id)
-                {
+			if (SessionManager.GetUserSession(Context) != null)
+            {
+				sessionID = SessionManager.GetUserSession(Context).UserProfileId;
+				if (sessionID != id)
 					Follow.Visible = true;
-				}
-				Following.Visible = true;
-				Followers.Visible = true;
-				Siguiente.Visible = true;
-				Anterior.Visible = true;
-				actualizar();
 			}
-			catch
-			{
 
-			}
+			Following.Visible = true;
+			Followers.Visible = true;
+			Siguiente.Visible = true;
+			Anterior.Visible = true;
+			actualizar();
 		}
 
 		private void actualizar()
         {
-			ImageButton[] listaImg = {Image1, Image2, Image3, Image4, Image5, Image6, Image7, Image8, Image9, Image10 };
+			if (id == -1) return;
+
 			publicaciones = publiService.VerPublicacionesUsuario(id, pag, (int)Application["buscarImagenPag"]);
 
-			for (int i=0; i<10; i++)
-            {
+			for (int i = 0; i < (int)Application["buscarImagenPag"]; i++)
+			{
 				if (i < publicaciones.Length)
 				{
 					listaImg[i].ImageUrl = publicaciones[i].imagen;
 					listaImg[i].Visible = true;
 				}
 				else
-                {
+				{
 					listaImg[i].Visible = false;
 				}
-            }
+			}
 
 			string follow = (string)GetLocalResourceObject("follow");
 			string unfollow = (string)GetLocalResourceObject("unfollow");
 
-			if (SessionManager.GetUserSession(Context) != null)
+			if (sessionID != -1)
             {
-				long id2 = SessionManager.GetUserSession(Context).UserProfileId;
-				Follow.Text = (usrService.Siguiendo(id2, id)) ? unfollow : follow;
+				Follow.Text = (usrService.Siguiendo(sessionID, id)) ? unfollow : follow;
 			}
 		}
 
 		protected void Imagen(object sender, EventArgs e)
         {
 			Image img = (Image)sender;
-			int i = Int32.Parse(img.ID.Replace("Image",""))-1;
+			int i = Int32.Parse(img.ID.Replace("Image",""));
 			Session["imagen"] = publicaciones[i].Id;
 
 			var url = Response.ApplyAppPathModifier("~/DetalleImagen.aspx");
@@ -110,7 +122,7 @@ namespace Web
 
 		protected void Seguir(object sender, EventArgs e)
         {
-			usrService.SeguirA(SessionManager.GetUserSession(Context).UserProfileId, id);
+			usrService.SeguirA(sessionID, id);
 			actualizar();
 		}
 
